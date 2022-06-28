@@ -1,8 +1,8 @@
 import "./App.css";
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
-import { Text } from "@chakra-ui/react";
 import AdminContext from "./context/AdminContext";
+import TenderForm from "./components/pages/TenderForm";
 
 function App() {
   const { proponent } = useContext(ProponentContext);
@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <div>
-        Welcome to the SIH project of <Text color="tomato">RED CODERS</Text>
         {console.log("Proponent", proponent)}
         {console.log("Admin", admin)}
+        <TenderForm />
       </div>
     </>
   );
