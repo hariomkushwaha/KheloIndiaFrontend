@@ -45,15 +45,33 @@ export default function TenderForm() {
   };
 
   const [values, setValues] = useState(initialValues);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setValues({
       ...values,
       [name]: value,
     });
-    console.log(values);
+  };
+
+  const handleSubmit = () => {
+    let flag = false;
+    let tempValues = Object.values(values);
+
+    for (const v of tempValues) {
+      if (v.length === 0) {
+        flag = true;
+      }
+    }
+
+    if (flag) {
+      setError(true);
+      console.log("Please enter all the values");
+    } else {
+      setError(false);
+      console.log("Submitted");
+    }
   };
 
   return (
@@ -362,6 +380,15 @@ export default function TenderForm() {
               <Text fontSize={"md"} color={"red.500"} as="samp">
                 <sup>*</sup> All Fields are Required
               </Text>
+              <Text fontSize={"md"} color={"red.500"} as="samp">
+                {error ? (
+                  <>
+                    <sup>*</sup> Fill all the Fields
+                  </>
+                ) : (
+                  ""
+                )}
+              </Text>
               <Button
                 bg={"orange.400"}
                 color={"white"}
@@ -369,6 +396,7 @@ export default function TenderForm() {
                   bg: "yellow.400",
                 }}
                 fontSize={"xl"}
+                onClick={handleSubmit}
               >
                 Publish
               </Button>
