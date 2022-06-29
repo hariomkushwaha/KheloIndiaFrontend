@@ -21,7 +21,7 @@ export default function TenderForm() {
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"xl"} py={12} px={6} w="800px">
+      <Stack spacing={8} mx={"auto"} maxW={"2xl"} py={12} px={6} w="800px">
         <Stack align={"center"}>
           <Heading fontSize={"5xl"}>Post a Tender</Heading>
           <Text fontSize={"2xl"} color={"gray.600"}>
@@ -39,39 +39,39 @@ export default function TenderForm() {
               <Text fontSize={"lg"} color={"orange.500"} as="samp">
                 Basic Details
               </Text>
-              <FormControl id="OrgChain">
+              <FormControl id="OrgChain" isRequired>
                 <FormLabel>Organisation Chain</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="RefNumber">
+              <FormControl id="RefNumber" isRequired>
                 <FormLabel>Reference Number</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TenderID">
+              <FormControl id="TenderID" isRequired>
                 <FormLabel>Tender ID</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="ItemTechEval">
+              <FormControl id="ItemTechEval" isRequired>
                 <FormLabel>Itemwise Technical Evaluation Allowed</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TenderType">
+              <FormControl id="TenderType" isRequired>
                 <FormLabel>Tender Type</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="GenTechEval">
+              <FormControl id="GenTechEval" isRequired>
                 <FormLabel>Itemwise Technical Evaluation Allowed</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="PaymentMode">
+              <FormControl id="PaymentMode" isRequired>
                 <FormLabel>Payment Mode Offline</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TwoStage">
+              <FormControl id="TwoStage" isRequired>
                 <FormLabel>Allowed 2-Stage Bidding</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TenderCategory">
+              <FormControl id="TenderCategory" isRequired>
                 <FormLabel>Tender Category</FormLabel>
                 <Input type="text" />
               </FormControl>
@@ -83,19 +83,19 @@ export default function TenderForm() {
               <Text fontSize={"lg"} color={"orange.500"} as="samp">
                 Tender Fee Details
               </Text>
-              <FormControl id="TenderFee">
+              <FormControl id="TenderFee" isRequired>
                 <FormLabel>Tender Fee in Rupee</FormLabel>
                 <Input type="number" />
               </FormControl>
-              <FormControl id="TFeePayableTo">
+              <FormControl id="TFeePayableTo" isRequired>
                 <FormLabel>Fee Payable To</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TenderFeeExempt">
+              <FormControl id="TenderFeeExempt" isRequired>
                 <FormLabel>Tender Fee Exemption</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="TFeePayableAt">
+              <FormControl id="TFeePayableAt" isRequired>
                 <FormLabel>Fee Payable At</FormLabel>
                 <Input type="text" />
               </FormControl>
@@ -107,23 +107,23 @@ export default function TenderForm() {
               <Text fontSize={"lg"} color={"orange.500"} as="samp">
                 EMD Fee Details
               </Text>
-              <FormControl id="EMDFee">
+              <FormControl id="EMDFee" isRequired>
                 <FormLabel>EMD Fee in Rupee</FormLabel>
                 <Input type="number" />
               </FormControl>
-              <FormControl id="EMDPercentage">
+              <FormControl id="EMDPercentage" isRequired>
                 <FormLabel>EMD Percentage</FormLabel>
                 <Input type="number" />
               </FormControl>
-              <FormControl id="EFeePayableTo">
+              <FormControl id="EFeePayableTo" isRequired>
                 <FormLabel>Fee Payable To</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="EFeePayableAt">
+              <FormControl id="EFeePayableAt" isRequired>
                 <FormLabel>Fee Payable At</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="EMDFeeType">
+              <FormControl id="EMDFeeType" isRequired>
                 <FormLabel>EMD Fee Type</FormLabel>
                 <Input type="text" />
               </FormControl>
@@ -135,19 +135,19 @@ export default function TenderForm() {
               <Text fontSize={"lg"} color={"orange.500"} as="samp">
                 Work Item Details
               </Text>
-              <FormControl id="Title">
+              <FormControl id="Title" isRequired>
                 <FormLabel>Title</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="WorkDesc">
+              <FormControl id="WorkDesc" isRequired>
                 <FormLabel>Work Description</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="PreQual">
+              <FormControl id="PreQual" isRequired>
                 <FormLabel>Pre-Qualification</FormLabel>
                 <Input type="text" />
               </FormControl>
-              <FormControl id="ExRemarks">
+              <FormControl id="ExRemarks" isRequired>
                 <FormLabel>Independent External Monitor/Remarks</FormLabel>
                 <Input type="text" />
               </FormControl>
@@ -159,19 +159,19 @@ export default function TenderForm() {
               <Text fontSize={"lg"} color={"orange.500"} as="samp">
                 Critical Dates
               </Text>
-              <FormControl id="PublishDate">
+              <FormControl id="PublishDate" isRequired>
                 <FormLabel>Publish Dates</FormLabel>
                 <Input type="date" />
               </FormControl>
-              <FormControl id="BidOpeningDate">
+              <FormControl id="BidOpeningDate" isRequired>
                 <FormLabel>Bid Opening Date</FormLabel>
                 <Input type="date" />
               </FormControl>
-              <FormControl id="BidSubmissionStart">
+              <FormControl id="BidSubmissionStart" isRequired>
                 <FormLabel>Bid Submission Start-Date</FormLabel>
                 <Input type="date" />
               </FormControl>
-              <FormControl id="BidSubmissionEnd">
+              <FormControl id="BidSubmissionEnd" isRequired>
                 <FormLabel>Bid Submission End-Date</FormLabel>
                 <Input type="date" />
               </FormControl>
