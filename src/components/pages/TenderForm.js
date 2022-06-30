@@ -71,6 +71,7 @@ export default function TenderForm() {
     } else {
       setError(false);
       console.log("Submitted");
+      localStorage.setItem("tender", JSON.stringify(values));
     }
   };
 
