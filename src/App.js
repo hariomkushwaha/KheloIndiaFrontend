@@ -2,7 +2,7 @@ import "./App.css";
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
 import AdminContext from "./context/AdminContext";
-// import TenderForm from "./components/pages/TenderForm";
+import TenderForm from "./pages/TenderForm";
 // import Pages from "./components/dashboard/layouts/Auth";
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
       <div>
         {console.log("Proponent", proponent)}
         {console.log("Admin", admin)}
-        {/* <TenderForm /> */}
+        <TenderForm />
         {/* <Pages /> */}
-        <h1>Chal raha hai</h1>
+        {/* <h1>Chal raha hai</h1> */}
       </div>
     </>
   );
