@@ -5,7 +5,7 @@ import Hero from './Hero';
 import About from './About';
 import Footer from './Footer';
 
-const Main = () => {
+const MainLandingPage = () => {
   return (
     <div>
     <Header />
@@ -17,4 +17,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default MainLandingPage;

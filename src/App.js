@@ -1,6 +1,6 @@
 
-import Main from './Components/LandingPage/Main';
-import "./App.css";
+import MainLandingPage from './components/LandingPage/MainLandingPage';
+import MainGettingPage from './components/GettingStarted/MainGettingPage';
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
 import AdminContext from "./context/AdminContext";
@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         {console.log("Proponent", proponent)}
         {console.log("Admin", admin)}
-        <Main/>
+        <MainGettingPage/>
         <h1>Chal raha hai</h1>
       </div>
     </>
