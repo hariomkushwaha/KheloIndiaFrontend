@@ -7,7 +7,7 @@ import { AdminProvider } from "./context/AdminContext";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TenderForm from "./components/pages/TenderForm";
+import TenderForm from "./pages/TenderForm";
 // import AuthLayout from "./components/dashboard/layouts/Auth";
 
 // import AdminLayout from "./components/dashboard/layouts/Admin";
