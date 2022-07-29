@@ -1,4 +1,6 @@
-import "./App.css";
+
+import MainLandingPage from './components/LandingPage/MainLandingPage';
+import MainGettingPage from './components/GettingStarted/MainGettingPage';
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
 import AdminContext from "./context/AdminContext";
@@ -10,12 +12,11 @@ function App() {
   const { admin } = useContext(AdminContext);
   return (
     <>
-      <div>
+      <div className="App">
         {console.log("Proponent", proponent)}
         {console.log("Admin", admin)}
-        <TenderForm />
-        {/* <Pages /> */}
-        {/* <h1>Chal raha hai</h1> */}
+        <MainGettingPage/>
+        <h1>Chal raha hai</h1>
       </div>
     </>
   );
