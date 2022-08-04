@@ -2,6 +2,7 @@ import "./App.css";
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
 import AdminContext from "./context/AdminContext";
+import AdminDashboard from "./components/AdminDashboard";
 // import TenderForm from "./components/pages/TenderForm";
 // import Pages from "./components/dashboard/layouts/Auth";
 
@@ -15,7 +16,7 @@ function App() {
         {console.log("Admin", admin)}
         {/* <TenderForm /> */}
         {/* <Pages /> */}
-        <h1>Chal raha hai</h1>
+        <AdminDashboard/>
       </div>
     </>
   );
