@@ -86,7 +86,7 @@ export default function TenderForm() {
         <Stack align={"center"}>
           <Heading fontSize={"5xl"}>Post a Tender</Heading>
           <Text fontSize={"2xl"} color={"gray.600"}>
-            Khelo India <Link color={"blue.400"}>Site</Link> ✌️
+            Khelo India <Link color={"blue.400"} href="/GetStarted">Site</Link> ✌️
           </Text>
         </Stack>
         <Box

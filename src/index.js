@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ProponentProvider } from "./context/ProponentContext";
 import { AdminProvider } from "./context/AdminContext";
 import { ChakraProvider } from "@chakra-ui/react";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TenderForm from "./components/pages/TenderForm";
 // import AuthLayout from "./components/dashboard/layouts/Auth";
 
 // import AdminLayout from "./components/dashboard/layouts/Admin";
@@ -20,12 +16,7 @@ root.render(
     <ProponentProvider>
       <AdminProvider>
         <ChakraProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<App />} />
-              <Route path="/tender" element={<TenderForm />} />
-            </Routes>
-          </BrowserRouter>
+          <App />
         </ChakraProvider>
       </AdminProvider>
     </ProponentProvider>
