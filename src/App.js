@@ -14,15 +14,15 @@ function App() {
   const { admin } = useContext(AdminContext);
   return (
     <BrowserRouter>
-            <Routes>
-              <Route path="/GetStarted" element={<MainGettingPage />} />
-              <Route path="/" element={<MainLandingPage />} />
-              {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
-              <Route path="/PostTender/:TenderId" element={<TenderForm />} />
-              <Route path="/Admin" element={<AdminDashboard />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-          </BrowserRouter>
+      <Routes>
+        <Route path="/get-started" element={<MainGettingPage />} />
+        <Route path="/" element={<MainLandingPage />} />
+        {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
+        <Route path="/post-tender/:TenderId" element={<TenderForm />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

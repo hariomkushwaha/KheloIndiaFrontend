@@ -22,7 +22,7 @@ export default function Card() {
           Preferences.
         </Text>
         <Stack direction={{ base: "column", md: "row" }}>
-          <Link href="Tender/${TenderID}" style={{textDecoration:'none'}}>
+          <Link href="Tender/${TenderID}" style={{ textDecoration: "none" }}>
             <Button variant="outline" colorScheme="green">
               Submit Proposal
             </Button>

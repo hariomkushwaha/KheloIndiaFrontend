@@ -54,7 +54,7 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="GetStarted" style={{textDecoration:'none'}}>
+            <Link href="get-started" style={{ textDecoration: "none" }}>
               <Button
                 colorScheme={"green"}
                 bg={"green.400"}

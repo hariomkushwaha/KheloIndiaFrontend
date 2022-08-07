@@ -18,8 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-const Links = [
-];
+const Links = [];
 
 const NavLink = ({ children }) => (
   <Link
@@ -36,7 +35,7 @@ const NavLink = ({ children }) => (
   </Link>
 );
 
-export default function Simple() {
+export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -56,14 +55,33 @@ export default function Simple() {
               spacing={12}
               display={{ base: "none", md: "flex" }}
             >
-              <Link px={4} href="/">Home</Link>
-              <Link px={4} href="/GetStarted">Tender</Link>
-              <Link px={4} href="">Notifications</Link>
-              <Link px={4} href="">Profile</Link>
-              <Link px={4} href="/Dashboard">Proponent Dashboard</Link>
+              <Link px={4} href="/">
+                Home
+              </Link>
+              <Link px={4} href="/get-started">
+                Tender
+              </Link>
+              <Link px={4} href="">
+                Notifications
+              </Link>
+              <Link px={4} href="">
+                Profile
+              </Link>
+              <Link px={4} href="/Dashboard">
+                Proponent Dashboard
+              </Link>
             </HStack>
-            <Link href="/Admin" style={{ position: 'absolute', right: '100px', textDecoration:'none'}}>
-              <Button variant="outline" colorScheme="red">Employee</Button>
+            <Link
+              href="/admin"
+              style={{
+                position: "absolute",
+                right: "100px",
+                textDecoration: "none",
+              }}
+            >
+              <Button variant="outline" colorScheme="red">
+                Employee
+              </Button>
             </Link>
           </HStack>
         </Flex>
@@ -72,7 +90,7 @@ export default function Simple() {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               <Link href="/">Home</Link>
-              <Link href="/GetStarted">Tender</Link>
+              <Link href="/get-started">Tender</Link>
               <Link href="">Notifications</Link>
               <Link href="">Profile</Link>
               <Link href="/Dashboard">Proponent Dashboard</Link>
