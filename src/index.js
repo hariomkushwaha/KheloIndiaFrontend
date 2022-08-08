@@ -16,7 +16,15 @@ root.render(
     <ProponentProvider>
       <AdminProvider>
         <ChakraProvider>
-          <App />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<App />}>
+                <Route path="/auth" element={<AuthLayout />} />
+                <Route path="/admin" element={<AdminLayout />} />
+                <Route path="/rtl" element={<RTLLayout />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
         </ChakraProvider>
       </AdminProvider>
     </ProponentProvider>
