@@ -1,103 +1,84 @@
-import { ReactNode } from "react";
-import {
-  Box,
-  Flex,
-  Avatar,
-  HStack,
-  Link,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
-} from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
 
-const Links = [];
+const pages = ['Home', 'Tenders', 'Notifications', 'Profile', 'Proponent Dashboard'];
 
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={"#"}
-  >
-    {children}
-  </Link>
-);
+const ResponsiveAppBar = () => {
+    const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-export default function Navbar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
 
-  return (
-    <>
-      <Box bg="gray.100" px={8} my={3}>
-        <Flex h={20} alignItems={"center"} justifyContent={"space-between"}>
-          <IconButton
-            size={"md"}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={"Open Menu"}
-            display={{ md: "none" }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={"center"}>
-            <HStack
-              as={"nav"}
-              spacing={12}
-              display={{ base: "none", md: "flex" }}
-            >
-              <Link px={4} href="/">
-                Home
-              </Link>
-              <Link px={4} href="/get-started">
-                Tender
-              </Link>
-              <Link px={4} href="">
-                Notifications
-              </Link>
-              <Link px={4} href="">
-                Profile
-              </Link>
-              <Link px={4} href="/Dashboard">
-                Proponent Dashboard
-              </Link>
-            </HStack>
-            <Link
-              href="/admin"
-              style={{
-                position: "absolute",
-                right: "100px",
-                textDecoration: "none",
-              }}
-            >
-              <Button variant="outline" colorScheme="red">
-                Employee
-              </Button>
-            </Link>
-          </HStack>
-        </Flex>
-
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              <Link href="/">Home</Link>
-              <Link href="/get-started">Tender</Link>
-              <Link href="">Notifications</Link>
-              <Link href="">Profile</Link>
-              <Link href="/Dashboard">Proponent Dashboard</Link>
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-    </>
-  );
-}
+    return (
+        <AppBar position="static">
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{
+                                display: { xs: 'block', md: 'none' },
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{page}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Menu>
+                    </Box>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        {pages.map((page) => (
+                            <Button
+                                key={page}
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, mx: 2, color: 'white', display: 'block' }}
+                            >
+                                {page}
+                            </Button>
+                        ))}
+                    </Box>
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Button href="/Admin" variant="contained" color="error">Employee</Button>
+                    </Box>
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
+};
+export default ResponsiveAppBar;

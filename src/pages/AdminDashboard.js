@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import AdminNavbar from "../components/AdminNavbar";
-// import Logout from "../components/AdminDashboard/Logout";
 
 const AdminDashboard = () => {
   return (

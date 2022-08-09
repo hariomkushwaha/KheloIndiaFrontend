@@ -1,23 +1,13 @@
-import {
-  Box,
-  Container,
-  Heading,
-  SimpleGrid,
-  Icon,
-  Text,
-  Stack,
-  HStack,
-  VStack,
-} from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
+import React from 'react';
+import { Button, Typography, Box } from '@mui/material';
 
-export default function About() {
+export default function Hero() {
   return (
-    <Box p={4}>
-      <Stack spacing={4} as={Container} maxW={"3xl"} textAlign={"center"}>
-        <Heading fontSize={"6xl"}>About Khelo India</Heading>
-        <Heading fontSize={"3xl"}>National programme for development of sports</Heading>
-        <Text color={"gray.600"} fontSize={"xl"}>
+    <>
+      <Box style={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'column', padding: '50px', height: '270px' }}>
+        <Typography variant="h3" component="div" gutterBottom>About Khelo India</Typography>
+        <Typography variant="h4" component="div" gutterBottom>National programme for development of sports</Typography>
+        <Typography variant="subtitle2" component="div" style={{ width: '700px', textAlign: 'center' }}>
           <p>
             The importance of sports and fitness in one’s life is invaluable.
             Playing sports inculcates team spirit and develops strategic
@@ -29,8 +19,8 @@ export default function About() {
             Sports is an extremely important component for the overall
             development of our nation...
           </p>
-        </Text>
-      </Stack>
-    </Box>
+        </Typography>
+      </Box>
+    </>
   );
 }
