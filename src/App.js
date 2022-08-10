@@ -10,8 +10,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 // import Pages from "./components/dashboard/layouts/Auth";
 
 function App() {
-  const { proponent } = useContext(ProponentContext);
-  const { admin } = useContext(AdminContext);
+  // const { proponent } = useContext(ProponentContext);
+  // const { admin } = useContext(AdminContext);
   return (
     <BrowserRouter>
       <Routes>
