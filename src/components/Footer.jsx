@@ -60,7 +60,7 @@ const Footer = () => {
       <br />
       <br />
       <Box sx={{ textAlign: 'center' }}>
-        <img src="https://kheloindia.gov.in/public/dist/img/logo.jpg" alt="logo"/>
+        <img src="https://kheloindia.gov.in/public/dist/img/logo.jpg" alt="logo" />
         <br />
         <br />
         <Typography variant="body2" gutterBottom>© 2022 Khelo India. All rights reserved</Typography>

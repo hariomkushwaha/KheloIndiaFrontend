@@ -51,7 +51,7 @@ const TenderForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(values);
-  }
+  };
 
   return (
     <Box
@@ -330,7 +330,9 @@ const TenderForm = () => {
             variant="standard"
           />
           <br />
-          <Button variant="contained" onClick={handleSubmit}>Publish</Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Publish
+          </Button>
         </Paper>
       </Box>
     </Box>
