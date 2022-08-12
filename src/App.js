@@ -4,15 +4,16 @@ import AdminContext from "./context/AdminContext";
 import MainGettingPage from "./pages/MainGettingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TenderForm from "./pages/TenderForm";
+import ProponentForm from "./pages/Proponentform";
 import Error from "./pages/Error";
 import MainLandingPage from "./pages/MainLandingPage";
 import AdminDashboard from "./pages/AdminDashboard";
-import ProponentForm from "./pages/Proponentform";
+import Chart from "./pages/Chart";
 // import Pages from "./components/dashboard/layouts/Auth";
 
 function App() {
-  const { proponent } = useContext(ProponentContext);
-  const { admin } = useContext(AdminContext);
+  // const { proponent } = useContext(ProponentContext);
+  // const { admin } = useContext(AdminContext);
   return (
     <BrowserRouter>
       <Routes>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/post/tender/" element={<TenderForm />} />
         <Route path="/post/proponent/" element={<ProponentForm />} />
         <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/chart" element={<Chart/>} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
