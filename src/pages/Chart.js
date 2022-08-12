@@ -1,7 +1,7 @@
 import React from "react";
-import BarChart from "../components/BarChart.tsx";
-import LineChart from "../components/LineChart.tsx";
-import PieChart from "../components/PieChart.tsx";
+import BarChart from "../components/BarChart.jsx";
+import LineChart from "../components/LineChart.jsx";
+import PieChart from "../components/PieChart.jsx";
 import  {faker} from "@faker-js/faker";
 
 const Chart = () => {
