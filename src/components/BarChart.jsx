@@ -45,20 +45,6 @@ const options = {
   },
 };
 
-
 export default function BarChart(props) {
-  return (
-    <div
-      style={{
-        height: "30%",
-        width: "50%",
-        display: "flex",
-        justifyContent: "center",
-        margin: "auto",
-      }}
-    >
-      <Bar options={options} data={props.data} />
-      <br />
-    </div>
-  );
+  return <Bar options={options} data={props.data} />;
 }
