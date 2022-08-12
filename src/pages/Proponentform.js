@@ -8,15 +8,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useParams } from "react-router-dom";
 
 const ProponentForm = () => {
+  var { tenderID }= useParams()
+
   const initialValues = {
-    fullname: "",
-    orgname: "",
-    email: "",
-    fulladdress: "",
-    state: "",
-    postalcode: "",
+    tenderId: tenderID,
     generalexperience: "",
     sportsspecificexperience: "",
     projectmanagerexperience: "",
@@ -83,61 +81,8 @@ const ProponentForm = () => {
             flexDirection: "column",
           }}
         >
-          <Typography variant="body1" component="div">
-            Basic Details
-          </Typography>
-          <br />
-          <TextField
-            name="fullname"
-            value={values.fullname}
-            onChange={handleChange}
-            id="standard-basic"
-            label="Full Name"
-            variant="standard"
-          />
-          <TextField
-            name="orgname"
-            value={values.orgname}
-            onChange={handleChange}
-            id="standard-basic"
-            label="Organization Name"
-            variant="standard"
-          />
-          <TextField
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            id="standard-basic"
-            label="Email Address"
-            variant="standard"
-          />
-          <TextField
-            id="standard-basic"
-            label="Full Address"
-            variant="standard"
-            name="fulladdress"
-            value={values.fulladdress}
-            onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="State/Province/Region"
-            variant="standard"
-            name="state"
-            value={values.state}
-            onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Zip / Postal Code"
-            variant="standard"
-            name="postalcode"
-            value={values.postalcode}
-            onChange={handleChange}
-          />
-
-          <br />
-          <Divider />
+          
+          <Typography variant="h4" component="h1">Tender ID: {tenderID}</Typography>
           <br />
           <Typography variant="body1" component="div">
             Service Details

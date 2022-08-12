@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<MainLandingPage />} />
         {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
         <Route path="/post/tender/" element={<TenderForm />} />
-        <Route path="/post/proponent/" element={<ProponentForm />} />
+        <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/chart" element={<Chart/>} />
         <Route path="*" element={<Error />} />
