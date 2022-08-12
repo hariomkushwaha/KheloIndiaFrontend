@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const TenderForm = () => {
+const ProponentForm = () => {
   const initialValues = {
     fullname: "",
     orgname: "",
