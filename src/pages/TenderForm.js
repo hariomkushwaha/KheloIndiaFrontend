@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 const TenderForm = () => {
-  const initialValues = {
+  const [values, setValues] = useState({
     orgChain: "",
     refNumber: "",
     tenderId: "",
@@ -37,9 +37,8 @@ const TenderForm = () => {
     bidOpeningDate: "",
     bidSubmissionStartDate: "",
     bidSubmissionEndDate: "",
-  };
+  });
 
-  const [values, setValues] = useState(initialValues);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({
@@ -48,10 +47,80 @@ const TenderForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
-  }
+    const {
+      orgChain,
+      refNumber,
+      tenderId,
+      itemwiseTechnicalEvaluation,
+      tenderType,
+      generalTechnicalEvaluation,
+      paymentMode,
+      twoStageBinding,
+      tenderCategory,
+      tenderFee,
+      tenderFeePayableTo,
+      tenderFeeExemption,
+      tenderFeePayableAt,
+      emdFee,
+      emdPercent,
+      emdFeePayableTo,
+      emdFeePayableAt,
+      emdFeeType,
+      workItemTitle,
+      workItemDescription,
+      workItemPreQualification,
+      workItemRemarks,
+      publishDate,
+      bidOpeningDate,
+      bidSubmissionStartDate,
+      bidSubmissionEndDate,
+    } = values;
+
+    const res = await fetch("/API/tenderform", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        orgChain,
+        refNumber,
+        tenderId,
+        itemwiseTechnicalEvaluation,
+        tenderType,
+        generalTechnicalEvaluation,
+        paymentMode,
+        twoStageBinding,
+        tenderCategory,
+        tenderFee,
+        tenderFeePayableTo,
+        tenderFeeExemption,
+        tenderFeePayableAt,
+        emdFee,
+        emdPercent,
+        emdFeePayableTo,
+        emdFeePayableAt,
+        emdFeeType,
+        workItemTitle,
+        workItemDescription,
+        workItemPreQualification,
+        workItemRemarks,
+        publishDate,
+        bidOpeningDate,
+        bidSubmissionStartDate,
+        bidSubmissionEndDate,
+      })
+    });
+    
+    const data = await res.json();
+
+    if (res.status === 422 || !data) {
+      window.alert("Invalid Submission");
+    } else {
+      window.alert("Posted Successfully");
+    }
+  };
 
   return (
     <Box
@@ -330,7 +399,9 @@ const TenderForm = () => {
             variant="standard"
           />
           <br />
-          <Button variant="contained" onClick={handleSubmit}>Publish</Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Publish
+          </Button>
         </Paper>
       </Box>
     </Box>

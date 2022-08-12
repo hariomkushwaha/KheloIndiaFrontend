@@ -2,11 +2,11 @@
 
 ## Available Script
 
-- `npm start`
+- `yarn start`
 
 ## Basic Instructions
 
-- `npm` is used in this project.
+- `yarn` is used in this project.
 - All dependencies are listed in the `package.json` file.
 - Put all the components inside the `component` folder only
 - Put all the CSS styles in the `style` folder
@@ -18,7 +18,7 @@
 
 - Clone the Project using Git or download ZIP file
 - Open command line in the project folder and run the command `npm install` This will install all the dependencies
-- run `npm start`
+- run `yarn start`
 - Start Wroking
 
 ## Tutorials
