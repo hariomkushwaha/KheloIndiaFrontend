@@ -38,7 +38,7 @@ export default function ButtonAppBar() {
     {
       name: "List View",
       icon: <InboxIcon />,
-      link: "/admin/list",
+      link: `/admin/list`,
     },
     {
       name: "Comparison",

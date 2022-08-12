@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AdminNavbar from "../components/AdminNavbar";
-import Card from "../components/Card";
+import Card from "../components/CardAdmin";
 
 const AdminDashboard = () => {
   const [tenderValues, setTenderValues] = useState([]);
