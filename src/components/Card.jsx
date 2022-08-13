@@ -11,7 +11,7 @@ export default function Card({values}) {
         <Typography variant="subtitle1" component="div">Description : </Typography>
         <Typography variant="body2">{values.workItemDescription}</Typography>
         <br />
-        <Button variant="outlined" color="success" sx={{ p: 0.75 }} href={`/post/proponent/${values.tenderId}`}>
+        <Button variant="outlined" color="primary" sx={{ p: 0.75 }} href={`/post/proponent/${values.tenderId}`}>
           Submit Proposal
         </Button>
       </Paper>
