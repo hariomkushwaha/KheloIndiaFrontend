@@ -3,6 +3,7 @@ import BarChart from "../components/BarChart.jsx";
 import LineChart from "../components/LineChart.jsx";
 import PieChart from "../components/PieChart.jsx";
 import  {faker} from "@faker-js/faker";
+import Header from "../components/Header.jsx";
 
 const Chart = () => {
 
@@ -21,6 +22,7 @@ const Chart = () => {
 
   return (
     <>
+      <Header />
       <BarChart data={data}  />
       <LineChart data={data}  />
       <PieChart data={data}  />
