@@ -11,13 +11,11 @@ import { AdminProvider } from "./context/AdminContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
     <ProponentProvider>
       <AdminProvider>
         <App />
       </AdminProvider>
     </ProponentProvider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,4 +1,5 @@
-  {
+  const pharams = [
+    {
     "orgChain": "Sports Authority of India",
     "tenderId": "1906247",
     "refNumber": ":01-23002(01)/3/2022",
@@ -26,7 +27,7 @@
     "publishDate": "04.03.2022",
     "bidOpeningDate": "04.03.2022",
     "bidSubmissionStartDate": "11.03.2022",
-    "bidSubmissionEndDate": "26.03.2022 ",
+    "bidSubmissionEndDate": "26.03.2022 "
   },
   {
     "orgChain": "Sports Authority of Delhi",
@@ -327,4 +328,6 @@
     "bidOpeningDate": "18.06.2021",
     "bidSubmissionStartDate": "18.05.2021",
     "bidSubmissionEndDate": "13.06.2021",
-  }
+  }];
+
+  export default pharams;

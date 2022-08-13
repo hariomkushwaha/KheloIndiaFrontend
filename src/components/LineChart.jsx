@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import {faker} from '@faker-js/faker';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -26,32 +26,27 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top', 
+      position: "top",
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: "Chart.js Line Chart",
     },
   },
   scales: {
     x: {
       grid: {
-        display: false
-      }
+        display: false,
+      },
     },
     y: {
       grid: {
-        display: false
-      }
+        display: false,
+      },
     },
-  }
+  },
 };
 
 export default function LineChart(props) {
-  return ( 
-    <div style={{height:"30%" , width:"50%" , display:"flex",justifyContent:"center", margin:"auto"}}>
-   <Line options={options} data={props.data} />
-   <br />
-    </div>
-    )
+  return <Line options={options} data={props.data} />;
 }
