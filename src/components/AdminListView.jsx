@@ -49,10 +49,10 @@ const AdminListView = () => {
           <TableHead>
             <TableRow>
               <TableCell>Proponent ID</TableCell>
-              <TableCell align="right">general Experience</TableCell>
-              <TableCell align="right">durability&nbsp;(g)</TableCell>
-              <TableCell align="right">quality&nbsp;(g)</TableCell>
-              <TableCell align="right">usability&nbsp;(g)</TableCell>
+              <TableCell align="right">General Experience</TableCell>
+              <TableCell align="right">Durability</TableCell>
+              <TableCell align="right">Quality</TableCell>
+              <TableCell align="right">Usability</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
