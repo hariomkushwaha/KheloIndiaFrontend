@@ -2,7 +2,12 @@ import React from "react";
 import BarChart from "../components/BarChart.jsx";
 import LineChart from "../components/LineChart.jsx";
 import PieChart from "../components/PieChart.jsx";
+<<<<<<< HEAD
 import { faker } from "@faker-js/faker";
+=======
+import  {faker} from "@faker-js/faker";
+import Header from "../components/Header.jsx";
+>>>>>>> a808d67d8146012e048b04f9aa7f28d8df181e85
 
 const Chart = () => {
   const labels = [
@@ -28,6 +33,7 @@ const Chart = () => {
 
   return (
     <>
+<<<<<<< HEAD
       <div
         style={{
           height: "300px",
@@ -52,6 +58,13 @@ const Chart = () => {
       >
         <PieChart data={data} />
       </div>
+=======
+      <Header />
+      <BarChart data={data}  />
+      <LineChart data={data}  />
+      <PieChart data={data}  />
+      
+>>>>>>> a808d67d8146012e048b04f9aa7f28d8df181e85
     </>
   );
 };
