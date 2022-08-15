@@ -1,4 +1,15 @@
-import { Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import React, { useContext } from "react";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
@@ -15,7 +26,69 @@ const AdminCompareView = () => {
   return (
     <>
       <Admin>
-        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+        <TableContainer
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            mt: "1rem",
+            mb: "1rem",
+            padding: "1rem",
+          }}
+        >
+          <Table
+            sx={{ width: "80vw" }}
+            component={Paper}
+            aria-label="simple table"
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>Proponent ID</TableCell>
+                <TableCell align="right">General Experience</TableCell>
+                <TableCell align="right">Sport Specific Experience</TableCell>
+                <TableCell align="right">Coordinator Experience</TableCell>
+                <TableCell align="right">Database Admin Experience</TableCell>
+                <TableCell align="right">Durability</TableCell>
+                <TableCell align="right">Duration</TableCell>
+                <TableCell align="right">Quality</TableCell>
+                <TableCell align="right">Total Cost</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {selectedProposals.map((proponentValue) => (
+                <TableRow
+                  key={proponentValue.proponentId}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {proponentValue.proponentId}
+                  </TableCell>
+                  <TableCell align="right">
+                    {proponentValue.generalexperience}
+                  </TableCell>
+                  <TableCell align="right">
+                    {proponentValue.sportsspecificexperience}
+                  </TableCell>
+                  <TableCell align="right">
+                    {proponentValue.coordinatorexperience}
+                  </TableCell>
+                  <TableCell align="right">
+                    {proponentValue.databaseadminexperience}
+                  </TableCell>
+                  <TableCell align="right">
+                    {proponentValue.durability}
+                  </TableCell>
+                  <TableCell align="right">{proponentValue.duration}</TableCell>
+                  <TableCell align="right">{proponentValue.quality}</TableCell>
+                  <TableCell align="right">
+                    {proponentValue.totalcost}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {/* <div style={{ textAlign: "center", marginTop: "1rem" }}>
           <Grid
             container
             direction="row"
@@ -75,7 +148,7 @@ const AdminCompareView = () => {
             firstData={firstProposal.totalcost}
             secondData={secondProposal.totalcost}
           />
-        </div>
+        </div> */}
       </Admin>
     </>
   );
