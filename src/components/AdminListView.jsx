@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,6 +7,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Button, Typography } from "@mui/material";
+import AdminContext from "../context/AdminContext";
+import AdminCompareView from "./AdminCompareView";
+import AdminNavbar from "./AdminNavbar";
 
 const AdminListView = () => {
   const { tenderID } = useParams();
@@ -39,14 +43,19 @@ const AdminListView = () => {
     handleProponents();
   }, []);
 
+  const { selectedTenders, setSelectedTenders } = useContext(AdminContext);
+
   return (
     <>
+      <AdminNavbar />
       <TableContainer
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          mt: 5,
+          mt: "15px",
+          mb: "15px",
+          padding: "10px",
         }}
       >
         <Table
@@ -56,6 +65,7 @@ const AdminListView = () => {
         >
           <TableHead>
             <TableRow>
+              <TableCell></TableCell>
               <TableCell>Proponent ID</TableCell>
               <TableCell align="right">General Experience</TableCell>
               <TableCell align="right">Durability</TableCell>
@@ -64,33 +74,55 @@ const AdminListView = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {proponentValues.map((proponentValue) =>
-              proponentValue.tenderId === tenderID ? (
-                <TableRow
-                  key={proponentValue.proponentId}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {proponentValue.proponentId}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.generalexperience}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.durability}
-                  </TableCell>
-                  <TableCell align="right">{proponentValue.quality}</TableCell>
-                  <TableCell align="right">
-                    {proponentValue.usability}
-                  </TableCell>
-                </TableRow>
-              ) : (
-                <></>
-              )
+            {proponentValues.map(
+              (proponentValue) =>
+                proponentValue.tenderId === tenderID && (
+                  <TableRow
+                    key={proponentValue.proponentId}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <Button
+                        onClick={() => {
+                          setSelectedTenders((prevTender) => [
+                            ...prevTender,
+                            proponentValue,
+                          ]);
+                        }}
+                      >
+                        Add to Compare
+                      </Button>
+                    </TableCell>
+                    <TableCell component="th" scope="row">
+                      {proponentValue.proponentId}
+                    </TableCell>
+                    <TableCell align="right">
+                      {proponentValue.generalexperience}
+                    </TableCell>
+                    <TableCell align="right">
+                      {proponentValue.durability}
+                    </TableCell>
+                    <TableCell align="right">
+                      {proponentValue.quality}
+                    </TableCell>
+                    <TableCell align="right">
+                      {proponentValue.usability}
+                    </TableCell>
+                  </TableRow>
+                )
             )}
           </TableBody>
         </Table>
       </TableContainer>
+
+      {selectedTenders.length > 1 && (
+        <>
+          <br></br>
+          <br></br>
+          <br></br>
+          <AdminCompareView />
+        </>
+      )}
     </>
   );
 };

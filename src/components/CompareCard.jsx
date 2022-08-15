@@ -6,7 +6,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Divider from "@mui/material/Divider";
 import { Grid } from "@mui/material";
 
-const CompareCard = () => {
+const CompareCard = ({ title, firstData, secondData }) => {
   return (
     <>
       <Accordion>
@@ -15,7 +15,7 @@ const CompareCard = () => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography variant="h4">Experience</Typography>
+          <Typography variant="h5">{title}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Grid
@@ -24,21 +24,21 @@ const CompareCard = () => {
             alignItems="center"
             spacing={5}
           >
-            <Grid item xs={12} md={4}>
-              <Typography variant="h5" component="div">
-                10 Years
+            <Grid item xs={12} md={6}>
+              <Typography variant="body1" component="div">
+                {firstData}
               </Typography>
             </Grid>
-            <Grid item xs={0} md={2}>
-              {/* Not Working */}
+            {/* <Grid item xs={0} md={0}>
+              Not Working
               <Divider
                 orientation="vertical"
                 style={{ height: "100%" }}
               ></Divider>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h5" component="div">
-                10 Years
+            </Grid> */}
+            <Grid item xs={12} md={6}>
+              <Typography variant="body1" component="div">
+                {secondData}
               </Typography>
             </Grid>
           </Grid>
