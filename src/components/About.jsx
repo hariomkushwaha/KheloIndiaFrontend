@@ -9,7 +9,7 @@ export default function Hero() {
         <Typography variant="h4" component="div" gutterBottom>National programme for development of sports</Typography>
         <Typography variant="subtitle2" component="div" style={{ width: '700px', textAlign: 'center' }}>
           <p>
-            The importance of sports and fitness in one’s life is invaluable.
+            The importance of sports and fitness in one's life is invaluable.
             Playing sports inculcates team spirit and develops strategic
             thinking, analytical thinking, leadership skills, goal setting and
             risk taking. A fit and healthy individual leads to an equally
