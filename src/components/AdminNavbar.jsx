@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,11 +16,18 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import CompareIcon from "@mui/icons-material/Compare";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import AdminCompareView from "./AdminCompareView";
+import AdminAnalyticsView from "./AdminAnalyticsView";
+import AdminContext from "../context/AdminContext";
 
-export default function AdminNavbar() {
-  const [login, setLogin] = React.useState(false);
-
-  const [state, setState] = React.useState(false);
+export default function AdminNavbar({
+  selectedComponent,
+  setSelectedComponent,
+}) {
+  const [state, setState] = useState(false);
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -33,30 +40,36 @@ export default function AdminNavbar() {
 
     setState(open);
   };
-
   const navItems = [
     {
-      name: "List View",
-      icon: <InboxIcon />,
-      link: `/admin/list`,
+      name: "Dashboard",
+      icon: <HomeIcon />,
+      comp: null,
     },
+    // {
+    //   name: "List View",
+    //   icon: <ListIcon />,
+    //   comp: <AdminListView />,
+    // },
     {
       name: "Comparison",
-      icon: <MailIcon />,
-      link: "/admin/comparison",
+      icon: <CompareIcon />,
+      comp: <AdminCompareView />,
     },
     {
       name: "Analytics",
-      icon: <InboxIcon />,
-      link: "/admin/analytics",
+      icon: <AnalyticsIcon />,
+      comp: <AdminAnalyticsView />,
     },
   ];
+
+  const { isLoggedIn, setIsLoggedIn } = useContext(AdminContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {login ? (
+          {isLoggedIn ? (
             <IconButton
               size="large"
               edge="start"
@@ -73,7 +86,7 @@ export default function AdminNavbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Admin
           </Typography>
-          {login ? (
+          {isLoggedIn ? (
             <>
               <Button
                 color="inherit"
@@ -86,7 +99,7 @@ export default function AdminNavbar() {
               <Button
                 color="inherit"
                 variant="outlined"
-                onClick={() => setLogin(!login)}
+                onClick={() => setIsLoggedIn(false)}
                 sx={{ m: 2 }}
               >
                 Logout
@@ -96,7 +109,7 @@ export default function AdminNavbar() {
             <Button
               color="inherit"
               variant="outlined"
-              onClick={() => setLogin(!login)}
+              onClick={() => setIsLoggedIn(true)}
               sx={{ m: 2 }}
             >
               Login
@@ -125,35 +138,17 @@ export default function AdminNavbar() {
               <List sx={{ mt: 3 }}>
                 {navItems.map((item, index) => (
                   <ListItem key={index} disablePadding>
-                    <Link
-                      to={item.link}
-                      style={{
-                        textDecoration: "none",
-                        color: "inherit",
-                        width: "100%",
+                    <ListItemButton
+                      onClick={() => {
+                        setSelectedComponent(item.comp);
                       }}
                     >
-                      <ListItemButton>
-                        <ListItemIcon>{item.icon}</ListItemIcon>
-                        <ListItemText primary={item.name} />
-                      </ListItemButton>
-                    </Link>
-                  </ListItem>
-                ))}
-              </List>
-              <Divider />
-              {/* <List>
-                {["All mail", "Trash", "Spam"].map((text, index) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
+                      <ListItemIcon>{item.icon}</ListItemIcon>
+                      <ListItemText primary={item.name} />
                     </ListItemButton>
                   </ListItem>
                 ))}
-              </List> */}
+              </List>
             </Box>
           </SwipeableDrawer>
         </>

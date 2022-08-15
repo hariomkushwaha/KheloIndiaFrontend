@@ -8,11 +8,12 @@ import ProponentForm from "./pages/Proponentform";
 import Error from "./pages/Error";
 import MainLandingPage from "./pages/MainLandingPage";
 import ListView from "./components/ListView";
-import AdminDashboard from "./pages/AdminDashboard";
+import Admin from "./pages/Admin";
 // import Chart from "./pages/Chart";
 import AdminListView from "./components/AdminListView";
 import AdminAnalyticsView from "./components/AdminAnalyticsView";
 import AdminCompareView from "./components/AdminCompareView";
+import AdminDashboard from "./components/AdminDashboard";
 // import Pages from "./components/dashboard/layouts/Auth";
 
 function App() {
