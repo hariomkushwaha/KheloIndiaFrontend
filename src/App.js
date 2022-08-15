@@ -9,7 +9,7 @@ import Error from "./pages/Error";
 import MainLandingPage from "./pages/MainLandingPage";
 import ListView from "./components/ListView";
 import AdminDashboard from "./pages/AdminDashboard";
-// import Chart from "./pages/Chart";
+import Chart from "./pages/Chart";
 import AdminListView from "./components/AdminListView";
 import AdminAnalyticsView from "./components/AdminAnalyticsView";
 import AdminCompareView from "./components/AdminCompareView";
@@ -31,7 +31,7 @@ function App() {
         <Route path="/admin/list/" element={<ListView />} />
         {/* <Route path="/admin/comparison" element={<AdminCompareView />} /> */}
         {/* <Route path="/admin/analytics" element={<AdminAnalyticsView />} /> */}
-        {/* <Route path="/chart" element={<Chart />} /> */}
+        <Route path="/chart" element={<Chart />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
