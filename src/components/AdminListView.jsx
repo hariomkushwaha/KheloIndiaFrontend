@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,9 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, Typography } from "@mui/material";
+import { Button } from "@mui/material";
 import AdminContext from "../context/AdminContext";
-import AdminCompareView from "./AdminCompareView";
 import Admin from "../pages/Admin";
 
 const AdminListView = () => {
@@ -43,11 +42,33 @@ const AdminListView = () => {
     handleProponents();
   }, []);
 
-  const { selectedTenders, setSelectedTenders } = useContext(AdminContext);
+  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
 
   return (
     <>
       <Admin>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: "1rem",
+          }}
+        >
+          <div>Selected Proposals: </div>
+          {selectedProposals.map((tender) => (
+            <>
+              <div>{tender.proponentId}</div>
+            </>
+          ))}
+          {selectedProposals.length === 2 && (
+            <Link to="/admin/comparison" style={{ textDecoration: "none" }}>
+              <Button variant="contained">Compare Proposals</Button>
+            </Link>
+          )}
+        </div>
+
         <TableContainer
           sx={{
             display: "flex",
@@ -84,7 +105,7 @@ const AdminListView = () => {
                       <TableCell component="th" scope="row">
                         <Button
                           onClick={() => {
-                            setSelectedTenders((prevTender) => [
+                            setSelectedProposals((prevTender) => [
                               ...prevTender,
                               proponentValue,
                             ]);
@@ -114,15 +135,6 @@ const AdminListView = () => {
             </TableBody>
           </Table>
         </TableContainer>
-
-        {selectedTenders.length > 1 && (
-          <>
-            <br></br>
-            <br></br>
-            <br></br>
-            <AdminCompareView />
-          </>
-        )}
       </Admin>
     </>
   );

@@ -44,22 +44,17 @@ export default function AdminNavbar({
     {
       name: "Dashboard",
       icon: <HomeIcon />,
-      comp: null,
+      link: "/admin",
     },
-    // {
-    //   name: "List View",
-    //   icon: <ListIcon />,
-    //   comp: <AdminListView />,
-    // },
     {
       name: "Comparison",
       icon: <CompareIcon />,
-      comp: <AdminCompareView />,
+      link: "/admin/comparison",
     },
     {
       name: "Analytics",
       icon: <AnalyticsIcon />,
-      comp: <AdminAnalyticsView />,
+      link: "/admin/analytics",
     },
   ];
 
@@ -138,14 +133,19 @@ export default function AdminNavbar({
               <List sx={{ mt: 3 }}>
                 {navItems.map((item, index) => (
                   <ListItem key={index} disablePadding>
-                    <ListItemButton
-                      onClick={() => {
-                        setSelectedComponent(item.comp);
-                      }}
+                    <Link
+                      to={item.link}
+                      style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      <ListItemIcon>{item.icon}</ListItemIcon>
-                      <ListItemText primary={item.name} />
-                    </ListItemButton>
+                      <ListItemButton
+                        onClick={() => {
+                          setSelectedComponent(item.comp);
+                        }}
+                      >
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText primary={item.name} />
+                      </ListItemButton>
+                    </Link>
                   </ListItem>
                 ))}
               </List>

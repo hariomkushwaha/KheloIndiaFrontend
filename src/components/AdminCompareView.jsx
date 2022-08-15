@@ -1,78 +1,83 @@
 import { Grid, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import AdminContext from "../context/AdminContext";
+import Admin from "../pages/Admin";
 import CompareCard from "./CompareCard";
 
 const AdminCompareView = () => {
-  const { selectedTenders } = useContext(AdminContext);
+  const { selectedProposals } = useContext(AdminContext);
 
-  const firstTender = selectedTenders[0];
-  const secondTender = selectedTenders[1];
+  const firstProposal = selectedProposals[0];
+  const secondProposal = selectedProposals[1];
 
-  console.log("firstTender:", firstTender);
+  console.log("firstProposal:", firstProposal);
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={5}
-        style={{ marginBottom: "1rem" }}
-      >
-        <Grid item xs={12} md={6}>
-          <Typography variant="h5" gutterBottom>
-            Proponent Id: {firstTender.proponentId}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h5" gutterBottom>
-            Proponent Id: {secondTender.proponentId}
-          </Typography>
-        </Grid>
-      </Grid>
-      <CompareCard
-        title="General Experience"
-        firstData={firstTender.generalexperience}
-        secondData={secondTender.generalexperience}
-      />
-      <CompareCard
-        title="Sport Specific Experience"
-        firstData={firstTender.sportsspecificexperience}
-        secondData={secondTender.sportsspecificexperience}
-      />
-      <CompareCard
-        title="Coordinator Experience"
-        firstData={firstTender.coordinatorexperience}
-        secondData={secondTender.coordinatorexperience}
-      />
-      <CompareCard
-        title="Database Admin Experience"
-        firstData={firstTender.databaseadminexperience}
-        secondData={secondTender.databaseadminexperience}
-      />
-      <CompareCard
-        title="Durability"
-        firstData={firstTender.durability}
-        secondData={secondTender.durability}
-      />
-      <CompareCard
-        title="Duration"
-        firstData={firstTender.duration}
-        secondData={secondTender.duration}
-      />
-      <CompareCard
-        title="Quality"
-        firstData={firstTender.quality}
-        secondData={secondTender.quality}
-      />
-      <CompareCard
-        title="Total Cost"
-        firstData={firstTender.totalcost}
-        secondData={secondTender.totalcost}
-      />
-    </div>
+    <>
+      <Admin>
+        <div style={{ textAlign: "center", marginTop: "1rem" }}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            spacing={5}
+            style={{ marginBottom: "1rem" }}
+          >
+            <Grid item xs={12} md={6}>
+              <Typography variant="h5" gutterBottom>
+                Proponent Id: {firstProposal.proponentId}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h5" gutterBottom>
+                Proponent Id: {secondProposal.proponentId}
+              </Typography>
+            </Grid>
+          </Grid>
+          <CompareCard
+            title="General Experience"
+            firstData={firstProposal.generalexperience}
+            secondData={secondProposal.generalexperience}
+          />
+          <CompareCard
+            title="Sport Specific Experience"
+            firstData={firstProposal.sportsspecificexperience}
+            secondData={secondProposal.sportsspecificexperience}
+          />
+          <CompareCard
+            title="Coordinator Experience"
+            firstData={firstProposal.coordinatorexperience}
+            secondData={secondProposal.coordinatorexperience}
+          />
+          <CompareCard
+            title="Database Admin Experience"
+            firstData={firstProposal.databaseadminexperience}
+            secondData={secondProposal.databaseadminexperience}
+          />
+          <CompareCard
+            title="Durability"
+            firstData={firstProposal.durability}
+            secondData={secondProposal.durability}
+          />
+          <CompareCard
+            title="Duration"
+            firstData={firstProposal.duration}
+            secondData={secondProposal.duration}
+          />
+          <CompareCard
+            title="Quality"
+            firstData={firstProposal.quality}
+            secondData={secondProposal.quality}
+          />
+          <CompareCard
+            title="Total Cost"
+            firstData={firstProposal.totalcost}
+            secondData={secondProposal.totalcost}
+          />
+        </div>
+      </Admin>
+    </>
   );
 };
 
