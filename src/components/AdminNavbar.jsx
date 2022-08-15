@@ -17,7 +17,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link } from "react-router-dom";
 
-export default function ButtonAppBar() {
+export default function AdminNavbar() {
   const [login, setLogin] = React.useState(false);
 
   const [state, setState] = React.useState(false);

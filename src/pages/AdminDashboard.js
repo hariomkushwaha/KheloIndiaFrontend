@@ -73,11 +73,11 @@ const AdminDashboard = () => {
       icon: <HomeIcon />,
       comp: null,
     },
-    {
-      name: "List View",
-      icon: <ListIcon />,
-      comp: <AdminListView />,
-    },
+    // {
+    //   name: "List View",
+    //   icon: <ListIcon />,
+    //   comp: <AdminListView />,
+    // },
     {
       name: "Comparison",
       icon: <CompareIcon />,
