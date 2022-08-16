@@ -7,11 +7,19 @@ export const AdminProvider = (props) => {
   const [admin, setAdmin] = useState({
     name: "ADMIN",
   });
-  const [selectedTenders, setSelectedTenders] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedProposals, setSelectedProposals] = useState([]);
 
   return (
     <AdminContext.Provider
-      value={{ admin, setAdmin, selectedTenders, setSelectedTenders }}
+      value={{
+        admin,
+        setAdmin,
+        selectedProposals,
+        setSelectedProposals,
+        isLoggedIn,
+        setIsLoggedIn,
+      }}
     >
       {props.children}
     </AdminContext.Provider>

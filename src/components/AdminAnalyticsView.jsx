@@ -2,6 +2,7 @@ import React from "react";
 import BarChart from "./BarChart";
 
 import { faker } from "@faker-js/faker";
+import Admin from "../pages/Admin";
 
 const AdminAnalyticsView = () => {
   const labels = [
@@ -27,9 +28,11 @@ const AdminAnalyticsView = () => {
 
   return (
     <>
-      <div>
-        <BarChart data={data} />
-      </div>
+      <Admin>
+        <div>
+          <BarChart data={data} />
+        </div>
+      </Admin>
     </>
   );
 };
