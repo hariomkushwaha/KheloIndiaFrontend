@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BarChart from "./BarChart";
 import Admin from "../pages/Admin";
 import { useParams } from "react-router-dom";
+import PieChart from "./PieChart";
 
 const AdminAnalyticsView = () => {
   const { tenderID } = useParams();
@@ -46,7 +47,7 @@ const AdminAnalyticsView = () => {
       datasets: [
         {
           data: proponentValues.map((item) => item[fName]),
-          backgroundColor: getRandomColor(),
+          backgroundColor: [getRandomColor()],
         },
       ],
     };
@@ -101,6 +102,7 @@ const AdminAnalyticsView = () => {
             width={400}
           />
         </div>
+        <PieChart title={"Duaraion pue"} data={getChartData("duration")} />
       </Admin>
     </>
   );
