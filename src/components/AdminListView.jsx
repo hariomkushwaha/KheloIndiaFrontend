@@ -47,6 +47,12 @@ const AdminListView = () => {
   return (
     <>
       <Admin>
+        <Link
+          to={`/admin/analytics/${tenderID}`}
+          style={{ textDecoration: "none" }}
+        >
+          <Button variant="contained">Analytics of tender {tenderID}</Button>
+        </Link>
         <div
           style={{
             display: "flex",
@@ -56,7 +62,7 @@ const AdminListView = () => {
             marginTop: "1rem",
           }}
         >
-          <div>Selected Proposals: </div>
+          {selectedProposals.length > 0 && <div>Selected Proposals: </div>}
           {selectedProposals.map((tender) => (
             <>
               <div>{tender.proponentId}</div>

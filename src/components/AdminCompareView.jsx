@@ -14,7 +14,6 @@ import React, { useContext } from "react";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
 import CompareCard from "./CompareCard";
-import BarChart from "./BarChart";
 
 const AdminCompareView = () => {
   const { selectedProposals } = useContext(AdminContext);
@@ -22,25 +21,7 @@ const AdminCompareView = () => {
   const firstProposal = selectedProposals[0];
   const secondProposal = selectedProposals[1];
 
-  console.log("firstProposal:", firstProposal);
-
-  const labels = ["First", "Second"];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: [2],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "Dataset 2",
-        data: [1],
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
+  // console.log("firstProposal:", firstProposal);
 
   return (
     <>
@@ -86,10 +67,7 @@ const AdminCompareView = () => {
               <TableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>
-                  {/* <BarChart data={data} height={200} width={200} /> */}
-                  Sport Specific Experience
-                </TableCell>
+                <TableCell>Sport Specific Experience</TableCell>
 
                 <TableCell component="th" scope="row">
                   {firstProposal.sportsspecificexperience}
@@ -167,7 +145,6 @@ const AdminCompareView = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <BarChart data={data} width={200} />
       </Admin>
     </>
   );

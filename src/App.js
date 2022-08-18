@@ -31,7 +31,10 @@ function App() {
         <Route path="/admin/list/:tenderID" element={<AdminListView />} />
         <Route path="/admin/list/" element={<ListView />} />
         <Route path="/admin/comparison" element={<AdminCompareView />} />
-        <Route path="/admin/analytics" element={<AdminAnalyticsView />} />
+        <Route
+          path="/admin/analytics/:tenderID"
+          element={<AdminAnalyticsView />}
+        />
         {/* <Route path="/chart" element={<Chart />} /> */}
         <Route path="*" element={<Error />} />
       </Routes>

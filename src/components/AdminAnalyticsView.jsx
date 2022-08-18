@@ -1,36 +1,105 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BarChart from "./BarChart";
-
-import { faker } from "@faker-js/faker";
 import Admin from "../pages/Admin";
+import { useParams } from "react-router-dom";
 
 const AdminAnalyticsView = () => {
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  const { tenderID } = useParams();
+  const [proponentValues, setProponentValues] = useState([]);
 
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Dataset 1",
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
+  const handleProponents = async () => {
+    try {
+      const res = await fetch("/API/proponentform", {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = res.json();
+      data.then((response) => {
+        setProponentValues(
+          response.filter((item) => item.tenderId === tenderID)
+        );
+      });
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
+
+  useEffect(() => {
+    handleProponents();
+  }, []);
+
+  useEffect(() => {
+    console.log("pValues: ", proponentValues);
+  }, [proponentValues]);
+
+  const getChartData = (fName) => {
+    let data = {
+      labels: proponentValues.map((item) => item[fName]),
+      datasets: [
+        {
+          data: proponentValues.map((item) => item[fName]),
+          backgroundColor: getRandomColor(),
+        },
+      ],
+    };
+
+    return data;
+  };
+
+  function getRandomColor() {
+    const COLORS = [
+      "#4dc9f690",
+      "#f6701990",
+      "#f5379490",
+      "#537bc490",
+      "#acc23690",
+      "#166a8f90",
+      "#00a95090",
+      "#58595b90",
+      "#8549ba90",
+    ];
+    console.log(COLORS[Math.round((Math.random() * 10) % COLORS.length)]);
+    return COLORS[Math.round((Math.random() * 10) % COLORS.length)];
+  }
 
   return (
     <>
       <Admin>
         <div>
-          <BarChart data={data} />
+          <BarChart
+            title={"Durability"}
+            data={getChartData("durability")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Quality"}
+            data={getChartData("quality")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Total Cost"}
+            data={getChartData("totalcost")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Duration"}
+            data={getChartData("duration")}
+            width={400}
+          />
         </div>
       </Admin>
     </>
