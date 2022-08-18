@@ -41,114 +41,109 @@ const AdminCompareView = () => {
             component={Paper}
             aria-label="simple table"
           >
-            <TableHead>
-              <TableRow>
-                <TableCell>Proponent ID</TableCell>
-                <TableCell align="right">General Experience</TableCell>
-                <TableCell align="right">Sport Specific Experience</TableCell>
-                <TableCell align="right">Coordinator Experience</TableCell>
-                <TableCell align="right">Database Admin Experience</TableCell>
-                <TableCell align="right">Durability</TableCell>
-                <TableCell align="right">Duration</TableCell>
-                <TableCell align="right">Quality</TableCell>
-                <TableCell align="right">Total Cost</TableCell>
-              </TableRow>
-            </TableHead>
             <TableBody>
-              {selectedProposals.map((proponentValue) => (
                 <TableRow
-                  key={proponentValue.proponentId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
+                  <TableCell>Proponent ID</TableCell>
                   <TableCell component="th" scope="row">
-                    {proponentValue.proponentId}
+                    {firstProposal.proponentId}
                   </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.generalexperience}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.sportsspecificexperience}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.coordinatorexperience}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.databaseadminexperience}
-                  </TableCell>
-                  <TableCell align="right">
-                    {proponentValue.durability}
-                  </TableCell>
-                  <TableCell align="right">{proponentValue.duration}</TableCell>
-                  <TableCell align="right">{proponentValue.quality}</TableCell>
-                  <TableCell align="right">
-                    {proponentValue.totalcost}
+                  <TableCell component="th" scope="row">
+                    {secondProposal.proponentId}
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>General Experience</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.generalexperience}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.generalexperience}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Sport Specific Experience</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.sportsspecificexperience}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.sportsspecificexperience}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Coordinator Experience</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.coordinatorexperience}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.coordinatorexperience}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Database Admin Experience</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.databaseadminexperience}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.databaseadminexperience}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Durability</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.durability}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.durability}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Duration</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.duration}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.duration}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Quality</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.quality}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.quality}
+                  </TableCell>
+                </TableRow>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>Total Cost</TableCell>
+                  <TableCell component="th" scope="row">
+                    {firstProposal.totalcost}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {secondProposal.totalcost}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
           </Table>
         </TableContainer>
-        {/* <div style={{ textAlign: "center", marginTop: "1rem" }}>
-          <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            spacing={5}
-            style={{ marginBottom: "1rem" }}
-          >
-            <Grid item xs={12} md={6}>
-              <Typography variant="h5" gutterBottom>
-                Proponent Id: {firstProposal.proponentId}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Typography variant="h5" gutterBottom>
-                Proponent Id: {secondProposal.proponentId}
-              </Typography>
-            </Grid>
-          </Grid>
-          <CompareCard
-            title="General Experience"
-            firstData={firstProposal.generalexperience}
-            secondData={secondProposal.generalexperience}
-          />
-          <CompareCard
-            title="Sport Specific Experience"
-            firstData={firstProposal.sportsspecificexperience}
-            secondData={secondProposal.sportsspecificexperience}
-          />
-          <CompareCard
-            title="Coordinator Experience"
-            firstData={firstProposal.coordinatorexperience}
-            secondData={secondProposal.coordinatorexperience}
-          />
-          <CompareCard
-            title="Database Admin Experience"
-            firstData={firstProposal.databaseadminexperience}
-            secondData={secondProposal.databaseadminexperience}
-          />
-          <CompareCard
-            title="Durability"
-            firstData={firstProposal.durability}
-            secondData={secondProposal.durability}
-          />
-          <CompareCard
-            title="Duration"
-            firstData={firstProposal.duration}
-            secondData={secondProposal.duration}
-          />
-          <CompareCard
-            title="Quality"
-            firstData={firstProposal.quality}
-            secondData={secondProposal.quality}
-          />
-          <CompareCard
-            title="Total Cost"
-            firstData={firstProposal.totalcost}
-            secondData={secondProposal.totalcost}
-          />
-        </div> */}
       </Admin>
     </>
   );
