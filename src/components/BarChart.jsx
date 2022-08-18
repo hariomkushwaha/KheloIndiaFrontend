@@ -46,5 +46,9 @@ const options = {
 };
 
 export default function BarChart(props) {
-  return <Bar options={options} data={props.data} />;
+  return (
+    <div style={{ height: props.height || 200, width: props.width || 200 }}>
+      <Bar options={options} data={props.data} />
+    </div>
+  );
 }
