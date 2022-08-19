@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BarChart from "./BarChart";
-
-import { faker } from "@faker-js/faker";
+import Admin from "../pages/Admin";
+import { useParams } from "react-router-dom";
+import PieChart from "./PieChart";
 
 const AdminAnalyticsView = () => {
-
+  const { tenderID } = useParams();
   const [proponentValues, setProponentValues] = useState([]);
-  const [arr, setArr] = useState([]);
 
   const handleProponents = async () => {
     try {
@@ -20,7 +20,9 @@ const AdminAnalyticsView = () => {
       });
       const data = res.json();
       data.then((response) => {
-        setProponentValues(response);
+        setProponentValues(
+          response.filter((item) => item.tenderId === tenderID)
+        );
       });
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -31,63 +33,77 @@ const AdminAnalyticsView = () => {
     }
   };
 
-  var obj = [];
-  const handleProponentsData = async () => {
-    await obj.push(proponentValues[0]["durability"]);
-    await obj.push(proponentValues[0]["quality"]);
-    await obj.push(proponentValues[0]["usability"]);
-    await setArr(obj);
-    // labels.forEach((num) => {
-    //   for (const [key, value] of Object.entries(proponentValues[0])) {
-    //     if (key === num) {
-    //         // setArr(current => [...current, value])
-    //         obj.push(value);
-    //     }
-    //   }
-    //   console.log(obj)
-    //   return obj;
-    // obj.push(proponentValues[0].num)
-    // console.log(obj)
-    // console.log(num, proponentValues[0])
-    // setArr(proponentValues[0][num]);
-    // }
-    // ),
-    console.log(arr);
-  }
-
   useEffect(() => {
     handleProponents();
-    handleProponentsData();
   }, []);
 
-  // useEffect(() => {
-  // }, [arr]);
+  useEffect(() => {
+    console.log("pValues: ", proponentValues);
+  }, [proponentValues]);
 
-  const labels = [
-    "durability",
-    "quality",
-    "usability"
-  ];
+  const getChartData = (fName) => {
+    let data = {
+      labels: proponentValues.map((item) => item[fName]),
+      datasets: [
+        {
+          data: proponentValues.map((item) => item[fName]),
+          backgroundColor: [getRandomColor()],
+        },
+      ],
+    };
 
-
-  // let obj = ['4', '5', '6'];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "Proposals",
-        data: arr,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-    ],
+    return data;
   };
+
+  function getRandomColor() {
+    const COLORS = [
+      "#4dc9f690",
+      "#f6701990",
+      "#f5379490",
+      "#537bc490",
+      "#acc23690",
+      "#166a8f90",
+      "#00a95090",
+      "#58595b90",
+      "#8549ba90",
+    ];
+    console.log(COLORS[Math.round((Math.random() * 10) % COLORS.length)]);
+    return COLORS[Math.round((Math.random() * 10) % COLORS.length)];
+  }
 
   return (
     <>
-      <div>
-        <BarChart data={data} />
-      </div>
+      <Admin>
+        <div>
+          <BarChart
+            title={"Durability"}
+            data={getChartData("durability")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Quality"}
+            data={getChartData("quality")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Total Cost"}
+            data={getChartData("totalcost")}
+            width={400}
+          />
+        </div>
+        <div>
+          <BarChart
+            title={"Duration"}
+            data={getChartData("duration")}
+            width={400}
+          />
+        </div>
+        <PieChart title={"Duaraion pue"} data={getChartData("duration")} />
+      </Admin>
     </>
   );
 };
