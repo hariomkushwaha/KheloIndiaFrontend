@@ -28,7 +28,7 @@ function App() {
         <Route path="/post/tender/" element={<TenderForm />} />
         <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
-        <Route path="/admin" element={<AdminAnalyticsView />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/list/:tenderID" element={<AdminListView />} />
         <Route path="/admin/list/" element={<ListView />} />
         <Route path="/admin/comparison" element={<AdminCompareView />} />
