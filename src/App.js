@@ -14,6 +14,9 @@ import AdminListView from "./components/AdminListView";
 import AdminAnalyticsView from "./components/AdminAnalyticsView";
 import AdminCompareView from "./components/AdminCompareView";
 import AdminDashboard from "./components/AdminDashboard";
+import Proponent from "./pages/Proponent";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 // import Pages from "./components/dashboard/layouts/Auth";
 
 function App() {
@@ -27,6 +30,9 @@ function App() {
         {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
         <Route path="/post/tender/" element={<TenderForm />} />
         <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
+        <Route path="/proponent/signup" element={<SignUp />} />
+        <Route path="/proponent/signin" element={<SignIn />} />
+        <Route path="/proponent/:proponentID" element={<Proponent />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/list/:tenderID" element={<AdminListView />} />
         <Route path="/admin/list/" element={<ListView />} />

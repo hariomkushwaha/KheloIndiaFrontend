@@ -3,6 +3,8 @@ import BarChart from "./BarChart";
 import Admin from "../pages/Admin";
 import { useParams } from "react-router-dom";
 import PieChart from "./PieChart";
+import Grid from "@mui/material/Grid";
+import { Box } from "@mui/material";
 
 const AdminAnalyticsView = () => {
   const { tenderID } = useParams();
@@ -73,37 +75,52 @@ const AdminAnalyticsView = () => {
 
   return (
     <>
-      <Admin>
-        <div>
-          <BarChart
-            title={"Durability"}
-            data={getChartData("durability")}
-            width={400}
-          />
-        </div>
-        <div>
-          <BarChart
-            title={"Quality"}
-            data={getChartData("quality")}
-            width={400}
-          />
-        </div>
-        <div>
-          <BarChart
-            title={"Total Cost"}
-            data={getChartData("totalcost")}
-            width={400}
-          />
-        </div>
-        <div>
-          <BarChart
-            title={"Duration"}
-            data={getChartData("duration")}
-            width={400}
-          />
-        </div>
-        <PieChart title={"Duaraion pue"} data={getChartData("duration")} />
-      </Admin>
+      <Admin />
+      <Box sx={{ m:5}}>
+        <Grid container spacing={2} rowSpacing={10}>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={4} >
+            <BarChart
+              title={"Durability"}
+              data={getChartData("durability")}
+              width={500}
+            />
+          </Grid>
+          <Grid item xs={2}></Grid>
+          <Grid item xs={4}>
+            <BarChart
+              title={"Quality"}
+              data={getChartData("quality")}
+              width={500}
+            />
+          </Grid>
+          <Grid item xs={1}></Grid>
+
+          {/* Next Row */}
+          <br />
+          <Grid item xs={1}></Grid>
+          <Grid item xs={4}>
+            <BarChart
+              title={"Total Cost"}
+              data={getChartData("totalcost")}
+              width={500}
+            />
+          </Grid>
+          <Grid item xs={2}></Grid>
+          <Grid item xs={4}>
+            <BarChart
+              title={"Duration"}
+              data={getChartData("duration")}
+              width={500}
+            />
+          </Grid>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={1}></Grid>
+          <Grid item xs={4}>
+            {/* <PieChart title={"Duaraion pue"} data={getChartData("duration")} /> */}
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 };
