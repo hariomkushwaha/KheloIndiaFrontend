@@ -22,8 +22,7 @@ export default function Hero() {
           healthy society and strong nation.
         </Typography>
         <br />
-          <Button href="get-started" color="success" variant="contained" style={{ borderRadius: '50px' }}>Get Started</Button>
-          <Button variant="text">Learn more</Button>
+          <Button href="get-started" color="success" variant="contained" style={{ borderRadius: '50px' }} >Get Started</Button>
       </Box>
     </>
   );
