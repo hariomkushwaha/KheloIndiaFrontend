@@ -1,17 +1,33 @@
-import { Divider, Grid, Paper, Table, Typography } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  Box,
+  TableRow,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import React from "react";
 import ProponentNavbar from "../components/ProponentNavbar";
 import { useParams } from "react-router-dom";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import ProponentCollapsibleTable from "../components/ProponentCollapsibleTable";
 
 const Proponent = () => {
   const { proponentID } = useParams();
-  //   console.log(proponentID);
 
   const [userDetails, setUserDetails] = React.useState({});
+  const [userTenders, setUserTenders] = React.useState({});
+  const [tenderData, setTenderData] = React.useState({});
 
   const handleUserDetails = async () => {
     try {
-      const res = await fetch(`/API/userdetails/${proponentID}`, {
+      const userData = await fetch(`/API/userdetails/${proponentID}`, {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -19,14 +35,37 @@ const Proponent = () => {
         },
         credentials: "include",
       });
-
-      const data = res.json();
+      const data = userData.json();
       data.then(async (response) => {
         setUserDetails(response);
+        console.log(response);
       });
-      console.log(userDetails);
-      if (!res.status === 200) {
-        const error = new Error(res.error);
+      if (!userData.status === 200) {
+        const error = new Error(userData.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleUserProposals = async () => {
+    try {
+      const userData = await fetch(`/API/proposalData/${proponentID}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = userData.json();
+      data.then(async (response) => {
+        setUserTenders(response);
+        console.log(response);
+      });
+      if (!userData.status === 200) {
+        const error = new Error(userData.error);
         throw error;
       }
     } catch (err) {
@@ -36,6 +75,7 @@ const Proponent = () => {
 
   React.useEffect(() => {
     handleUserDetails();
+    handleUserProposals();
   }, []);
 
   return (
@@ -77,28 +117,63 @@ const Proponent = () => {
           </Grid>
           <Grid item xs={1}></Grid>
           <Grid item xs={11}>
-            <Table>
-              <Typography variant="h5" component="h1">
-                Organisation: {userDetails.organization}
-              </Typography>
-              <Typography variant="h5" component="h1">
-                Address: {userDetails.fulladdress}
-              </Typography>
-              <Typography variant="h5" component="h1">
-                State: {userDetails.state}
-              </Typography>
-              <Typography variant="h5" component="h1">
-                Pincode: {userDetails.pincode}
-              </Typography>
-              <Typography variant="h5" component="h1">
-                Email: {userDetails.email}
-              </Typography>
-              <Typography variant="h5" component="h1">
-                Password: {userDetails.password}
-              </Typography>
-            </Table>
+            {/* <Table> */}
+            <Typography variant="h5" component="h1">
+              Organisation: {userDetails.organization}
+            </Typography>
+            <Typography variant="h5" component="h1">
+              Address: {userDetails.fulladdress}
+            </Typography>
+            <Typography variant="h5" component="h1">
+              State: {userDetails.state}
+            </Typography>
+            <Typography variant="h5" component="h1">
+              Pincode: {userDetails.pincode}
+            </Typography>
+            <Typography variant="h5" component="h1">
+              Email: {userDetails.email}
+            </Typography>
+            <Typography variant="h5" component="h1">
+              Password: {userDetails.password}
+            </Typography>
+            {/* </Table> */}
           </Grid>
         </Grid>
+      </Paper>
+      {/* <Box sx={{ m: 3, p: 3 }}>
+        <ProponentCollapsibleTable Data={userTenders}/>
+      </Box> */}
+      <Paper elevation={3} sx={{ m: 3, p: 3 }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Tender ID</TableCell>
+              <TableCell>General Experience</TableCell>
+              <TableCell>Sports Specific Experience</TableCell>
+              <TableCell>Project Manager Experience</TableCell>
+              <TableCell>Database Admin Experience</TableCell>
+              <TableCell>Coordinator Experience</TableCell>
+              <TableCell>Total Cost</TableCell>
+              <TableCell>Duration</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {userTenders.map((userTender) => {
+              return (
+                <TableRow>
+                  <TableCell>{userTender.tenderId}</TableCell>
+                  <TableCell>{userTender.generalexperience}</TableCell>
+                  <TableCell>{userTender.sportsspecificexperience}</TableCell>
+                  <TableCell>{userTender.projectmanagerexperience}</TableCell>
+                  <TableCell>{userTender.databaseadminexperience}</TableCell>
+                  <TableCell>{userTender.coordinatorexperience}</TableCell>
+                  <TableCell>{userTender.totalcost}</TableCell>
+                  <TableCell>{userTender.duration}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </Paper>
     </>
   );

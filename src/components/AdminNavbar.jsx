@@ -22,6 +22,7 @@ import AnalyticsIcon from "@mui/icons-material/Analytics";
 import AdminCompareView from "./AdminCompareView";
 import AdminAnalyticsView from "./AdminAnalyticsView";
 import AdminContext from "../context/AdminContext";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 export default function AdminNavbar({
   selectedComponent,
@@ -42,8 +43,13 @@ export default function AdminNavbar({
   };
   const navItems = [
     {
-      name: "Dashboard",
+      name: "Home",
       icon: <HomeIcon />,
+      link: "/",
+    },
+    {
+      name: "Dashboard",
+      icon: <DashboardIcon />,
       link: "/admin",
     },
     {
@@ -64,20 +70,21 @@ export default function AdminNavbar({
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {isLoggedIn ? (
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={toggleDrawer(true)}
-            >
-              <MenuIcon />
-            </IconButton>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={toggleDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          {/* {isLoggedIn ? (
+            
           ) : (
             ""
-          )}
+          )} */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Admin
           </Typography>
