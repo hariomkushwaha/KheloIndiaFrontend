@@ -9,6 +9,7 @@ import {
   Box,
   TableRow,
   Typography,
+  Skeleton,
   IconButton,
 } from "@mui/material";
 import React from "react";
@@ -21,6 +22,7 @@ import ProponentCollapsibleTable from "../components/ProponentCollapsibleTable";
 const Proponent = () => {
   const { proponentID } = useParams();
 
+  const [loading, setLoading] = React.useState(true);
   const [userDetails, setUserDetails] = React.useState({});
   const [userTenders, setUserTenders] = React.useState({});
   const [tenderData, setTenderData] = React.useState({});
@@ -63,6 +65,7 @@ const Proponent = () => {
       data.then(async (response) => {
         setUserTenders(response);
         console.log(response);
+        setLoading(false);
       });
       if (!userData.status === 200) {
         const error = new Error(userData.error);
@@ -158,8 +161,12 @@ const Proponent = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {userTenders.map((userTender) => {
-              return (
+            {loading ? (
+              <TableRow>
+                <TableCell><Skeleton variant="rectangular" /></TableCell>
+              </TableRow>
+            ) : (
+              userTenders.map((userTender) => (
                 <TableRow>
                   <TableCell>{userTender.tenderId}</TableCell>
                   <TableCell>{userTender.generalexperience}</TableCell>
@@ -170,8 +177,8 @@ const Proponent = () => {
                   <TableCell>{userTender.totalcost}</TableCell>
                   <TableCell>{userTender.duration}</TableCell>
                 </TableRow>
-              );
-            })}
+              ))
+            )}
           </TableBody>
         </Table>
       </Paper>

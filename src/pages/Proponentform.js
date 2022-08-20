@@ -8,11 +8,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ProponentForm = () => {
   var { tenderID } = useParams();
-
+const navigate = useNavigate();
   const initialValues = {
     tenderId: tenderID,
     generalexperience: "",
@@ -81,6 +81,7 @@ const ProponentForm = () => {
       window.alert("Invalid Submission");
     } else {
       window.alert("Posted Successfully");
+      navigate('/get-started');
     }
     console.log(values);
   };
