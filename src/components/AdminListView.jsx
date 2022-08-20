@@ -7,9 +7,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
+import AdminListViewCard from "./AdminListViewCard";
 
 const AdminListView = () => {
   const { tenderID } = useParams();
@@ -28,6 +29,14 @@ const AdminListView = () => {
       const data = res.json();
       data.then((response) => {
         setProponentValues(response);
+        // console.log(
+        //   "🚀 ~ file: AdminListView.jsx ~ line 32 ~ data.then ~ response",
+        //   response.map(
+        //     (item) =>
+        //       item.tenderId === tenderID && handleUserDetails(item.proponentId)
+        //   )
+        // );
+        // handleUserDetails
       });
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -38,11 +47,44 @@ const AdminListView = () => {
     }
   };
 
+  // const handleUserDetails = async (proponentID) => {
+  //   try {
+  //     const userData = await fetch(`/API/userdetails/${proponentID}`, {
+  //       method: "GET",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       credentials: "include",
+  //     });
+  //     const data = userData.json();
+  //     data.then(async (response) => {
+  //       setUserDetails((prev) => [...prev, response]);
+  //       console.log(response);
+  //     });
+  //     if (!userData.status === 200) {
+  //       const error = new Error(userData.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
+
   useEffect(() => {
     handleProponents();
   }, []);
 
   const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
+  // const [userDetails, setUserDetails] = React.useState([]);
+
+  // useEffect(() => {
+  //   console.log("udts: ", userDetails);
+  // }, [userDetails]);
+
+  // useEffect(() => {
+  //   console.log("pvalues: ", proponentValues);
+  // }, [proponentValues]);
 
   return (
     <>
@@ -74,6 +116,29 @@ const AdminListView = () => {
             </Link>
           )}
         </div>
+
+        <>
+          {/* {proponentValues.map((item) => handleUserDetails(item.proponentID))} */}
+        </>
+
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+          spacing={3}
+          rowSpacing={5}
+          style={{ padding: "1rem" }}
+        >
+          {proponentValues.map(
+            (proponentValue) =>
+              proponentValue.tenderId === tenderID && (
+                <Grid item xs={12} md={4} lg={3}>
+                  <AdminListViewCard />
+                </Grid>
+              )
+          )}
+        </Grid>
 
         <TableContainer
           sx={{
