@@ -1,30 +1,45 @@
-import react from 'react';
-import { green } from '@mui/material/colors';
+import React from "react";
+import { Grid, Typography, Button, Box } from "@mui/material";
+import img3 from "../images/img3.jpg";
+import useStyles from "../styles/styles";
 
-import { Button, Typography, Box } from '@mui/material';
+const Hero = () => {
+  const classes = useStyles();
 
-// const success = green['400'];
-
-export default function Hero() {
   return (
-    <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-        rel="stylesheet"
-      />
-      <Box style={{display:'flex',justifyContent:'space-evenly',alignItems:'center',flexDirection:'column', padding:'50px',height:'350px'}}>
-        <Typography variant="h2" component="div" gutterBottom>Welcome To Khelo India</Typography>
-        <Typography variant="subtitle1" component="div" style={{width:'700px', textAlign:'center'}}>
-          The importance of sports and fitness in one’s life is invaluable.
-          Playing sports inculcates team spirit and develops strategic
-          thinking, analytical thinking, leadership skills, goal setting and
-          risk taking. A fit and healthy individual leads to an equally
-          healthy society and strong nation.
-        </Typography>
-        <br />
-          <Button href="get-started" color="success" variant="contained" style={{ borderRadius: '50px' }}>Get Started</Button>
-          <Button variant="text">Learn more</Button>
-      </Box>
-    </>
+    <Box className={classes.heroBox}>
+      <Grid container spacing={6} className={classes.gridContainer}>
+        <Grid item xs={12} md={7}>
+          <Typography variant="h3" fontWeight={700} className={classes.title}>
+            Welcome To Tenders FC
+          </Typography>
+          <Typography variant="h6" className={classes.subtitle}>
+            This is a procurement site for handling the proposals under
+            kheloIndia scheme. The tenders filled by the proponents are handled
+            and compared digitally. Our site would help in easing the process of
+            procurement for the admin by listing out the favourable tenders at
+            the top of the list.
+          </Typography>
+          <Button
+            href="get-started"
+            variant="contained"
+            color="success"
+            style={{
+              borderRadius: "5px",
+              alignItems: "center",
+              marginLeft: "220px",
+              marginTop: "20px",
+            }}
+          >
+            Get Started
+          </Button>
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <img src={img3} alt="landing page " className={classes.largeImage} />
+        </Grid>
+      </Grid>
+    </Box>
   );
-}
+};
+
+export default Hero;
