@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Admin from "../pages/Admin";
 import Card from "./CardAdmin";
+import Card2 from "./adminTenderCards";
 
 const AdminDashboard = () => {
   const [tenderValues, setTenderValues] = useState([]);
@@ -44,7 +45,10 @@ const AdminDashboard = () => {
           }}
         >
           {tenderValues.map((tenderValue) => {
-            return <Card key={tenderValue.tenderId} values={tenderValue} />;
+            return <>
+              <Card2 key={tenderValue.tenderId} values={tenderValue} />
+              {/* <Card key={tenderValue.tenderId} values={tenderValue} /> */}
+            </>
           })}
         </div>
       </Admin>

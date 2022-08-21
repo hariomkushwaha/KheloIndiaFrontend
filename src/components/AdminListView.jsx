@@ -29,14 +29,6 @@ const AdminListView = () => {
       const data = res.json();
       data.then((response) => {
         setProponentValues(response);
-        // console.log(
-        //   "🚀 ~ file: AdminListView.jsx ~ line 32 ~ data.then ~ response",
-        //   response.map(
-        //     (item) =>
-        //       item.tenderId === tenderID && handleUserDetails(item.proponentId)
-        //   )
-        // );
-        // handleUserDetails
       });
       if (!res.status === 200) {
         const error = new Error(res.error);
@@ -47,44 +39,11 @@ const AdminListView = () => {
     }
   };
 
-  // const handleUserDetails = async (proponentID) => {
-  //   try {
-  //     const userData = await fetch(`/API/userdetails/${proponentID}`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include",
-  //     });
-  //     const data = userData.json();
-  //     data.then(async (response) => {
-  //       setUserDetails((prev) => [...prev, response]);
-  //       console.log(response);
-  //     });
-  //     if (!userData.status === 200) {
-  //       const error = new Error(userData.error);
-  //       throw error;
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
   useEffect(() => {
     handleProponents();
   }, []);
 
   const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
-  // const [userDetails, setUserDetails] = React.useState([]);
-
-  // useEffect(() => {
-  //   console.log("udts: ", userDetails);
-  // }, [userDetails]);
-
-  // useEffect(() => {
-  //   console.log("pvalues: ", proponentValues);
-  // }, [proponentValues]);
 
   return (
     <>

@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { faker } from "@faker-js/faker";
 
 ChartJS.register(
   CategoryScale,
@@ -24,6 +23,14 @@ export default function BarChart(props) {
   const options = {
     responsive: true,
     plugins: {
+      tooltip: {
+        callbacks: {
+          title: function (context) {
+            return `Proponent: ${context[0].label}`;
+          },
+        },
+      },
+
       legend: {
         position: "top",
         display: false,
@@ -48,7 +55,11 @@ export default function BarChart(props) {
   };
   return (
     <div style={{ height: props.height || 200, width: props.width || 200 }}>
-      <Bar options={options} data={props.data} style={{ border: '1px solid black', padding:'10px' }} />
+      <Bar
+        options={options}
+        data={props.data}
+        style={{ border: "1px solid black", padding: "10px" }}
+      />
     </div>
   );
 }
