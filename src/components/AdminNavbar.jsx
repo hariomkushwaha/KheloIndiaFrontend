@@ -93,7 +93,7 @@ export default function AdminNavbar({
               <Button
                 color="inherit"
                 variant="outlined"
-                href="post/tender"
+                href="/post/tender"
                 sx={{ m: 2 }}
               >
                 Post a Tender
