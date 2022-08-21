@@ -21,7 +21,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import InsightsIcon from '@mui/icons-material/Insights';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link as RouterLink } from 'react-router-dom';
-import { red } from '@mui/material/colors';
+import { red, amber, grey } from '@mui/material/colors';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -36,17 +36,56 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard({ values }) {
     const [expanded, setExpanded] = React.useState(false);
+    const [submission, setSubmission] = React.useState([]);
+    const [proponentValues, setProponentValues] = React.useState([]);
+
+    const handleProponents = async () => {
+        try {
+            const res = await fetch("/API/proponentform", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
+            const data = res.json();
+
+            data.then((responses) => {
+                responses.map((response) => {
+                    if (response.tenderId === values.tenderId) {
+                        return setSubmission((current) => [...current, response]);
+                    }
+                    return null;
+                });
+                setProponentValues(responses);
+            });
+
+            if (!res.status === 200) {
+                const error = new Error(res.error);
+                throw error;
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    React.useEffect(() => {
+        handleProponents();
+    }, []);
+
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
     return (
-        <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
+        <Card sx={{ width: "90%", m: 2, flexGrow: 1 }} style={{border:'1px solid '+grey['300']}}>
             <CardHeader
                 action={
-                    <Box style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
-                        <Typography variant="button" p={2} color="text.success">Submissions: </Typography>
+                    <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                        <Typography variant="button" sx={{ color: amber['800'] }} >Submissions: &nbsp;&nbsp;</Typography>
+                        <Typography variant="button" pr={2} sx={{ color: amber['800'] }} >{submission.length}</Typography>
                         <IconButton aria-label="settings">
                             <MoreVertIcon />
                         </IconButton>
