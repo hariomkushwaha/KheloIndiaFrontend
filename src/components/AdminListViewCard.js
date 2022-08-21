@@ -31,12 +31,39 @@ const ExpandMore = styled((props) => {
 
 const AdminListViewCard = ({ values }) => {
   const [expanded, setExpanded] = React.useState(false);
+  const [userDetails, setUserDetails] = React.useState({});
 
-  console.log("pValues: ", values);
+  const handleUserDetails = async () => {
+    try {
+      const userData = await fetch(`/API/userdetails/${values.proponentId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = userData.json();
+      data.then(async (response) => {
+        setUserDetails(response);
+        console.log(response);
+      });
+      if (!userData.status === 200) {
+        const error = new Error(userData.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  React.useEffect(() => {
+    handleUserDetails();
+  }, []);
 
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
@@ -46,10 +73,10 @@ const AdminListViewCard = ({ values }) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={values.tenderId}
+        title={values.proponentId}
         subheader={
           <Typography variant="caption" color="text.secondary">
-            Posted on: {values.publishDate}
+            Posted on: {userDetails.fullname}
           </Typography>
         }
       />
