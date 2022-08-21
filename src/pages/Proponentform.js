@@ -26,6 +26,7 @@ const navigate = useNavigate();
     quality: "",
     usability: "",
     durability: "",
+    status:"pending",
   };
 
   const [values, setValues] = useState(initialValues);
@@ -52,6 +53,7 @@ const navigate = useNavigate();
       quality,
       usability,
       durability,
+      status,
     } = values;
 
     const res = await fetch("http://localhost:5000/API/proponentform", {
@@ -72,12 +74,14 @@ const navigate = useNavigate();
         quality,
         usability,
         durability,
+        status,
       }),
     });
 
     const data = await res.json();
 
-    if (res.status === 422 || !data) {
+    if (res.status !== 201 || !data) {
+      console.log(data.error);
       window.alert("Invalid Submission");
     } else {
       window.alert("Posted Successfully");
