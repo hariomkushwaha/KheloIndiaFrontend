@@ -49,3 +49,4 @@ const CompareCard = ({ title, firstData, secondData }) => {
 };
 
 export default CompareCard;
+

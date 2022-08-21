@@ -9,13 +9,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { Link as RouterLink } from "react-router-dom";
 
 const pages = [
-  "Home",
-  "Tenders",
-  "Notifications",
-  "Profile",
-  "Proponent Dashboard",
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Tenders",
+    link: "/get-started",
+  },
+  {
+    name: "Notifications",
+    link: "#",
+  },
+  {
+    name: "Profile",
+    link: "#",
+  },
+  {
+    name: "Proponent Dashboard",
+    link: "/proponent/signin",
+  },
 ];
 
 const ResponsiveAppBar = () => {
@@ -63,20 +79,24 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <RouterLink to={page.link} style={{ textDecoration: 'none' }}>
+                    <Typography textAlign="center" >{page.name}</Typography>
+                  </RouterLink>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, mx: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
+              <RouterLink to={page.link} style={{ textDecoration: 'none' }}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, mx: 2, color: "white", display: "block" }}
+                >
+                  {page.name}
+                </Button>
+              </RouterLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>

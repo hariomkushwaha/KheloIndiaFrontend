@@ -1,153 +1,126 @@
-import {
-  Button,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
-import React, { useContext } from "react";
+
+
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { useContext } from "react";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
-import CompareCard from "./CompareCard";
+import { Container } from '@mui/material';
 
-const AdminCompareView = () => {
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(even)': {
+    backgroundColor: "lavender",
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+const AdminCompareView = () => { 
   const { selectedProposals } = useContext(AdminContext);
 
   const firstProposal = selectedProposals[0];
   const secondProposal = selectedProposals[1];
 
-  // console.log("firstProposal:", firstProposal);
 
   return (
-    <>
-      <Admin>
-        <TableContainer
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            mt: "1rem",
-            mb: "1rem",
-            padding: "1rem",
-          }}
-        >
-          <Table
-            sx={{ width: "80vw" }}
-            component={Paper}
-            aria-label="simple table"
-          >
-            <TableBody>
-              <TableRow
+    <Admin>
+    <Container>
+      <br/>
+      <br/>
+      <br/>
+    <TableContainer sx={{ borderRadius: "20px" }}>
+      <Table sx={{ minWidth: 700}} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell><b>Proponent ID</b></StyledTableCell>
+            <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}><b>{firstProposal.proponentId}</b></StyledTableCell>
+            <StyledTableCell align="right"><b>{secondProposal.proponentId}</b></StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Proponent ID</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.proponentId}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.proponentId}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">General Experience</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.generalexperience}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.generalexperience}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>General Experience</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.generalexperience}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.generalexperience}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Sport Specific Experience</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.sportsspecificexperience}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.sportsspecificexperience}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Sport Specific Experience</TableCell>
-
-                <TableCell component="th" scope="row">
-                  {firstProposal.sportsspecificexperience}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.sportsspecificexperience}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Coordinator Experience</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.coordinatorexperience}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.coordinatorexperience}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Coordinator Experience</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.coordinatorexperience}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.coordinatorexperience}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Database Admin Experience</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.databaseadminexperience}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.databaseadminexperience}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Database Admin Experience</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.databaseadminexperience}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.databaseadminexperience}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Durability</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.durability}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.durability}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Durability</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.durability}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.durability}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Duration</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.duration}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.duration}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Duration</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.duration}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.duration}
-                </TableCell>
-              </TableRow>
-              <TableRow
+                <StyledTableCell component="th" scope="row">Quality</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.quality}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.quality}</StyledTableCell>
+          </StyledTableRow>
+          <StyledTableRow
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>Quality</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.quality}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.quality}
-                </TableCell>
-              </TableRow>
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>Total Cost</TableCell>
-                <TableCell component="th" scope="row">
-                  {firstProposal.totalcost}
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  {secondProposal.totalcost}
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Admin>
-    </>
+                <StyledTableCell component="th" scope="row">Total Cost</StyledTableCell>
+                <StyledTableCell align="right" style={{borderRight: '4px solid black', height:'40%'}}> {firstProposal.totalcost}</StyledTableCell>
+                <StyledTableCell align="right"> {secondProposal.totalcost}</StyledTableCell>
+          </StyledTableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </Container>
+    </Admin>
   );
-};
+}
 
 export default AdminCompareView;
+
+
