@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -44,9 +45,12 @@ export default function RecipeReviewCard({ values }) {
         <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
             <CardHeader
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <Box style={{display:'flex', flexDirection:'row', alignItems:'center'}}>
+                        <Typography variant="button" p={2} color="text.success">Submissions: </Typography>
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    </Box>
                 }
                 title={values.tenderId}
                 subheader={<Typography variant="caption" color="text.secondary">Posted on: {values.publishDate}</Typography>}
@@ -62,8 +66,8 @@ export default function RecipeReviewCard({ values }) {
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="delete">
-                    <RouterLink 
-                    to=""
+                    <RouterLink
+                        to=""
                     // to={`/admin/analytics/${values.tenderId}`}
                     >
                         <DeleteIcon sx={{ color: red['500'] }} />
