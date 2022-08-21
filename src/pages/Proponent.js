@@ -99,14 +99,14 @@ const Proponent = () => {
         }}
       >
         <Grid container spacing={2} rowSpacing={5}>
-          <Grid item xs={3}>
+          <Grid item xs={4}>
             <img
               src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg"
               alt="SomeWeirdo"
               style={{ width: "100%", height: "100%" }}
             />
           </Grid>
-          <Grid item xs={9} p={2}>
+          <Grid item xs={8} p={3} m={'auto'}>
             <Box p={2}>
               <Typography variant="h4">
                 {userDetails.fullname}
@@ -181,6 +181,7 @@ const Proponent = () => {
         <Grid container spacing={2} rowSpacing={5}>
           <Grid item xs={12} p={2}>
             <Typography variant="h6">Submitted Proposals</Typography>
+            <br />
             <Divider />
           </Grid>
           <Grid item xs={12}>
@@ -300,3 +301,8 @@ const Proponent = () => {
 };
 
 export default Proponent;
+
+
+
+
+
