@@ -10,14 +10,24 @@ import {
   TableRow,
   Typography,
   Skeleton,
+  Link,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   IconButton,
 } from "@mui/material";
 import React from "react";
 import ProponentNavbar from "../components/ProponentNavbar";
 import { useParams } from "react-router-dom";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import ProponentCollapsibleTable from "../components/ProponentCollapsibleTable";
+// import "../components/test.css";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import EmailIcon from "@mui/icons-material/Email";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import { red, amber, green } from "@mui/material/colors";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CancelIcon from "@mui/icons-material/Cancel";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 const Proponent = () => {
   const { proponentID } = useParams();
@@ -84,104 +94,230 @@ const Proponent = () => {
   return (
     <>
       <ProponentNavbar proponentID={proponentID} />
-      <Paper elevation={3} sx={{ m: 3, p: 3 }}>
-        <Grid container spacing={2} rowSpacing={5}>
-          <Grid item xs={1}></Grid>
-          <Grid
-            item
-            xs={8}
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <Typography variant="h3" component="h1">
-              {userDetails.fullname}
-            </Typography>
-            <br />
-            <Typography variant="h5" component="h1" style={{ color: "grey" }}>
-              {userDetails.proponentID}
-            </Typography>
+      <Box
+        m={3}
+        mt={10}
+        style={{
+          boxShadow: "5px 5px 20px rgba(0,0,0,0.25)",
+          border: "1px solid #eee",
+        }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
+            <img
+              src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg"
+              alt="SomeWeirdo"
+              style={{
+                width: "100%",
+                height: "100%",
+                maxHeight: "400px",
+                maxWidth: "400px",
+              }}
+            />
+          </Grid>
+          <Grid item xs={9} p={3} m={"auto"}>
+            <Box p={2}>
+              <Typography variant="h4">
+                {userDetails.fullname}
+                &nbsp;
+                <Typography as={"span"} variant="button">
+                  ({userDetails.proponentID})
+                </Typography>
+                &nbsp;
+                <VerifiedIcon color="success" />
+              </Typography>
+              <br />
+              <Grid container rowSpacing={5}>
+                <Grid item xs={4}>
+                  <EmailIcon sx={{ color: amber[700] }} />
+                </Grid>
+                <Grid item xs={4}>
+                  <PinDropIcon sx={{ color: red[500] }} />
+                </Grid>
+              </Grid>
+              <Grid container rowSpacing={5}>
+                <Grid item xs={4}>
+                  <Typography as={Link} underline="none" variant="body1">
+                    {userDetails.email}
+                  </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                  <Typography variant="body1">{userDetails.state}</Typography>
+                </Grid>
+              </Grid>
+            </Box>
             <br />
             <Divider />
             <br />
-          </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={2}>
-            <div style={{ width: "auto" }}>
-              <img
-                src="https://www.askideas.com/media/36/Weird-Looking-Baby-Face-Funny-Image.jpg"
-                alt="SomeWeirdo"
-                style={{ width: "100%" }}
-              />
-            </div>
-          </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={11}>
-            {/* <Table> */}
-            <Typography variant="h5" component="h1">
-              Organisation: {userDetails.organization}
-            </Typography>
-            <Typography variant="h5" component="h1">
-              Address: {userDetails.fulladdress}
-            </Typography>
-            <Typography variant="h5" component="h1">
-              State: {userDetails.state}
-            </Typography>
-            <Typography variant="h5" component="h1">
-              Pincode: {userDetails.pincode}
-            </Typography>
-            <Typography variant="h5" component="h1">
-              Email: {userDetails.email}
-            </Typography>
-            <Typography variant="h5" component="h1">
-              Password: {userDetails.password}
-            </Typography>
-            {/* </Table> */}
+            <Grid container rowSpacing={5}>
+              <Grid item xs={3}>
+                <Typography variant="h6">Organisation</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="h6">Full Address</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="h6">Pin Code</Typography>
+              </Grid>
+            </Grid>
+            <Grid container rowSpacing={5}>
+              <Grid item xs={3}>
+                <Typography variant="body2">
+                  {userDetails.organization}
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="body2">
+                  {userDetails.fulladdress}
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="body2">{userDetails.pincode}</Typography>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
-      </Paper>
-      {/* <Box sx={{ m: 3, p: 3 }}>
-        <ProponentCollapsibleTable Data={userTenders}/>
-      </Box> */}
-      <Paper elevation={3} sx={{ m: 3, p: 3 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Tender ID</TableCell>
-              <TableCell>General Experience</TableCell>
-              <TableCell>Sports Specific Experience</TableCell>
-              <TableCell>Project Manager Experience</TableCell>
-              <TableCell>Database Admin Experience</TableCell>
-              <TableCell>Coordinator Experience</TableCell>
-              <TableCell>Total Cost</TableCell>
-              <TableCell>Duration</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+      </Box>
+
+      <Box
+        elevation={3}
+        m={3}
+        mt={10}
+        style={{
+          boxShadow: "5px 5px 20px rgba(0,0,0,0.25)",
+          border: "1px solid #eee",
+        }}
+        p={2}
+      >
+        <Grid container spacing={2} rowSpacing={5}>
+          <Grid item xs={12} p={2}>
+            <Typography variant="h6">Submitted Proposals</Typography>
+            <br />
+            <Divider />
+          </Grid>
+          <Grid item xs={12}>
             {loading ? (
-              <TableRow>
-                <TableCell><Skeleton variant="rectangular" /></TableCell>
-              </TableRow>
+              <Skeleton variant="rectangular" />
             ) : (
               userTenders.map((userTender) => (
-                <TableRow>
-                  <TableCell>{userTender.tenderId}</TableCell>
-                  <TableCell>{userTender.generalexperience}</TableCell>
-                  <TableCell>{userTender.sportsspecificexperience}</TableCell>
-                  <TableCell>{userTender.projectmanagerexperience}</TableCell>
-                  <TableCell>{userTender.databaseadminexperience}</TableCell>
-                  <TableCell>{userTender.coordinatorexperience}</TableCell>
-                  <TableCell>{userTender.totalcost}</TableCell>
-                  <TableCell>{userTender.duration}</TableCell>
-                </TableRow>
+                <Accordion key={userTender.tenderId}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Grid container spacing={2}>
+                      <Grid item xs={5}>
+                        <Typography variant="h6">
+                          Tender ID: {userTender.tenderId}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={5}>
+                        <Typography variant="body1">
+                          <b>Cost:</b> {userTender.totalcost}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <IconButton>
+                          {userTender.status === "pending" ? (
+                            <PendingActionsIcon sx={{ color: amber["700"] }} />
+                          ) : userTender.status === "pending" ? (
+                            <DoneAllIcon sx={{ color: green["600"] }} />
+                          ) : (
+                            <CancelIcon  sx={{ color: red["600"] }}/>
+                          )}
+                        </IconButton>
+                      </Grid>
+                    </Grid>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Grid container spacing={1}>
+                      <Grid item xs={12}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          General Experience
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography variant="body1">
+                          {userTender.generalexperience} years
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          Sports Specific Experience
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          Project Manager Experience
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="body1">
+                          {userTender.sportsspecificexperience} years
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="body1">
+                          {userTender.projectmanagerexperience} years
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          Database Admin Experience
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          Co-ordinator Experience
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="body1">
+                          {userTender.databaseadminexperience} years
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant="body1">
+                          {userTender.coordinatorexperience} years
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography
+                          variant="button"
+                          style={{ color: "#616161" }}
+                        >
+                          Duration
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography variant="body1">
+                          {userTender.duration} months
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </AccordionDetails>
+                </Accordion>
               ))
             )}
-          </TableBody>
-        </Table>
-      </Paper>
+          </Grid>
+        </Grid>
+      </Box>
     </>
   );
 };

@@ -46,7 +46,7 @@ export default function Card({ values }) {
         <Grid
           container
           spacing={2}
-          sx={{
+          sx={{ 
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "row",

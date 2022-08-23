@@ -44,8 +44,11 @@ const AdminAnalyticsView = () => {
   }, [proponentValues]);
 
   const getChartData = (fName) => {
+    proponentValues.forEach((item) =>
+      console.log("oijsdbfisiugusdiuhf", item[fName])
+    );
     let data = {
-      labels: proponentValues.map((item) => item[fName]),
+      labels: proponentValues.map((item) => item.proponentId),
       datasets: [
         {
           data: proponentValues.map((item) => item[fName]),
@@ -53,7 +56,6 @@ const AdminAnalyticsView = () => {
         },
       ],
     };
-
     return data;
   };
 
@@ -69,17 +71,17 @@ const AdminAnalyticsView = () => {
       "#58595b90",
       "#8549ba90",
     ];
-    console.log(COLORS[Math.round((Math.random() * 10) % COLORS.length)]);
+    // console.log(COLORS[Math.round((Math.random() * 10) % COLORS.length)]);
     return COLORS[Math.round((Math.random() * 10) % COLORS.length)];
   }
 
   return (
     <>
       <Admin />
-      <Box sx={{ m:5}}>
+      <Box sx={{ m: 5 }}>
         <Grid container spacing={2} rowSpacing={10}>
           <Grid item xs={1}></Grid>
-          <Grid item xs={4} >
+          <Grid item xs={4}>
             <BarChart
               title={"Durability"}
               data={getChartData("durability")}
