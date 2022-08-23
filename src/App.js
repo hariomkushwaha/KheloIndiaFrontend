@@ -30,13 +30,10 @@ function App() {
         {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
         <Route path="/post/tender/" element={<TenderForm />} />
         <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
-<<<<<<< HEAD
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
-=======
         <Route path="/proponent/signup" element={<SignUp />} />
         <Route path="/proponent/signin" element={<SignIn />} />
         <Route path="/proponent/:proponentID" element={<Proponent />} />
->>>>>>> 9cff7778f0f5dfb8953afbc294d9921bffce8cbd
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/list/:tenderID" element={<AdminListView />} />
         <Route path="/admin/list/" element={<ListView />} />
