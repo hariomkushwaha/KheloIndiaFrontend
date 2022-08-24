@@ -76,19 +76,6 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <div>
-            <h5>Sign In using:</h5>
-            <h6>Delhi@123.com</h6>
-            <h6>000000</h6>
-            <h6>Delhi@123</h6>
-          </div>
-         <br />
-          <div>
-            <h5>Sign In using:</h5>
-            <h6>lelo@lelo.com</h6>
-            <h6>2019180</h6>
-            <h6>Lelo@123</h6>
-          </div>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
