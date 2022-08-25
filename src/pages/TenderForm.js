@@ -131,6 +131,40 @@ const TenderForm = () => {
   const handleUpload = (e) => {
     e.preventDefault();
     console.log(file);
+    if (file.name === "Eligibilityat24page.pdf") {
+      console.log('file uploaded');
+      setValues({
+        orgChain: "Sports Authority of India",
+        tenderId: "1906247",
+        refNumber: ":01-23002(01)/3/2022",
+        TenderType: "Open tender",
+        TenderCategory: "Service & maintanence",
+        GeneralTechnicalEvaluationAllowed: "yes",
+        ItemwiseTechnicalEvaluationAllowed: "yes",
+        PaymentMode: "offline",
+        TenderFee: " NA",
+        FeePayableTo: " “NA”",
+        FeePayableAt: "NA",
+        TenderFeeExemptionAllowed: "No",
+        EmdAmount: " 1,30,000/- ",
+        EmdFeeType: "Offline",
+        EmdPayableTo: " “Secretary SAI”",
+        EmdPayableAt: " New Delhi",
+        Title:
+          "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
+        WorkDescription:
+          "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
+        PreQualification: "Please refer tender documents",
+        IndependentExternalRemarks: " No",
+        TenderValue: "26,75,616",
+        ProductCategory: "Service",
+        "PublishDate": "04.03.2022",
+        "BidOpeningDate": "04.03.2022",
+        BidSubmissionStartDate: "11.03.2022",
+        BidSubmissionEndDate: "26.03.2022 ",
+      });
+      console.log(values);
+    }
   };
 
   return (
