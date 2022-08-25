@@ -31,12 +31,12 @@ import Admin from "../pages/Admin";
 import AdminListViewCard from "./AdminListViewCard";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Card2 from "./adminTenderCards";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const AdminListView = () => {
   const { tenderID } = useParams();
@@ -70,6 +70,8 @@ const AdminListView = () => {
   const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
   const drawerWidth = 240;
 
+  const [selectedProposalValue, setSelectedProposalValue] = useState("");
+
   return (
     <>
       <Admin>
@@ -77,7 +79,7 @@ const AdminListView = () => {
           <Box
             component="main"
             sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-          // style={{ marginRight: '20vw' }}
+            // style={{ marginRight: '20vw' }}
           >
             {/* <Link
               to={`/admin/analytics/${tenderID}`}
@@ -125,10 +127,14 @@ const AdminListView = () => {
 
             {proponentValues.map(
               (proponentValue) =>
-              proponentValue.tenderId === tenderID && (
-                <Grid item xs={12} md={4} lg={3}>
+                proponentValue.tenderId === tenderID && (
+                  <Grid item xs={12} md={4} lg={3}>
                     <>
-                      <AdminListViewCard values={proponentValue} />
+                      <AdminListViewCard
+                        values={proponentValue}
+                        selectedProposalValue={selectedProposalValue}
+                        setSelectedProposalValue={setSelectedProposalValue}
+                      />
                       {/* <Card2
                         key={proponentValue.tenderId}
                         values={proponentValue}
@@ -138,17 +144,31 @@ const AdminListView = () => {
                 )
             )}
             {/* </Grid> */}
-
           </Box>
-          <Box p={2} style={{ fontFamily: 'sans-serif', width: '20vw', minHeight: "100vh", zIndex: '100', boxShadow: '1px 1px 3px grey', position: 'sticky', top: '0' }}>
-            <Typography variant="h5" style={{ textTransform: 'uppercase' }}>Filter</Typography>
+          <Box
+            p={2}
+            style={{
+              fontFamily: "sans-serif",
+              width: "20vw",
+              minHeight: "100vh",
+              zIndex: "100",
+              boxShadow: "1px 1px 3px grey",
+              position: "sticky",
+              top: "0",
+            }}
+          >
+            <Typography variant="h5" style={{ textTransform: "uppercase" }}>
+              Filter
+            </Typography>
             <Divider />
             <br />
             <br />
             <br />
             <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}  >
-                <FormLabel id="demo-radio-buttons-group-label">Durability</FormLabel>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Durability
+                </FormLabel>
               </AccordionSummary>
               <AccordionDetails>
                 <RadioGroup
@@ -156,31 +176,29 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                 >
-                  <FormControlLabel value="lowDurable" control={<Radio />} label="Low" />
-                  <FormControlLabel value="moderateDurable" control={<Radio />} label="Moderate" />
-                  <FormControlLabel value="highDurable" control={<Radio />} label="High" />
-                </RadioGroup>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />}              >
-                <FormLabel id="demo-radio-buttons-group-label">Quality</FormLabel>
-              </AccordionSummary>
-              <AccordionDetails>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel value="lowQuality" control={<Radio />} label="Low" />
-                  <FormControlLabel value="moderateQuality" control={<Radio />} label="Moderate" />
-                  <FormControlLabel value="highQuality" control={<Radio />} label="High" />
+                  <FormControlLabel
+                    value="lowDurable"
+                    control={<Radio />}
+                    label="Low"
+                  />
+                  <FormControlLabel
+                    value="moderateDurable"
+                    control={<Radio />}
+                    label="Moderate"
+                  />
+                  <FormControlLabel
+                    value="highDurable"
+                    control={<Radio />}
+                    label="High"
+                  />
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <FormLabel id="demo-radio-buttons-group-label">Usability</FormLabel>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Quality
+                </FormLabel>
               </AccordionSummary>
               <AccordionDetails>
                 <RadioGroup
@@ -188,15 +206,29 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                 >
-                  <FormControlLabel value="lowUsable" control={<Radio />} label="Low" />
-                  <FormControlLabel value="moderateUsable" control={<Radio />} label="Moderate" />
-                  <FormControlLabel value="highUsable" control={<Radio />} label="High" />
+                  <FormControlLabel
+                    value="lowQuality"
+                    control={<Radio />}
+                    label="Low"
+                  />
+                  <FormControlLabel
+                    value="moderateQuality"
+                    control={<Radio />}
+                    label="Moderate"
+                  />
+                  <FormControlLabel
+                    value="highQuality"
+                    control={<Radio />}
+                    label="High"
+                  />
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
             <Accordion>
               <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                <FormLabel id="demo-radio-buttons-group-label">Duration</FormLabel>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Usability
+                </FormLabel>
               </AccordionSummary>
               <AccordionDetails>
                 <RadioGroup
@@ -204,9 +236,51 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                 >
-                  <FormControlLabel value="lowDuration" control={<Radio />} label="Low" />
-                  <FormControlLabel value="moderateDuration" control={<Radio />} label="Moderate" />
-                  <FormControlLabel value="highDuration" control={<Radio />} label="High" />
+                  <FormControlLabel
+                    value="lowUsable"
+                    control={<Radio />}
+                    label="Low"
+                  />
+                  <FormControlLabel
+                    value="moderateUsable"
+                    control={<Radio />}
+                    label="Moderate"
+                  />
+                  <FormControlLabel
+                    value="highUsable"
+                    control={<Radio />}
+                    label="High"
+                  />
+                </RadioGroup>
+              </AccordionDetails>
+            </Accordion>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <FormLabel id="demo-radio-buttons-group-label">
+                  Duration
+                </FormLabel>
+              </AccordionSummary>
+              <AccordionDetails>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="lowDuration"
+                    control={<Radio />}
+                    label="Low"
+                  />
+                  <FormControlLabel
+                    value="moderateDuration"
+                    control={<Radio />}
+                    label="Moderate"
+                  />
+                  <FormControlLabel
+                    value="highDuration"
+                    control={<Radio />}
+                    label="High"
+                  />
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>

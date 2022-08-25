@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import CardHeader from "@mui/material/CardHeader";
 import AdminContext from "../context/AdminContext";
-import CompareIcon from '@mui/icons-material/Compare';
+import CompareIcon from "@mui/icons-material/Compare";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
@@ -18,6 +18,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
+import DoneIcon from "@mui/icons-material/Done";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,7 +32,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const AdminListViewCard = ({ values, proposal }) => {
+const AdminListViewCard = ({
+  values,
+  proposal,
+  selectedProposalValue,
+  setSelectedProposalValue,
+}) => {
   const [expanded, setExpanded] = React.useState(false);
   const [userDetails, setUserDetails] = React.useState({});
   const [loading, setLoading] = React.useState(false);
@@ -66,7 +73,7 @@ const AdminListViewCard = ({ values, proposal }) => {
 
   React.useEffect(() => {
     handleUserDetails();
-  }, ['']);
+  }, [""]);
 
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
@@ -99,7 +106,7 @@ const AdminListViewCard = ({ values, proposal }) => {
                       height: "100%",
                       maxHeight: "50px",
                       maxWidth: "50px",
-                      borderRadius: "50%"
+                      borderRadius: "50%",
                     }}
                   />
                 </IconButton>
@@ -129,10 +136,73 @@ const AdminListViewCard = ({ values, proposal }) => {
           <CardContent>
             <Typography variant="h6">{values.workItemTitle}</Typography>
             <br />
-
           </CardContent>
           <CardActions disableSpacing>
-            <Typography variant="body2" pl={2}>More Details</Typography>
+            {selectedProposalValue === "" ? (
+              <>
+                <IconButton
+                  onClick={() => {
+                    setSelectedProposalValue(values.proponentId);
+                  }}
+                >
+                  <DoneIcon color={"success"} />
+                </IconButton>
+                <IconButton>
+                  <ClearIcon
+                    color="error"
+                    onClick={() => {
+                      setSelectedProposalValue("");
+                    }}
+                  />
+                </IconButton>
+              </>
+            ) : selectedProposalValue === values.proponentId ? (
+              <Typography
+                variant="button"
+                color="info"
+                style={{
+                  background: "green",
+                  color: "white",
+                  padding: "0px 5px",
+                }}
+              >
+                Selected
+              </Typography>
+            ) : (
+              <Typography variant="button" color="error">
+                Rejected
+              </Typography>
+            )}
+            {/* {selectedProposalValue !== "" &&
+          values.proponentId === selectedProposalValue ? (
+            <span>Selected</span>
+          ) : (
+            <span>Rejected</span>
+          )} */}
+
+            {/* )} */}
+            {/* {values.proponentId !== selectedProposalValue && (
+              <>
+                <IconButton
+                  onClick={() => {
+                    setSelectedProposalValue(values.proponentId);
+                  }}
+                >
+                  <DoneIcon color={"success"} />
+                </IconButton>
+                <IconButton>
+                  <ClearIcon
+                    color="error"
+                    onClick={() => {
+                      setSelectedProposalValue("");
+                    }}
+                  />
+                </IconButton>
+              </>
+            )} */}
+            <Typography variant="body2" pl={2}>
+              More Details
+            </Typography>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -169,16 +239,14 @@ const AdminListViewCard = ({ values, proposal }) => {
                 <Grid item xs={4} sm={4}>
                   <Typography variant="button">Total Cost</Typography>
                 </Grid>
-                <Grid item xs={4} sm={4}>
-                </Grid>
+                <Grid item xs={4} sm={4}></Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="caption">{values.duration}</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="caption">{values.totalcost}</Typography>
                 </Grid>
-                <Grid item xs={4} sm={4}>
-                </Grid>
+                <Grid item xs={4} sm={4}></Grid>
                 <Grid item xs={12} sm={12}>
                   <Typography variant="body2" color="text.secondary">
                     Previous Records : NIL
