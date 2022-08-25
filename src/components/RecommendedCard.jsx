@@ -30,10 +30,11 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const AdminListViewCard = ({ values, proposal }) => {
+const AdminListViewCard = ({ values }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [userDetails, setUserDetails] = React.useState({});
   const [loading, setLoading] = React.useState(false);
+
   const handleUserDetails = async () => {
     try {
       const userData = await fetch(`/API/userdetails/${values.proponentId}`, {
@@ -48,7 +49,7 @@ const AdminListViewCard = ({ values, proposal }) => {
       data.then(async (response) => {
         setUserDetails(response);
         setLoading(true);
-        // console.log(response);
+        console.log(loading);
       });
       if (!userData.status === 200) {
         const error = new Error(userData.error);
@@ -66,25 +67,31 @@ const AdminListViewCard = ({ values, proposal }) => {
 
   React.useEffect(() => {
     handleUserDetails();
-  }, ['']);
+  }, []);
 
   return (
-    <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
+    <Card sx={{ width: "90%", m: 2, flexGrow: 1, border: '1px solid rgba(255,190,0,1)', boxShadow: '0px 0px 5px rgba(255,190,0,1)' }}>
       {loading ? (
         <>
           <CardHeader
-            action={
-              <CompareIcon
-                color="warning"
-                onClick={() => {
-                  setSelectedProposals((prevTender) => [
-                    ...prevTender,
-                    values,
-                  ]);
-                }}
-              >
-                {/* Add to Compare */}
-              </CompareIcon>
+            action={<>
+              <Typography variant="button" sx={{ background: 'rgba(255,190,0,1)', color: 'white', p:'2px 5px', borderRadius:'5px' }}>
+                Recommended
+              </Typography>
+              <IconButton aria-label="compare">
+                <CompareIcon
+                  color="warning"
+                  onClick={() => {
+                    setSelectedProposals((prevTender) => [
+                      ...prevTender,
+                      values,
+                    ]);
+                  }}
+                >
+                  Add to Compare
+                </CompareIcon>
+              </IconButton>
+            </>
             }
             title={
               <>
@@ -103,9 +110,13 @@ const AdminListViewCard = ({ values, proposal }) => {
                 </IconButton>
                 <span style={{ textTransform: "uppercase" }}>
                   {userDetails.fullname} &nbsp;
-                  <Typography variant="button" color="text.secondary">
+                  <Typography variant="button" sx={{ color: 'rgba(255,120,0,1)' }}>
                     ({values.proponentId})
                   </Typography>
+
+                </span>
+                <span>
+
                 </span>
               </>
             }

@@ -37,6 +37,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import RecomCard from './RecommendedCard';
 
 const AdminListView = () => {
   const { tenderID } = useParams();
@@ -122,11 +123,12 @@ const AdminListView = () => {
               rowSpacing={5}
               style={{ padding: "1rem" }}
             > */}
+            <RecomCard values={proponentValues[0]} />
 
             {proponentValues.map(
               (proponentValue) =>
-              proponentValue.tenderId === tenderID && (
-                <Grid item xs={12} md={4} lg={3}>
+                proponentValue.tenderId === tenderID && (
+                  <Grid item xs={12} md={4} lg={3}>
                     <>
                       <AdminListViewCard values={proponentValue} />
                       {/* <Card2

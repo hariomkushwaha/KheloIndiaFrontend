@@ -100,6 +100,9 @@ const Proponent = () => {
         m={3}
         mt={10}
         style={{
+          display: "flex",
+          justifyContent: "center",
+          width:'90%',
           boxShadow: "5px 5px 20px rgba(0,0,0,0.25)",
           border: "1px solid #eee",
         }}
@@ -112,8 +115,8 @@ const Proponent = () => {
               style={{
                 width: "100%",
                 height: "100%",
-                maxHeight: "400px",
-                maxWidth: "400px",
+                maxHeight: "300px",
+                maxWidth: "300px",
               }}
             />
           </Grid>
@@ -175,6 +178,33 @@ const Proponent = () => {
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="body2">{userDetails.pincode}</Typography>
+              </Grid>
+            </Grid>
+            <Grid xs={12}></Grid>
+            <Grid container rowSpacing={5}>
+              <Grid item xs={3}>
+                <Typography variant="h6">Aadhaar Number</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="h6">Pan Card</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="h6">GSTIN</Typography>
+              </Grid>
+            </Grid>
+            <Grid container rowSpacing={5}>
+              <Grid item xs={3}>
+                <Typography variant="body2">
+                  {userDetails.uid}
+                </Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography variant="body2">
+                  {userDetails.pan}
+                </Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="body2">{userDetails.gstin}</Typography>
               </Grid>
             </Grid>
           </Grid>
