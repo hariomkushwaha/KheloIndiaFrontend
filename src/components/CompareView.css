@@ -1,0 +1,13 @@
+ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+ul li {
+  padding: 1rem 0rem;
+  height: 25px;
+}
+
+ul li:nth-child(2n) {
+  background-color: #eee;
+}

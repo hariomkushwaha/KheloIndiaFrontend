@@ -1,18 +1,20 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import NavbarLanding from "../components/NavbarLanding";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import About from "../components/About";
+import Section from "../components/Section";
 import Footer from "../components/Footer";
+import Faq from "../components/Faq";
 
 const MainLandingPage = () => {
   return (
     <div>
       <Header />
-      <Navbar />
+      <NavbarLanding />
       <Hero />
-      <About />
-      <Footer /> 
+      <Section />
+      <Faq />
+      <Footer />
     </div>
   );
 };

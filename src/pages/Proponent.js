@@ -14,6 +14,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  IconButton,
 } from "@mui/material";
 import React from "react";
 import ProponentNavbar from "../components/ProponentNavbar";
@@ -23,7 +24,10 @@ import PinDropIcon from "@mui/icons-material/PinDrop";
 import EmailIcon from "@mui/icons-material/Email";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { red, amber } from "@mui/material/colors";
+import { red, amber, green } from "@mui/material/colors";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import CancelIcon from "@mui/icons-material/Cancel";
+import DoneAllIcon from "@mui/icons-material/DoneAll";
 
 const Proponent = () => {
   const { proponentID } = useParams();
@@ -98,20 +102,27 @@ const Proponent = () => {
           border: "1px solid #eee",
         }}
       >
-        <Grid container spacing={2} rowSpacing={5}>
-          <Grid item xs={4}>
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
             <img
               src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg"
               alt="SomeWeirdo"
-              style={{ width: "100%", height: "100%" }}
+              style={{
+                width: "100%",
+                height: "100%",
+                maxHeight: "400px",
+                maxWidth: "400px",
+              }}
             />
           </Grid>
-          <Grid item xs={8} p={3} m={'auto'}>
+          <Grid item xs={9} p={3} m={"auto"}>
             <Box p={2}>
               <Typography variant="h4">
                 {userDetails.fullname}
                 &nbsp;
-                <Typography as={'span'} variant="button">({userDetails.proponentID})</Typography>
+                <Typography as={"span"} variant="button">
+                  ({userDetails.proponentID})
+                </Typography>
                 &nbsp;
                 <VerifiedIcon color="success" />
               </Typography>
@@ -196,15 +207,26 @@ const Proponent = () => {
                     id="panel1a-header"
                   >
                     <Grid container spacing={2}>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <Typography variant="h6">
                           Tender ID: {userTender.tenderId}
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid item xs={5}>
                         <Typography variant="body1">
                           <b>Cost:</b> {userTender.totalcost}
                         </Typography>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <IconButton>
+                          {userTender.status === "pending" ? (
+                            <PendingActionsIcon sx={{ color: amber["700"] }} />
+                          ) : userTender.status === "pending" ? (
+                            <DoneAllIcon sx={{ color: green["600"] }} />
+                          ) : (
+                            <CancelIcon  sx={{ color: red["600"] }}/>
+                          )}
+                        </IconButton>
                       </Grid>
                     </Grid>
                   </AccordionSummary>
@@ -301,8 +323,3 @@ const Proponent = () => {
 };
 
 export default Proponent;
-
-
-
-
-

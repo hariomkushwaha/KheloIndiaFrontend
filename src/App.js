@@ -35,7 +35,7 @@ function App() {
         <Route path="/proponent/signin" element={<SignIn />} />
         <Route path="/proponent/:proponentID" element={<Proponent />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/admin/list/:tenderID" element={<AdminListView />} />
+        <Route path="/admin/list/:" element={<AdminListView />} />
         <Route path="/admin/list/" element={<ListView />} />
         <Route path="/admin/comparison" element={<AdminCompareView />} />
         <Route
