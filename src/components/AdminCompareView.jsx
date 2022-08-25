@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";

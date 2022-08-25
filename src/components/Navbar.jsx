@@ -100,8 +100,13 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Button href="/admin" variant="contained" color="error">
-              Employee
+            <Button href="/proponent/signin" variant="contained">
+              Log In
+            </Button>
+          </Box>
+          <Box sx={{ flexGrow: 0 }} padding="20px">
+            <Button href="/proponent/signup" variant="contained">
+              Sign Up
             </Button>
           </Box>
         </Toolbar>

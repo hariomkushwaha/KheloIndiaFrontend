@@ -1,5 +1,5 @@
 import React from "react";
-import NavbarLanding from "../components/NavbarLanding";
+import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Section from "../components/Section";
@@ -10,7 +10,7 @@ const MainLandingPage = () => {
   return (
     <div>
       <Header />
-      <NavbarLanding />
+      <Navbar />
       <Hero />
       <Section />
       <Faq />

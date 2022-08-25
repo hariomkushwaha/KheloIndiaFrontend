@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -80,15 +82,17 @@ export default function RecipeReviewCard({ values }) {
     };
 
     return (
-        <Card sx={{ width: "90%", m: 2, flexGrow: 1 }} style={{border:'1px solid '+grey['300']}}>
+        <Card sx={{ width: "90%", m: 2, flexGrow: 1 }} style={{ border: '1px solid ' + grey['300'] }}>
             <CardHeader
                 action={
                     <Box style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                         <Typography variant="button" sx={{ color: amber['800'] }} >Submissions: &nbsp;&nbsp;</Typography>
                         <Typography variant="button" pr={2} sx={{ color: amber['800'] }} >{submission.length}</Typography>
-                        <IconButton aria-label="settings">
-                            <MoreVertIcon />
-                        </IconButton>
+                        {/* <IconButton aria-label="analyze">
+                            <RouterLink to={`/admin/analytics/${values.tenderId}`}>
+                                <InsightsIcon />
+                            </RouterLink>
+                        </IconButton> */}
                     </Box>
                 }
                 title={values.tenderId}
@@ -104,26 +108,41 @@ export default function RecipeReviewCard({ values }) {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="delete">
-                    <RouterLink
-                        to=""
-                    // to={`/admin/analytics/${values.tenderId}`}
-                    >
-                        <DeleteIcon sx={{ color: red['500'] }} />
-                    </RouterLink>
-                </IconButton>
-                <IconButton aria-label="analyze">
-                    <RouterLink to={`/admin/analytics/${values.tenderId}`}>
-                        <InsightsIcon />
-                    </RouterLink>
-                </IconButton>
-                <RouterLink to={`/55555555;l;l;l;;looooii;o;l;;;;;;;lliiiiiiiiiii`} style={{ textDecoration: 'none' }}>
+
+
+                <RouterLink to={`/admin/list/${values.tenderId}`} style={{ textDecoration: 'none' }}>
                     <Button
                         variant="outlined"
                         color="success"
                         sx={{ p: 0.75 }}
                     // href={`/admin/list/${values.tenderId}`}
                     >
+                        View Proposals
+                    </Button>
+                </RouterLink>
+                <RouterLink to={`/admin/analytics/${values.tenderId}`} style={{ textDecoration: 'none' }}>
+                    <Button
+                        variant="outlined"
+                        color="success"
+                        sx={{ px: 0.75, py:0, m:1 }}
+                    // href={`/admin/list/${values.tenderId}`}
+                    >
+                        <IconButton aria-label="analyze">
+                            <InsightsIcon />
+                        </IconButton>
+                        View Proposals
+                    </Button>
+                </RouterLink>
+                <RouterLink to={`/admin/analytics/${values.tenderId}`} style={{ textDecoration: 'none' }}>
+                    <Button
+                        variant="outlined"
+                        color="success"
+                        sx={{ px: 0.75, py:0, m:1 }}
+                    // href={`/admin/list/${values.tenderId}`}
+                    >
+                        <IconButton aria-label="analyze">
+                            <InsightsIcon />
+                        </IconButton>
                         View Proposals
                     </Button>
                 </RouterLink>
