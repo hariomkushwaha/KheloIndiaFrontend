@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext } from "react";
 import ProponentContext from "./context/ProponentContext";
 import AdminContext from "./context/AdminContext";

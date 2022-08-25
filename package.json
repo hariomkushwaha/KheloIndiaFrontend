@@ -2,7 +2,6 @@
   "name": "khelo-india",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:5000",
   "dependencies": {
     "@emotion/cache": "^11.9.3",
     "@emotion/react": "^11.10.0",
@@ -13,6 +12,7 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.10.0",
     "@mui/styled-engine-sc": "^5.10.0",
+    "@mui/styles": "^5.9.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.1",
@@ -21,6 +21,7 @@
     "chart.js": "^3.9.1",
     "classnames": "2.3.1",
     "faker": "^6.6.6",
+    "http-proxy-middleware": "^2.0.6",
     "match-sorter": "6.3.1",
     "moment": "2.29.3",
     "node-sass": "7.0.1",

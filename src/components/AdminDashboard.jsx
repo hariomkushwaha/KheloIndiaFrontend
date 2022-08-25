@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Admin from "../pages/Admin";
 import Card from "./CardAdmin";

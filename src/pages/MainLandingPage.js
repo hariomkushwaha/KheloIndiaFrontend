@@ -2,8 +2,9 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-import About from "../components/About";
+import Section from "../components/Section";
 import Footer from "../components/Footer";
+import Faq from "../components/Faq";
 
 const MainLandingPage = () => {
   return (
@@ -11,8 +12,9 @@ const MainLandingPage = () => {
       <Header />
       <Navbar />
       <Hero />
-      <About />
-      <Footer /> 
+      <Section />
+      <Faq />
+      <Footer />
     </div>
   );
 };

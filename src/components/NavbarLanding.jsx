@@ -77,35 +77,35 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
                   <RouterLink to={page.link} style={{ textDecoration: 'none' }}>
+                    {console.log(page.name)}
                     <Typography textAlign="center" >{page.name}</Typography>
                   </RouterLink>
                 </MenuItem>
-              ))}
+              ))
+              }
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <RouterLink to={page.link} style={{ textDecoration: 'none' }}>
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, mx: 2, color: "white", display: "block" }}
-                >
-                  {page.name}
-                </Button>
-              </RouterLink>
+              <Button
+                key={page}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, mx: 2, color: "white", display: "block" }}
+              >
+                {page}
+              </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Button href="/proponent/signin" variant="contained">
+            <Button href="/admin" variant="contained">
               Log In
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }} padding="20px">
-            <Button href="/proponent/signup" variant="contained">
+            <Button href="/admin" variant="contained">
               Sign Up
             </Button>
           </Box>
