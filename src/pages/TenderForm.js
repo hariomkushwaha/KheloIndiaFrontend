@@ -132,36 +132,34 @@ const TenderForm = () => {
     e.preventDefault();
     console.log(file);
     if (file.name === "Eligibilityat24page.pdf") {
-      console.log('file uploaded');
+      console.log("file uploaded");
       setValues({
         orgChain: "Sports Authority of India",
         tenderId: "1906247",
         refNumber: ":01-23002(01)/3/2022",
-        TenderType: "Open tender",
-        TenderCategory: "Service & maintanence",
-        GeneralTechnicalEvaluationAllowed: "yes",
-        ItemwiseTechnicalEvaluationAllowed: "yes",
-        PaymentMode: "offline",
-        TenderFee: " NA",
-        FeePayableTo: " “NA”",
-        FeePayableAt: "NA",
-        TenderFeeExemptionAllowed: "No",
-        EmdAmount: " 1,30,000/- ",
-        EmdFeeType: "Offline",
-        EmdPayableTo: " “Secretary SAI”",
-        EmdPayableAt: " New Delhi",
-        Title:
+        tenderType: "Open tender",
+        tenderCategory: "Service & maintanence",
+        generalTechnicalEvaluation: "yes",
+        itemwiseTechnicalEvaluation: "yes",
+        paymentMode: "offline",
+        tenderFee: "NA",
+        tenderFeePayableTo: " “NA”",
+        tenderFeePayableAt: "NA",
+        tenderFeeExemption: "No",
+        emdFee: " 1,30,000/- ",
+        emdFeeType: "Offline",
+        emdFeePayableTo: " “Secretary SAI”",
+        emdFeePayableAt: " New Delhi",
+        workItemTitle:
           "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
-        WorkDescription:
+        workItemDescription:
           "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
-        PreQualification: "Please refer tender documents",
-        IndependentExternalRemarks: " No",
-        TenderValue: "26,75,616",
-        ProductCategory: "Service",
-        "PublishDate": "04.03.2022",
-        "BidOpeningDate": "04.03.2022",
-        BidSubmissionStartDate: "11.03.2022",
-        BidSubmissionEndDate: "26.03.2022 ",
+        workItemPreQualification: "Please refer tender documents",
+        twoStageBinding: " No",
+        publishDate: "04.03.2022",
+        bidOpeningDate: "04.03.2022",
+        bidSubmissionStartDate: "11.03.2022",
+        bidSubmissionEndDate: "26.03.2022 ",
       });
       console.log(values);
     }
