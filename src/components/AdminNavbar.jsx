@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -88,8 +89,8 @@ export default function AdminNavbar({
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Admin
           </Typography>
-          {isLoggedIn ? (
-            <>
+          {/* {isLoggedIn ? (
+            <> */}
               <Button
                 color="inherit"
                 variant="outlined"
@@ -98,7 +99,7 @@ export default function AdminNavbar({
               >
                 Post a Tender
               </Button>
-              <Button
+              {/* <Button
                 color="inherit"
                 variant="outlined"
                 onClick={() => setIsLoggedIn(false)}
@@ -106,8 +107,8 @@ export default function AdminNavbar({
               >
                 Logout
               </Button>
-            </>
-          ) : (
+            </> */}
+          {/* ) : (
             <Button
               color="inherit"
               variant="outlined"
@@ -116,7 +117,7 @@ export default function AdminNavbar({
             >
               Login
             </Button>
-          )}
+          )} */}
         </Toolbar>
         <>
           <SwipeableDrawer

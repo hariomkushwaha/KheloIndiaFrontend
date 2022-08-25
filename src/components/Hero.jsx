@@ -21,7 +21,7 @@ const Hero = () => {
             the top of the list.
           </Typography>
           <Button
-            href="get-started"
+            href="/get-started"
             variant="contained"
             color="success"
             style={{

@@ -9,13 +9,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { Link as RouterLink } from "react-router-dom";
 
 const pages = [
-  "Home",
-  "Tenders",
-  "Notifications",
-  "Profile",
-  "Proponent Dashboard",
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Tenders",
+    link: "/get-started",
+  },
+  {
+    name: "Notifications",
+    link: "#",
+  },
+  {
+    name: "Profile",
+    link: "#",
+  },
+  {
+    name: "Proponent Dashboard",
+    link: "/proponent/signin",
+  },
 ];
 
 const ResponsiveAppBar = () => {
@@ -61,11 +77,15 @@ const ResponsiveAppBar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                  <RouterLink to={page.link} style={{ textDecoration: 'none' }}>
+                    {console.log(page.name)}
+                    <Typography textAlign="center" >{page.name}</Typography>
+                  </RouterLink>
                 </MenuItem>
-              ))}
+              ))
+              }
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
