@@ -79,16 +79,7 @@ const AdminListView = () => {
           <Box
             component="main"
             sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-            // style={{ marginRight: '20vw' }}
           >
-            {/* <Link
-              to={`/admin/analytics/${tenderID}`}
-              style={{ textDecoration: "none" }}
-            >
-              <Button variant="contained">
-                Analytics of tender {tenderID}
-              </Button>
-            </Link> */}
             <div
               style={{
                 display: "flex",
@@ -110,21 +101,6 @@ const AdminListView = () => {
                 </Link>
               )}
             </div>
-
-            <>
-              {/* {proponentValues.map((item) => handleUserDetails(item.proponentID))} */}
-            </>
-
-            {/* <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="flex-start"
-              spacing={3}
-              rowSpacing={5}
-              style={{ padding: "1rem" }}
-            > */}
-
             {proponentValues.map(
               (proponentValue) =>
                 proponentValue.tenderId === tenderID && (
@@ -135,10 +111,6 @@ const AdminListView = () => {
                         selectedProposalValue={selectedProposalValue}
                         setSelectedProposalValue={setSelectedProposalValue}
                       />
-                      {/* <Card2
-                        key={proponentValue.tenderId}
-                        values={proponentValue}
-                      /> */}
                     </>
                   </Grid>
                 )

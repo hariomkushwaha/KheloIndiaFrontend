@@ -3,7 +3,6 @@
 
 import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
-
 import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
@@ -55,7 +54,6 @@ const AdminListViewCard = ({
       data.then(async (response) => {
         setUserDetails(response);
         setLoading(true);
-        // console.log(response);
       });
       if (!userData.status === 200) {
         const error = new Error(userData.error);
@@ -173,33 +171,6 @@ const AdminListViewCard = ({
                 Rejected
               </Typography>
             )}
-            {/* {selectedProposalValue !== "" &&
-          values.proponentId === selectedProposalValue ? (
-            <span>Selected</span>
-          ) : (
-            <span>Rejected</span>
-          )} */}
-
-            {/* )} */}
-            {/* {values.proponentId !== selectedProposalValue && (
-              <>
-                <IconButton
-                  onClick={() => {
-                    setSelectedProposalValue(values.proponentId);
-                  }}
-                >
-                  <DoneIcon color={"success"} />
-                </IconButton>
-                <IconButton>
-                  <ClearIcon
-                    color="error"
-                    onClick={() => {
-                      setSelectedProposalValue("");
-                    }}
-                  />
-                </IconButton>
-              </>
-            )} */}
             <Typography variant="body2" pl={2}>
               More Details
             </Typography>
