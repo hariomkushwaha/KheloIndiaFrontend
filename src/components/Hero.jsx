@@ -13,7 +13,7 @@ const Hero = () => {
           <Typography variant="h3" fontWeight={700} className={classes.title}>
             Welcome To Tenders FC
           </Typography>
-          <Typography variant="h6" className={classes.subtitle}>
+          <Typography variant="h6" className={classes.subtitle} style={{textAlign: "justify"}}>
             This is a procurement site for handling the proposals under
             kheloIndia scheme. The tenders filled by the proponents are handled
             and compared digitally. Our site would help in easing the process of
@@ -23,7 +23,7 @@ const Hero = () => {
           <Button
             href="/get-started"
             variant="contained"
-            color="success"
+            color="primary"
             style={{
               borderRadius: "5px",
               alignItems: "center",

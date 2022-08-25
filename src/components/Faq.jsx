@@ -11,8 +11,8 @@ export default function Faq() {
   return (
     <Box>
       <Box style={{ textAlign: "center", padding: "50px", height: "27px"}}>
-        <Typography variant="h3" component="div" gutterBottom>
-          FAQ
+        <Typography variant="h4" component="div" gutterBottom>
+          Frequently Asked Questions
         </Typography>
       </Box>
       <Box>
@@ -23,27 +23,57 @@ export default function Faq() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Accordion 1</Typography>
+          <Typography><h3>About Khelo India Scheme</h3></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.</i>
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion style={{marginBottom: "10px"}}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2a-content"
-          id="panel2a-header"
+          aria-controls="panel1a-content"
+          id="panel1a-header"
         >
-          <Typography>Accordion 2</Typography>
+          <Typography><h3>About Khelo India Scheme</h3></Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.</i>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion style={{marginBottom: "10px"}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography><h3>About Khelo India Scheme</h3></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.</i>
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion style={{marginBottom: "10px"}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+          <Typography><h3>About Khelo India Scheme</h3></Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            malesuada lacus ex, sit amet blandit leo lobortis eget.</i>
           </Typography>
         </AccordionDetails>
       </Accordion>
