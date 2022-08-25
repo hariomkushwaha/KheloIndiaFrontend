@@ -223,7 +223,7 @@ const Proponent = () => {
                         <IconButton>
                           {userTender.status === "pending" ? (
                             <PendingActionsIcon sx={{ color: amber["700"] }} />
-                          ) : userTender.status === "pending" ? (
+                          ) : userTender.status === "accepted" ? (
                             <DoneAllIcon sx={{ color: green["600"] }} />
                           ) : (
                             <CancelIcon  sx={{ color: red["600"] }}/>
