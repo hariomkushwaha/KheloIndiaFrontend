@@ -1,26 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "@mui/material/styles";
 
 import Card from "@mui/material/Card";
+import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import CardHeader from "@mui/material/CardHeader";
+import AdminContext from "../context/AdminContext";
+import CompareIcon from '@mui/icons-material/Compare';
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Button, Divider, Grid } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import InsightsIcon from "@mui/icons-material/Insights";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Grid } from "@mui/material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -65,20 +62,46 @@ const AdminListViewCard = ({ values, proposal }) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
 
   React.useEffect(() => {
     handleUserDetails();
-  }, []);
+  }, ['']);
 
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
       {loading ? (
         <>
           <CardHeader
+            action={
+              <IconButton aria-label="compare">
+                <CompareIcon
+                  color="warning"
+                  onClick={() => {
+                    setSelectedProposals((prevTender) => [
+                      ...prevTender,
+                      values,
+                    ]);
+                  }}
+                >
+                  Add to Compare
+                </CompareIcon>
+              </IconButton>
+            }
             title={
               <>
                 <IconButton aria-label="settings">
-                  <Avatar />
+                  <img
+                    src="https://i.pinimg.com/736x/89/90/48/899048ab0cc455154006fdb9676964b3.jpg"
+                    alt="SomeWeirdo"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      maxHeight: "50px",
+                      maxWidth: "50px",
+                      borderRadius: "50%"
+                    }}
+                  />
                 </IconButton>
                 <span style={{ textTransform: "uppercase" }}>
                   {userDetails.fullname} &nbsp;
@@ -106,26 +129,7 @@ const AdminListViewCard = ({ values, proposal }) => {
           <CardContent>
             <Typography variant="h6">{values.workItemTitle}</Typography>
             <br />
-            <Grid container spacing={2}>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">Durability</Typography>
-              </Grid>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">Usability</Typography>
-              </Grid>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">Quality</Typography>
-              </Grid>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">{values.durability}</Typography>
-              </Grid>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">{values.usability}</Typography>
-              </Grid>
-              <Grid item xs={4} sm={4}>
-                <Typography variant="body1">{values.quality}</Typography>
-              </Grid>
-            </Grid>
+
           </CardContent>
           <CardActions disableSpacing>
             <Typography variant="body2" pl={2}>More Details</Typography>
@@ -142,18 +146,36 @@ const AdminListViewCard = ({ values, proposal }) => {
             <CardContent>
               <Grid container spacing={2}>
                 <Grid item xs={4} sm={4}>
-                  <Typography variant="body1">Duration</Typography>
+                  <Typography variant="button">Durability</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
-                  <Typography variant="body1">Total Cost</Typography>
+                  <Typography variant="button">Usability</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="button">Quality</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="caption">{values.durability}</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="caption">{values.usability}</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="caption">{values.quality}</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="button">Duration</Typography>
+                </Grid>
+                <Grid item xs={4} sm={4}>
+                  <Typography variant="button">Total Cost</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                 </Grid>
                 <Grid item xs={4} sm={4}>
-                  <Typography variant="body1">{values.duration}</Typography>
+                  <Typography variant="caption">{values.duration}</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
-                  <Typography variant="body1">{values.totalcost}</Typography>
+                  <Typography variant="caption">{values.totalcost}</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                 </Grid>
