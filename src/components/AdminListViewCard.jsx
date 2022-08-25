@@ -81,7 +81,7 @@ const AdminListViewCard = ({
     let mail = {
       to_name: userDetails.fullname,
       from_name: "Khelo India",
-      message_html: `Hello ${userDetails.fullname}, Your proposal has been selected`,
+      message: `Hello ${userDetails.fullname}, Your proposal has been selected`,
     };
 
     emailjs
