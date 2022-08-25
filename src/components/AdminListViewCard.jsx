@@ -20,6 +20,8 @@ import { Grid } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import ClearIcon from "@mui/icons-material/Clear";
 
+import emailjs from "@emailjs/browser";
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -72,6 +74,27 @@ const AdminListViewCard = ({
   React.useEffect(() => {
     handleUserDetails();
   }, [""]);
+
+  const form = React.useRef();
+
+  const sendEmail = () => {
+    let mail = {
+      to_name: userDetails.fullname,
+      from_name: "Khelo India",
+      message_html: `Hello ${userDetails.fullname}, Your proposal has been selected`,
+    };
+
+    emailjs
+      .send("service_r2jsu9s", "template_k8n64se", mail, "FvgiL4qh0LS7uZkY0")
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
@@ -141,6 +164,7 @@ const AdminListViewCard = ({
                 <IconButton
                   onClick={() => {
                     setSelectedProposalValue(values.proponentId);
+                    sendEmail();
                   }}
                 >
                   <DoneIcon color={"success"} />
