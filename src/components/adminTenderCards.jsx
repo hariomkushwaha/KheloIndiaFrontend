@@ -117,7 +117,7 @@ export default function RecipeReviewCard({ values }) {
                         <InsightsIcon />
                     </RouterLink>
                 </IconButton>
-                <RouterLink to={`/admin/list/${values.tenderId}`} style={{ textDecoration: 'none' }}>
+                <RouterLink to={`/55555555;l;l;l;;looooii;o;l;;;;;;;lliiiiiiiiiii`} style={{ textDecoration: 'none' }}>
                     <Button
                         variant="outlined"
                         color="success"
