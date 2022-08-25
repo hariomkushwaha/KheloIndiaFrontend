@@ -51,7 +51,7 @@ const AdminListViewCard = ({ values }) => {
       data.then(async (response) => {
         setUserDetails(response);
         setLoading(true);
-        console.log(response);
+        // console.log(response);
       });
       if (!userData.status === 200) {
         const error = new Error(userData.error);
@@ -99,7 +99,7 @@ const AdminListViewCard = ({ values }) => {
                   {userDetails.fulladdress}, &nbsp;{userDetails.pincode}
                 </Typography>
 
-                <Typography variant="caption" as={'h1'} color="text.secondary">
+                <Typography variant="caption" as={"h1"} color="text.secondary">
                   <span style={{ textTransform: "uppercase" }}>
                     {userDetails.organization}
                   </span>
