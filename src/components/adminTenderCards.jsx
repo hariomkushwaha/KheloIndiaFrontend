@@ -130,22 +130,10 @@ export default function RecipeReviewCard({ values }) {
                         <IconButton aria-label="analyze">
                             <InsightsIcon />
                         </IconButton>
-                        View Proposals
+                        Analyze
                     </Button>
                 </RouterLink>
-                <RouterLink to={`/admin/analytics/${values.tenderId}`} style={{ textDecoration: 'none' }}>
-                    <Button
-                        variant="outlined"
-                        color="success"
-                        sx={{ px: 0.75, py:0, m:1 }}
-                    // href={`/admin/list/${values.tenderId}`}
-                    >
-                        <IconButton aria-label="analyze">
-                            <InsightsIcon />
-                        </IconButton>
-                        View Proposals
-                    </Button>
-                </RouterLink>
+                
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
