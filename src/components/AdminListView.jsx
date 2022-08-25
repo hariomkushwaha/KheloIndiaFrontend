@@ -79,14 +79,14 @@ const AdminListView = () => {
             sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
           // style={{ marginRight: '20vw' }}
           >
-            <Link
+            {/* <Link
               to={`/admin/analytics/${tenderID}`}
               style={{ textDecoration: "none" }}
             >
               <Button variant="contained">
                 Analytics of tender {tenderID}
               </Button>
-            </Link>
+            </Link> */}
             <div
               style={{
                 display: "flex",
