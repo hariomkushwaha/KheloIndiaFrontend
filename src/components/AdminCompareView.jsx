@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import * as React from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,18 +12,91 @@ import Paper from "@mui/material/Paper";
 import { useContext } from "react";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
-import { Container, Divider, Grid } from "@mui/material";
+import { Box, Container, Divider, Grid, Link, Typography } from "@mui/material";
 import "./CompareView.css";
+import PinDropIcon from "@mui/icons-material/PinDrop";
+import EmailIcon from "@mui/icons-material/Email";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import VerifiedIcon from "@mui/icons-material/Verified";
+import { amber, red } from "@mui/material/colors";
+import ProponentPersonalDetailsCard from "./ProponentPersonalDetailsCard";
 
 const AdminCompareView = () => {
   const { selectedProposals } = useContext(AdminContext);
 
   const firstProposal = selectedProposals[0];
   const secondProposal = selectedProposals[1];
+  const [firstUserDetails, setFirstUserDetails] = useState({});
+  const [secondUserDetails, setSecondUserDetails] = useState({});
+
+  const handleFirstUserDetails = async (proponentId) => {
+    try {
+      const userData = await fetch(`/API/userdetails/${proponentId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = userData.json();
+      data.then(async (response) => {
+        setFirstUserDetails(response);
+      });
+      if (!userData.status === 200) {
+        const error = new Error(userData.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const handleSecondUserDetails = async (proponentId) => {
+    try {
+      const userData = await fetch(`/API/userdetails/${proponentId}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      const data = userData.json();
+      data.then(async (response) => {
+        setSecondUserDetails(response);
+      });
+      if (!userData.status === 200) {
+        const error = new Error(userData.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    handleFirstUserDetails(firstProposal.proponentId);
+  }, [firstProposal]);
+
+  // useEffect(() => {
+  //   console.log("fist user ", firstUserDetails);
+  // }, [firstUserDetails]);
+
+  useEffect(() => {
+    handleSecondUserDetails(secondProposal.proponentId);
+  }, [secondProposal]);
 
   return (
     <Admin>
       <Container>
+        <Grid container spacing={2}>
+          <Grid item xs={6} md={6} lg={6}>
+            <ProponentPersonalDetailsCard userDetails={firstUserDetails} />
+          </Grid>
+          <Grid item xs={6} md={6} lg={6}>
+            <ProponentPersonalDetailsCard userDetails={secondUserDetails} />
+          </Grid>
+        </Grid>
         <br></br>
         <br></br>
         <br></br>

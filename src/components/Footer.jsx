@@ -3,19 +3,20 @@ import { Box, Grid, Link, Typography, Button, Stack } from '@mui/material'
 
 const Footer = () => {
   return (
-    <Box sx={{ p: 2, py: 4 }}>
+    <Box sx={{ py: 8}} style={{backgroundColor: 'whitesmoke', marginTop: '4%',}}>
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-      }}>
-        <Grid container spacing={2} sx={{ width: '80%' }}>
+       
+      }} >
+        <Grid container spacing={2} sx={{ width: '80%'  }} style={{marginLeft: '5%'}} >
           <Grid item xs={3}>
             <Stack spacing={2}>
               <Typography variant="h6" gutterBottom>Product</Typography>
               <br />
               <Link underline="hover">Overview</Link>
-              <Link underline="hover">Features &nbsp;&nbsp;<Button color="success" variant='contained' sx={{ p: 0 }}>New</Button></Link>
+              <Link underline="hover">Features</Link>
               <Link underline="hover">Tutorials</Link>
               <Link underline="hover">Pricing</Link>
               <Link underline="hover">Releases</Link>
@@ -56,8 +57,6 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Box>
-      <br />
-      <br />
       <br />
       <Box sx={{ textAlign: 'center' }}>
         <img src="https://kheloindia.gov.in/public/dist/img/logo.jpg" alt="logo" />
