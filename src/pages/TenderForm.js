@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import {
   Box,
@@ -8,6 +9,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import Stack from "@mui/material/Stack";
 
 const TenderForm = () => {
   const [values, setValues] = useState({
@@ -110,9 +114,9 @@ const TenderForm = () => {
         bidOpeningDate,
         bidSubmissionStartDate,
         bidSubmissionEndDate,
-      })
+      }),
     });
-    
+
     const data = await res.json();
 
     if (res.status === 422 || !data) {
@@ -120,6 +124,13 @@ const TenderForm = () => {
     } else {
       window.alert("Posted Successfully");
     }
+  };
+
+  const [file, setFile] = useState();
+
+  const handleUpload = (e) => {
+    e.preventDefault();
+    console.log(file);
   };
 
   return (
@@ -143,6 +154,38 @@ const TenderForm = () => {
         ✌️
       </Typography>
       <br />
+      <Box
+        sx={{
+          p: 3,
+          width: "40%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          border: "1px solid rgba(0, 0, 0, 0.2)",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+          borderRadius: "5px",
+        }}
+      >
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <IconButton
+            // color=""
+            aria-label="upload picture"
+            component="label"
+          >
+            <input
+              hidden
+              type="file"
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                setFile(e.target.files[0]);
+              }}
+            />
+            <PhotoCamera />
+          </IconButton>
+          <Button onClick={handleUpload}>Upload</Button>
+        </Stack>
+      </Box>
       <Box
         sx={{
           m: 2,
