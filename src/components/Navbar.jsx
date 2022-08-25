@@ -100,12 +100,12 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Button href="/admin" variant="contained" color='success'  style={{borderRadius: '20px'}}>
+            <Button href="/proponent/signin" variant="contained" color='success'  style={{borderRadius: '20px'}}>
               Log In
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }} padding="20px">
-            <Button href="/admin" variant="contained" style={{backgroundColor : "#fff", color : "#000", borderRadius: '20px', height: '33px'}}>
+            <Button href="/proponent/signup" variant="contained" style={{backgroundColor : "#fff", color : "#000", borderRadius: '20px', height: '33px'}}>
               Sign Up
             </Button>
           </Box>
