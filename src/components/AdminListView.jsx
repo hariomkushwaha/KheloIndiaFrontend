@@ -74,46 +74,46 @@ const AdminListView = () => {
     }
   };
 
-  const createNewFieldValues = () => {
-    if (proponentValues.length > 0) {
-      let tempArr = [];
-      proponentValues.map((item) => {
-        let tempItem = item;
-        // console.log("item", item);
-        tempItem.durability *= durability;
-        tempItem.quality *= quality;
-        tempItem.usability *= usability;
-        tempArr.push(tempItem);
-      });
-      console.log("propValues: ", proponentValues);
-      console.log("tempArr: ", tempArr);
-      setNewProponentValues(tempArr);
-    }
-  };
+  // const createNewFieldValues = () => {
+  //   if (proponentValues.length > 0) {
+  //     let tempArr = [];
+  //     proponentValues.map((item) => {
+  //       let tempItem = item;
+  //       // console.log("item", item);
+  //       tempItem.durability *= durability;
+  //       tempItem.quality *= quality;
+  //       tempItem.usability *= usability;
+  //       tempArr.push(tempItem);
+  //     });
+  //     console.log("propValues: ", proponentValues);
+  //     console.log("tempArr: ", tempArr);
+  //     setNewProponentValues(tempArr);
+  //   }
+  // };
 
-  const handleFilterChange = async () => {
-    createNewFieldValues();
-    try {
-      const res = await fetch("/API/listview", {
-        method: "POST",
-        headers: {
-          // Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newProponentValues),
-      });
-      const data = await res.json();
-      setFilteredData(data);
-      setLoading(true);
-      if (!res.status === 200) {
-        const error = new Error(res.error);
-        throw error;
-      }
-    } catch (err) {
-      console.error(err);
-    }
-    setLoading(false);
-  };
+  // const handleFilterChange = async () => {
+  //   createNewFieldValues();
+  //   try {
+  //     const res = await fetch("/API/listview", {
+  //       method: "POST",
+  //       headers: {
+  //         // Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(newProponentValues),
+  //     });
+  //     const data = await res.json();
+  //     setFilteredData(data);
+  //     setLoading(true);
+  //     if (!res.status === 200) {
+  //       const error = new Error(res.error);
+  //       throw error;
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  //   setLoading(false);
+  // };
 
   useEffect(() => {
     handleProponents();
@@ -263,7 +263,7 @@ const AdminListView = () => {
                   defaultValue="Moderate"
                   name="radio-buttons-group"
                   onChange={(e) => {
-                    setDurability(e.target.value);
+                    // setDurability(e.target.value);
                   }}
                 >
                   <FormControlLabel
@@ -296,7 +296,7 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                   onChange={(e) => {
-                    setQuality(e.target.value);
+                    // setQuality(e.target.value);
 
                   }}
                 >
@@ -330,7 +330,7 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                   onChange={(e) => {
-                    setUsability(e.target.value);
+                    // setUsability(e.target.value);
 
                   }}
                 >
@@ -364,7 +364,7 @@ const AdminListView = () => {
                   defaultValue="female"
                   name="radio-buttons-group"
                   onChange={(e) => {
-                    setDuration(e.target.value);
+                    // setDuration(e.target.value);
 
                   }}
                 >
