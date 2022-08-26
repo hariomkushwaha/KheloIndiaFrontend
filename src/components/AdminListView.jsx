@@ -124,7 +124,6 @@ const AdminListView = () => {
   useEffect(() => {
     handleProponents();
   }, []);
-
   useEffect(() => {
     handleFilterChange();
   }, [usability, durability, duration, quality]);
@@ -173,16 +172,16 @@ const AdminListView = () => {
             > */}
             {/* <RecomCard values={proponentValues[0]} /> */}
             {
-            // filteredData.length > 0
-            //   ? 
+              // filteredData.length > 0
+              //   ? 
               filteredData.map(
                 (item, index) =>
                   item.data.tenderId === tenderID && (
                     <Grid item xs={12} md={4} lg={3} key={index}>
-                      {console.log("hello", filteredData)}
                       <>
                         <AdminListViewCard
                           values={item.data}
+                          index={index}
                           selectedProposalValue={selectedProposalValue}
                           setSelectedProposalValue={setSelectedProposalValue}
                         />
@@ -205,7 +204,7 @@ const AdminListView = () => {
               //       </Grid>
               //     )
               // )
-              }
+            }
             {/* </Grid> */}
           </Box>
           <Box

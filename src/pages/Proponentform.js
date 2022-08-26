@@ -31,7 +31,7 @@ const ProponentForm = () => {
     duration: "",
     deliveryPeriod: "",
     quality: "",
-    usability: "",
+    turnOver: "",
     durability: "",
     status: "pending",
   };
@@ -59,7 +59,7 @@ const ProponentForm = () => {
       totalcost,
       duration,
       quality,
-      usability,
+      turnOver,
       durability,
       status,
     } = values;
@@ -81,7 +81,7 @@ const ProponentForm = () => {
         totalcost,
         duration,
         quality,
-        usability,
+        turnOver,
         durability,
         status,
       }),
