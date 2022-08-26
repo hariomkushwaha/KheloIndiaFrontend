@@ -296,8 +296,8 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setQuality(e.target.value);
+                  // onChange={(e) => {
+                  // setQuality(e.target.value);
 
                   // }}
                 >
@@ -330,8 +330,8 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setUsability(e.target.value);
+                  // onChange={(e) => {
+                  // setUsability(e.target.value);
 
                   // }}
                 >
@@ -364,8 +364,8 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setDuration(e.target.value);
+                  // onChange={(e) => {
+                  // setDuration(e.target.value);
 
                   // }}
                 >
