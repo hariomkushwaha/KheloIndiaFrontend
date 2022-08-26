@@ -10,7 +10,14 @@ const ProposalForm = () => {
 
   return (
     <div>
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {extraFields &&
           extraFields.map((item) => (
             <TextField variant="standard" key={item} name={item} label={item} />
