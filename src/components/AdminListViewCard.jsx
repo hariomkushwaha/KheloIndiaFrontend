@@ -101,7 +101,7 @@ const AdminListViewCard = ({
   console.log(index)
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
-
+      
       {loading ? (
         <>
           <CardHeader
@@ -193,9 +193,16 @@ const AdminListViewCard = ({
                   onClick={() => {
                     setSelectedProposalValue(values.proponentId);
                     sendEmail();
+                    
                   }}
                 >
                   <DoneIcon color={"success"} />
+                </IconButton>
+                <IconButton
+                  onClick={() => {
+                  }}
+                >
+                  <ClearIcon style={{color:'red'}} />
                 </IconButton>
               </>
             ) : selectedProposalValue === values.proponentId ? (
