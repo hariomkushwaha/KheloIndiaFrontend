@@ -31,20 +31,32 @@ import Admin from "../pages/Admin";
 import AdminListViewCard from "./AdminListViewCard";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import Card2 from "./adminTenderCards";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import RecomCard from './RecommendedCard';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import RecomCard from "./RecommendedCard";
 
 const AdminListView = () => {
   const { tenderID } = useParams();
   const [proponentValues, setProponentValues] = useState([]);
+  const [newProponentValues, setNewProponentValues] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedProposalValue, setSelectedProposalValue] = useState("");
+
+  const [quality, setQuality] = useState(1);
+  const [durability, setDurability] = useState(1);
+  const [usability, setUsability] = useState(1);
+
+  const [loading, setLoading] = useState(false);
+
+  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
+  const drawerWidth = 240;
   const handleProponents = async () => {
     try {
-      const res = await fetch("/API/proponentform", {
+      const res = await fetch("http://localhost:5000/API/proponentform", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -65,13 +77,53 @@ const AdminListView = () => {
     }
   };
 
+  const createNewFieldValues = () => {
+    if (proponentValues.length > 0) {
+      let tempArr = [];
+      proponentValues.map((item) => {
+        let tempItem = item;
+        console.log("item", item);
+        tempItem.durability *= durability;
+        tempItem.quality *= quality;
+        tempItem.usability *= usability;
+        tempArr.push(tempItem);
+      });
+      console.log("propValues: ", proponentValues);
+      console.log("tempArr: ", tempArr);
+      setNewProponentValues(tempArr);
+    }
+  };
+
+  const handleFilterChange = async () => {
+    createNewFieldValues();
+    try {
+      setLoading(true);
+      const res = await fetch("http://localhost:5000/API/listview", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProponentValues),
+      });
+      const data = await res.json();
+      data.then((response) => {
+        console.log("filter resp: ", response);
+        setFilteredData(response);
+      });
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
+  };
+
   useEffect(() => {
     handleProponents();
   }, []);
-  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
-  const drawerWidth = 240;
-
-  const [selectedProposalValue, setSelectedProposalValue] = useState("");
 
   return (
     <>
@@ -117,21 +169,36 @@ const AdminListView = () => {
               style={{ padding: "1rem" }}
             > */}
             <RecomCard values={proponentValues[0]} />
-
-            {proponentValues.map(
-              (proponentValue) =>
-                  proponentValue.tenderId === tenderID && (
-                    <Grid item xs={12} md={4} lg={3}>
-                    <>
-                      <AdminListViewCard
-                        values={proponentValue}
-                        selectedProposalValue={selectedProposalValue}
-                        setSelectedProposalValue={setSelectedProposalValue}
-                      />
-                    </>
-                  </Grid>
+            {loading ? <span>Loadingnnnnn</span> : "Kuch na"}
+            {filteredData.length > 0
+              ? filteredData.map(
+                  (item) =>
+                    item.data.tenderId === tenderID && (
+                      <Grid item xs={12} md={4} lg={3}>
+                        <>
+                          <AdminListViewCard
+                            values={item.data}
+                            selectedProposalValue={selectedProposalValue}
+                            setSelectedProposalValue={setSelectedProposalValue}
+                          />
+                        </>
+                      </Grid>
+                    )
                 )
-            )}
+              : proponentValues.map(
+                  (proponentValue) =>
+                    proponentValue.tenderId === tenderID && (
+                      <Grid item xs={12} md={4} lg={3}>
+                        <>
+                          <AdminListViewCard
+                            values={proponentValue}
+                            selectedProposalValue={selectedProposalValue}
+                            setSelectedProposalValue={setSelectedProposalValue}
+                          />
+                        </>
+                      </Grid>
+                    )
+                )}
             {/* </Grid> */}
           </Box>
           <Box
@@ -162,21 +229,25 @@ const AdminListView = () => {
               <AccordionDetails>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
+                  defaultValue="Moderate"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setDurability(e.target.value);
+                    handleFilterChange();
+                  }}
                 >
                   <FormControlLabel
-                    value="lowDurable"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateDurable"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highDurable"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />
@@ -194,19 +265,23 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setQuality(e.target.value);
+                    handleFilterChange();
+                  }}
                 >
                   <FormControlLabel
-                    value="lowQuality"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateQuality"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highQuality"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />
@@ -224,19 +299,23 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setUsability(e.target.value);
+                    handleFilterChange();
+                  }}
                 >
                   <FormControlLabel
-                    value="lowUsable"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateUsable"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highUsable"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />

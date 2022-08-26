@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import CardHeader from "@mui/material/CardHeader";
 import AdminContext from "../context/AdminContext";
-import CompareIcon from '@mui/icons-material/Compare';
+import CompareIcon from "@mui/icons-material/Compare";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
@@ -30,12 +30,12 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-const AdminListViewCard = ({ values }) => {
+const RecomCard = ({ values }) => {
   const [expanded, setExpanded] = React.useState(false);
   const [userDetails, setUserDetails] = React.useState({});
   const [loading, setLoading] = React.useState(false);
 
-  console.log(values);
+  // console.log(values);
   const handleUserDetails = async () => {
     try {
       const userData = await fetch(`/API/userdetails/${values.proponentId}`, {
@@ -71,28 +71,45 @@ const AdminListViewCard = ({ values }) => {
   }, []);
 
   return (
-    <Card sx={{ width: "90%", m: 2, flexGrow: 1, border: '1px solid rgba(255,190,0,1)', boxShadow: '0px 0px 5px rgba(255,190,0,1)' }}>
+    <Card
+      sx={{
+        width: "90%",
+        m: 2,
+        flexGrow: 1,
+        border: "1px solid rgba(255,190,0,1)",
+        boxShadow: "0px 0px 5px rgba(255,190,0,1)",
+      }}
+    >
       {loading ? (
         <>
           <CardHeader
-            action={<>
-              <Typography variant="button" sx={{ background: 'rgba(255,190,0,1)', color: 'white', p: '2px 5px', borderRadius: '5px' }}>
-                Recommended
-              </Typography>
-              <IconButton aria-label="compare">
-                <CompareIcon
-                  color="warning"
-                  onClick={() => {
-                    setSelectedProposals((prevTender) => [
-                      ...prevTender,
-                      values,
-                    ]);
+            action={
+              <>
+                <Typography
+                  variant="button"
+                  sx={{
+                    background: "rgba(255,190,0,1)",
+                    color: "white",
+                    p: "2px 5px",
+                    borderRadius: "5px",
                   }}
                 >
-                  Add to Compare
-                </CompareIcon>
-              </IconButton>
-            </>
+                  Recommended
+                </Typography>
+                <IconButton aria-label="compare">
+                  <CompareIcon
+                    color="warning"
+                    onClick={() => {
+                      setSelectedProposals((prevTender) => [
+                        ...prevTender,
+                        values,
+                      ]);
+                    }}
+                  >
+                    Add to Compare
+                  </CompareIcon>
+                </IconButton>
+              </>
             }
             title={
               <>
@@ -105,20 +122,20 @@ const AdminListViewCard = ({ values }) => {
                       height: "100%",
                       maxHeight: "50px",
                       maxWidth: "50px",
-                      borderRadius: "50%"
+                      borderRadius: "50%",
                     }}
                   />
                 </IconButton>
                 <span style={{ textTransform: "uppercase" }}>
                   {userDetails.fullname} &nbsp;
-                  <Typography variant="button" sx={{ color: 'rgba(255,120,0,1)' }}>
+                  <Typography
+                    variant="button"
+                    sx={{ color: "rgba(255,120,0,1)" }}
+                  >
                     ({values.proponentId})
                   </Typography>
-
                 </span>
-                <span>
-
-                </span>
+                <span></span>
               </>
             }
             subheader={
@@ -139,10 +156,11 @@ const AdminListViewCard = ({ values }) => {
           <CardContent>
             <Typography variant="h6">{values.workItemTitle}</Typography>
             <br />
-
           </CardContent>
           <CardActions disableSpacing>
-            <Typography variant="body2" pl={2}>More Details</Typography>
+            <Typography variant="body2" pl={2}>
+              More Details
+            </Typography>
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
@@ -179,16 +197,14 @@ const AdminListViewCard = ({ values }) => {
                 <Grid item xs={4} sm={4}>
                   <Typography variant="button">Total Cost</Typography>
                 </Grid>
-                <Grid item xs={4} sm={4}>
-                </Grid>
+                <Grid item xs={4} sm={4}></Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="caption">{values.duration}</Typography>
                 </Grid>
                 <Grid item xs={4} sm={4}>
                   <Typography variant="caption">{values.totalcost}</Typography>
                 </Grid>
-                <Grid item xs={4} sm={4}>
-                </Grid>
+                <Grid item xs={4} sm={4}></Grid>
                 <Grid item xs={12} sm={12}>
                   <Typography variant="body2" color="text.secondary">
                     Previous Records : NIL
@@ -199,11 +215,11 @@ const AdminListViewCard = ({ values }) => {
             </CardContent>
           </Collapse>
         </>
-      ) :
+      ) : (
         <Skeleton />
-      }
+      )}
     </Card>
   );
 };
 
-export default AdminListViewCard;
+export default RecomCard;
