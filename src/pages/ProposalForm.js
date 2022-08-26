@@ -4,13 +4,25 @@ import React, { useEffect, useState } from "react";
 const ProposalForm = () => {
   const [extraFields, setExtraFields] = useState();
   useEffect(() => {
-    setExtraFields(localStorage.getItem("extraFields"));
+    setExtraFields(JSON.parse(localStorage.getItem("extraFields")));
     console.log(extraFields);
   }, []);
 
   return (
     <div>
-      <div>{extraFields.map((item) => console.log(item))}</div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {extraFields &&
+          extraFields.map((item) => (
+            <TextField variant="standard" key={item} name={item} label={item} />
+          ))}
+      </div>
     </div>
   );
 };
