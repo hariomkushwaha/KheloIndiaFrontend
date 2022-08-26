@@ -25,6 +25,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Modal,
+  TextField,
 } from "@mui/material";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
@@ -41,6 +43,12 @@ import FormLabel from "@mui/material/FormLabel";
 const AdminListView = () => {
   const { tenderID } = useParams();
   const [proponentValues, setProponentValues] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [feedback, setFeedback] = useState("");
   const handleProponents = async () => {
     try {
       const res = await fetch("/API/proponentform", {
@@ -72,6 +80,18 @@ const AdminListView = () => {
 
   const [selectedProposalValue, setSelectedProposalValue] = useState("");
 
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <>
       <Admin>
@@ -101,6 +121,58 @@ const AdminListView = () => {
                 </Link>
               )}
             </div>
+            {selectedProposalValue !== "" && (
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                    gutterBottom
+                  >
+                    Are you sure you want to select this proposal?
+                  </Typography>
+                  <Typography variant="body1" component="h2">
+                    Please tell us what you found special in this proposal!
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="standard-basic"
+                    label="Feedback"
+                    variant="standard"
+                    name="feedback"
+                    value={feedback}
+                    // onChange={handleChange}
+                  />
+                  <br></br>
+                  <br></br>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "5px",
+                    }}
+                  >
+                    <Button
+                      color="success"
+                      variant="contained"
+                      style={{ marginRight: "5px" }}
+                      onClick={handleClose}
+                    >
+                      YES
+                    </Button>
+                    <Button variant="contained" onClick={handleClose}>
+                      NO
+                    </Button>
+                  </div>
+                </Box>
+              </Modal>
+            )}
             {proponentValues.map(
               (proponentValue) =>
                 proponentValue.tenderId === tenderID && (
