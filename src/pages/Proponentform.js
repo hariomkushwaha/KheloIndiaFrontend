@@ -239,6 +239,14 @@ const ProponentForm = () => {
             value={values.totalcost}
             onChange={handleChange}
           />
+          <TextField
+            id="standard-basic"
+            label="Turn Over (of last 5 months)"
+            variant="standard"
+            name="turnOver"
+            value={values.turnOver}
+            onChange={handleChange}
+          />
           {values.tenderCategory === "equipment" ? (
             <>
               <TextField

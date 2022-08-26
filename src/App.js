@@ -19,6 +19,7 @@ import Proponent from "./pages/Proponent";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 // import Pages from "./components/dashboard/layouts/Auth";
+import Tender from "./pages/TenderForm";
 
 function App() {
   // const { proponent } = useContext(ProponentContext);
@@ -29,7 +30,7 @@ function App() {
         <Route path="/get-started" element={<MainGettingPage />} />
         <Route path="/" element={<MainLandingPage />} />
         {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
-        <Route path="/post/tender/" element={<TenderForm />} />
+        <Route path="/post/tender/" element={<Tender />} />
         <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
         <Route path="/proponent/signup" element={<SignUp />} />
