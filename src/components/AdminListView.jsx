@@ -26,6 +26,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Modal,
+  TextField,
 } from "@mui/material";
 import AdminContext from "../context/AdminContext";
 import Admin from "../pages/Admin";
@@ -43,20 +45,12 @@ import RecomCard from "./RecommendedCard";
 const AdminListView = () => {
   const { tenderID } = useParams();
   const [proponentValues, setProponentValues] = useState([]);
-  const [newProponentValues, setNewProponentValues] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
-  const [selectedProposalValue, setSelectedProposalValue] = useState("");
 
-  const [quality, setQuality] = useState(1);
-  const [durability, setDurability] = useState(1);
-  const [usability, setUsability] = useState(1);
-  const [duration, setDuration] = useState(1);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  const [loading, setLoading] = useState(false);
-
-  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
-  const drawerWidth = 240;
-
+  const [feedback, setFeedback] = useState("");
   const handleProponents = async () => {
     try {
       const res = await fetch("/API/proponentform", {
@@ -124,9 +118,23 @@ const AdminListView = () => {
   useEffect(() => {
     handleProponents();
   }, []);
-  useEffect(() => {
-    handleFilterChange();
-  }, [usability, durability, duration, quality]);
+  const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
+  const drawerWidth = 240;
+
+  const [selectedProposalValue, setSelectedProposalValue] = useState("");
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
   return (
     <>
       <Admin>
@@ -156,55 +164,72 @@ const AdminListView = () => {
                 </Link>
               )}
             </div>
-
-            <>
-              {/* {proponentValues.map((item) => handleUserDetails(item.proponentID))} */}
-            </>
-
-            {/* <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="flex-start"
-              spacing={3}
-              rowSpacing={5}
-              style={{ padding: "1rem" }}
-            > */}
-            {/* <RecomCard values={proponentValues[0]} /> */}
-            {
-              // filteredData.length > 0
-              //   ? 
-              filteredData.map(
-                (item, index) =>
-                  item.data.tenderId === tenderID && (
-                    <Grid item xs={12} md={4} lg={3} key={index}>
-                      <>
-                        <AdminListViewCard
-                          values={item.data}
-                          index={index}
-                          selectedProposalValue={selectedProposalValue}
-                          setSelectedProposalValue={setSelectedProposalValue}
-                        />
-                      </>
-                    </Grid>
-                  )
-              )
-              // : 
-              // proponentValues.map(
-              //   (proponentValue, index) =>
-              //     proponentValue.tenderId === tenderID && (
-              //       <Grid item xs={12} md={4} lg={3} key={index}>
-              //         <>
-              //           <AdminListViewCard
-              //             values={proponentValue}
-              //             selectedProposalValue={selectedProposalValue}
-              //             setSelectedProposalValue={setSelectedProposalValue}
-              //           />
-              //         </>
-              //       </Grid>
-              //     )
-              // )
-            }
+            {selectedProposalValue !== "" && (
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography
+                    id="modal-modal-title"
+                    variant="h6"
+                    component="h2"
+                    gutterBottom
+                  >
+                    Are you sure you want to select this proposal?
+                  </Typography>
+                  <Typography variant="body1" component="h2">
+                    Please tell us what you found special in this proposal!
+                  </Typography>
+                  <TextField
+                    fullWidth
+                    id="standard-basic"
+                    label="Feedback"
+                    variant="standard"
+                    name="feedback"
+                    value={feedback}
+                    // onChange={handleChange}
+                  />
+                  <br></br>
+                  <br></br>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      padding: "5px",
+                    }}
+                  >
+                    <Button
+                      color="success"
+                      variant="contained"
+                      style={{ marginRight: "5px" }}
+                      onClick={handleClose}
+                    >
+                      YES
+                    </Button>
+                    <Button variant="contained" onClick={handleClose}>
+                      NO
+                    </Button>
+                  </div>
+                </Box>
+              </Modal>
+            )}
+            {proponentValues.map(
+              (proponentValue) =>
+                proponentValue.tenderId === tenderID && (
+                  <Grid item xs={12} md={4} lg={3}>
+                    <>
+                      <AdminListViewCard
+                        values={proponentValue}
+                        selectedProposalValue={selectedProposalValue}
+                        setSelectedProposalValue={setSelectedProposalValue}
+                      />
+                    </>
+                  </Grid>
+                )
+            )}
             {/* </Grid> */}
           </Box>
           <Box

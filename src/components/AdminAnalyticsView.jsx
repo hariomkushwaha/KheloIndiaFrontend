@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import PieChart from "./PieChart";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
+import LineChart from "./LineChart";
 
 const AdminAnalyticsView = () => {
   const { tenderID } = useParams();
@@ -81,16 +82,21 @@ const AdminAnalyticsView = () => {
     <>
       <Admin />
       <Box sx={{ m: 5 }}>
-        <Grid container spacing={2} rowSpacing={10}>
-          <Grid item xs={1}></Grid>
+        <Grid
+          container
+          spacing={2}
+          rowSpacing={10}
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+        >
           <Grid item xs={4}>
             <BarChart
-              title={"Durability"}
+              title={"Warranty"}
               data={getChartData("durability")}
               width={500}
             />
           </Grid>
-          <Grid item xs={2}></Grid>
           <Grid item xs={4}>
             <BarChart
               title={"Quality"}
@@ -98,11 +104,9 @@ const AdminAnalyticsView = () => {
               width={500}
             />
           </Grid>
-          <Grid item xs={1}></Grid>
 
           {/* Next Row */}
           <br />
-          <Grid item xs={1}></Grid>
           <Grid item xs={4}>
             <BarChart
               title={"Total Cost"}
@@ -110,20 +114,17 @@ const AdminAnalyticsView = () => {
               width={500}
             />
           </Grid>
-          <Grid item xs={2}></Grid>
-          <Grid item xs={4}>
-            <BarChart
+          <Grid item xs={8} md={8} lg={8}>
+            <LineChart
               title={"Duration"}
               data={getChartData("duration")}
-              width={500}
+              width={800}
             />
           </Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4}>
-            {/* <PieChart title={"Duaraion pue"} data={getChartData("duration")} /> */}
-          </Grid>
         </Grid>
+        <br></br>
+        <br></br>
+        <br></br>
       </Box>
     </>
   );
