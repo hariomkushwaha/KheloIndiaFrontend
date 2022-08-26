@@ -92,7 +92,7 @@ const AdminAnalyticsView = () => {
         >
           <Grid item xs={4}>
             <BarChart
-              title={"Durability"}
+              title={"Warranty"}
               data={getChartData("durability")}
               width={500}
             />
