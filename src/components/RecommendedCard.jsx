@@ -35,6 +35,7 @@ const AdminListViewCard = ({ values }) => {
   const [userDetails, setUserDetails] = React.useState({});
   const [loading, setLoading] = React.useState(false);
 
+  console.log(values);
   const handleUserDetails = async () => {
     try {
       const userData = await fetch(`/API/userdetails/${values.proponentId}`, {
@@ -75,7 +76,7 @@ const AdminListViewCard = ({ values }) => {
         <>
           <CardHeader
             action={<>
-              <Typography variant="button" sx={{ background: 'rgba(255,190,0,1)', color: 'white', p:'2px 5px', borderRadius:'5px' }}>
+              <Typography variant="button" sx={{ background: 'rgba(255,190,0,1)', color: 'white', p: '2px 5px', borderRadius: '5px' }}>
                 Recommended
               </Typography>
               <IconButton aria-label="compare">
@@ -198,9 +199,9 @@ const AdminListViewCard = ({ values }) => {
             </CardContent>
           </Collapse>
         </>
-      ) : (
+      ) :
         <Skeleton />
-      )}
+      }
     </Card>
   );
 };
