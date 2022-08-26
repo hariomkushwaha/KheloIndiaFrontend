@@ -1,9 +1,18 @@
-import React from 'react'
+import { TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
 
 const ProposalForm = () => {
-  return (
-    <div>ProposalForm</div>
-  )
-}
+  const [extraFields, setExtraFields] = useState();
+  useEffect(() => {
+    setExtraFields(localStorage.getItem("extraFields"));
+    console.log(extraFields);
+  }, []);
 
-export default ProposalForm
+  return (
+    <div>
+      <div>{extraFields.map((item) => console.log(item))}</div>
+    </div>
+  );
+};
+
+export default ProposalForm;
