@@ -3,16 +3,22 @@ import {
   Box,
   Button,
   Divider,
+  IconButton,
   Link,
+  MenuItem,
   Paper,
+  Select,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+
 const ProponentForm = () => {
   var { tenderID } = useParams();
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const initialValues = {
     tenderId: tenderID,
     generalexperience: "",
@@ -23,10 +29,11 @@ const navigate = useNavigate();
     coordinatorexperience: "",
     totalcost: "",
     duration: "",
+    deliveryPeriod: "",
     quality: "",
-    usability: "",
+    turnOver: "",
     durability: "",
-    status:"pending",
+    status: "pending",
   };
 
   const [values, setValues] = useState(initialValues);
@@ -48,15 +55,16 @@ const navigate = useNavigate();
       projectmanagerexperience,
       databaseadminexperience,
       coordinatorexperience,
+      deliveryPeriod,
       totalcost,
       duration,
       quality,
-      usability,
+      turnOver,
       durability,
       status,
     } = values;
 
-    const res = await fetch("http://localhost:5000/API/proponentform", {
+    const res = await fetch("/API/proponentform", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,13 +74,14 @@ const navigate = useNavigate();
         proponentId,
         generalexperience,
         sportsspecificexperience,
+        deliveryPeriod,
         projectmanagerexperience,
         databaseadminexperience,
         coordinatorexperience,
         totalcost,
         duration,
         quality,
-        usability,
+        turnOver,
         durability,
         status,
       }),
@@ -85,9 +94,15 @@ const navigate = useNavigate();
       window.alert("Invalid Submission");
     } else {
       window.alert("Posted Successfully");
-      navigate('/get-started');
+      navigate("/get-started");
     }
     console.log(values);
+  };
+
+  const [file, setFile] = useState();
+
+  const handleUpload = (e) => {
+    console.log(e.target.value);
   };
 
   return (
@@ -134,6 +149,20 @@ const navigate = useNavigate();
             Tender ID: {tenderID}
           </Typography>
           <br />
+          <Select
+            labelId="simple-select-standard-label"
+            id="simple-select-standard"
+            name="tenderCategory"
+            value={values.tenderCategory}
+            onChange={handleChange}
+            placeholder="Select Tender Type"
+            label="Tender Category"
+            style={{ margin: "1rem 0px" }}
+            variant="standard"
+          >
+            <MenuItem value={"management"}>Management</MenuItem>
+            <MenuItem value={"equipment"}>Equipment</MenuItem>
+          </Select>
           <Typography variant="body1" component="div">
             Service Details
           </Typography>
@@ -164,36 +193,40 @@ const navigate = useNavigate();
           <br />
           <Divider />
           <br />
-          <Typography variant="body1" component="div">
-            Team Details
-          </Typography>
+          {values.tenderCategory !== "equipment" && (
+            <>
+              <Typography variant="body1" component="div">
+                Team Details
+              </Typography>
+              <TextField
+                id="standard-basic"
+                label="Project Manager Experience"
+                variant="standard"
+                name="projectmanagerexperience"
+                value={values.projectmanagerexperience}
+                onChange={handleChange}
+              />
+              <TextField
+                id="standard-basic"
+                label="Database Admin Experience"
+                variant="standard"
+                name="databaseadminexperience"
+                value={values.databaseadminexperience}
+                onChange={handleChange}
+              />
+              <TextField
+                id="standard-basic"
+                label="Coordinator Experience"
+                variant="standard"
+                name="coordinatorexperience"
+                value={values.coordinatorexperience}
+                onChange={handleChange}
+              />
+              <br />
+              <Divider />
+            </>
+          )}
 
-          <TextField
-            id="standard-basic"
-            label="Project Manager Experience"
-            variant="standard"
-            name="projectmanagerexperience"
-            value={values.projectmanagerexperience}
-            onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Database Admin Experience"
-            variant="standard"
-            name="databaseadminexperience"
-            value={values.databaseadminexperience}
-            onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Coordinator Experience"
-            variant="standard"
-            name="coordinatorexperience"
-            value={values.coordinatorexperience}
-            onChange={handleChange}
-          />
-          <br />
-          <Divider />
           <br />
           <Typography variant="body1" component="div">
             Financial Details
@@ -208,50 +241,202 @@ const navigate = useNavigate();
           />
           <TextField
             id="standard-basic"
-            label="Duration"
+            label="Turn Over (of last 5 months)"
             variant="standard"
-            name="duration"
-            value={values.duration}
+            name="turnOver"
+            value={values.turnOver}
             onChange={handleChange}
           />
-          <TextField
+          {values.tenderCategory === "equipment" ? (
+            <>
+              <TextField
+                id="standard-basic"
+                label="Delivery Period"
+                variant="standard"
+                name="deliveryPeriod"
+                value={values.deliveryPeriod}
+                onChange={handleChange}
+              />
+              <TextField
+                id="standard-basic"
+                label="Warranty"
+                variant="standard"
+                name="warranty"
+                value={values.warranty}
+                onChange={handleChange}
+              />
+              <br></br>
+              <Typography variant="body1">
+                Manufacturer's Authorization Form
+              </Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+
+              <br></br>
+              <Typography variant="body1">Bid Submission Form</Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+
+              <br></br>
+              <Typography variant="body1">Price Schedule</Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+              <br></br>
+              <Typography variant="body1">
+                Bid Securing Declaration Form
+              </Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+              <br></br>
+              <Typography variant="body1">Contract Form for Supply</Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+            </>
+          ) : (
+            <>
+              <TextField
+                id="standard-basic"
+                label="Companies"
+                variant="standard"
+                name="companies"
+                value={values.companies}
+                onChange={handleChange}
+              />
+              <br></br>
+              <Typography variant="body1">Authorized Signatory</Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+              <br></br>
+              <Typography variant="body1">Bid Security Form</Typography>
+              <Stack direction="row" alignItems="center" spacing={2}>
+                <IconButton aria-label="upload picture" component="label">
+                  <input
+                    hidden
+                    type="file"
+                    onChange={(e) => {
+                      console.log(e.target.files[0]);
+                      setFile(e.target.files[0]);
+                    }}
+                  />
+                  <PhotoCamera />
+                </IconButton>
+                <Button onClick={handleUpload}>Upload Document</Button>
+              </Stack>
+              <TextField
+                id="standard-basic"
+                label="Deadline"
+                variant="standard"
+                name="deadline"
+                value={values.deadline}
+                onChange={handleChange}
+              />
+              <TextField
+                id="standard-basic"
+                label="Location"
+                variant="standard"
+                name="location"
+                value={values.location}
+                onChange={handleChange}
+              />
+            </>
+          )}
+          {/* <TextField
             id="standard-basic"
             label="Quality"
             variant="standard"
             name="quality"
             value={values.quality}
             onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="Usability"
-            variant="standard"
-            name="usability"
-            value={values.usability}
-            onChange={handleChange}
-          />
-          <TextField
-            id="standard-basic"
-            label="durability"
-            variant="standard"
-            name="durability"
-            value={values.durability}
-            onChange={handleChange}
-          />
-          <br />
-          <Divider />
-          <br />
-          <Typography variant="body1" component="div">
-            Your Previous Record
-          </Typography>
+          /> */}
 
-          <TextField
-            id="standard-basic"
-            label="Previous Record"
-            variant="standard"
-            name=""
-            onChange={handleChange}
-          />
+          <br />
+          <Typography variant="body1">Previous Record</Typography>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <IconButton aria-label="upload picture" component="label">
+              <input
+                hidden
+                type="file"
+                onChange={(e) => {
+                  console.log(e.target.files[0]);
+                  setFile(e.target.files[0]);
+                }}
+              />
+              <PhotoCamera />
+            </IconButton>
+            <Button onClick={handleUpload}>Upload Document</Button>
+          </Stack>
 
           <br />
           <Button variant="contained" onClick={handleSubmit}>

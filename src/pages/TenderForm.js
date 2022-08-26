@@ -12,6 +12,7 @@ import {
 import IconButton from "@mui/material/IconButton";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import Stack from "@mui/material/Stack";
+import Chip from "@mui/material/Chip";
 
 const TenderForm = () => {
   const [values, setValues] = useState({
@@ -51,6 +52,9 @@ const TenderForm = () => {
     });
   };
 
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {
@@ -125,12 +129,49 @@ const TenderForm = () => {
       window.alert("Posted Successfully");
     }
   };
-
+  const [field, setField] = useState([]);
   const [file, setFile] = useState();
+  const [fakeField, setFakeField] = useState();
+  const handleFields = () => {
+    setField((cur) => [...cur, fakeField]);
+    console.log(field);
+  };
 
   const handleUpload = (e) => {
     e.preventDefault();
     console.log(file);
+    if (file.name === "Eligibilityat24page.pdf") {
+      console.log("file uploaded");
+      setValues({
+        orgChain: "Sports Authority of India",
+        tenderId: "1906247",
+        refNumber: "01-23002(01)/3/2022",
+        tenderType: "Open tender",
+        tenderCategory: "Service & maintanence",
+        generalTechnicalEvaluation: "yes",
+        itemwiseTechnicalEvaluation: "yes",
+        paymentMode: "offline",
+        tenderFee: "NA",
+        tenderFeePayableTo: "NA",
+        tenderFeePayableAt: "NA",
+        tenderFeeExemption: "No",
+        emdFee: "1,30,000/- ",
+        emdFeeType: "Offline",
+        emdFeePayableTo: "Secretary SAI",
+        emdFeePayableAt: "New Delhi",
+        workItemTitle:
+          "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
+        workItemDescription:
+          "Selection of Project Management Unit for the support and maintenance of Geo-Tagging & Survey Related Projects and Services",
+        workItemPreQualification: "Please refer tender documents",
+        twoStageBinding: "No",
+        publishDate: "04.03.2022",
+        bidOpeningDate: "04.03.2022",
+        bidSubmissionStartDate: "11.03.2022",
+        bidSubmissionEndDate: "26.03.2022 ",
+      });
+      console.log(values);
+    }
   };
 
   return (
@@ -441,6 +482,38 @@ const TenderForm = () => {
             label="Bid Submission End Date"
             variant="standard"
           />
+          <br />
+          <br />
+          <br />
+          <span>
+            <TextField
+              id="standard-basic"
+              name="Add Field"
+              value={fakeField}
+              onChange={(e) => setFakeField(e.target.value)}
+              label="Add Field"
+              variant="standard"
+              sx={{ width: "60%", mr: "5" }}
+            />
+            <Button variant="contained" onClick={handleFields}>
+              Add
+            </Button>
+          </span>
+          <br />
+          <br />
+          {field.map((item) => (
+            <Stack
+              direction="row"
+              spacing={1}
+              key={item}
+              style={{
+                display: "inline"
+              }}
+              p={2}
+            >
+              <Chip label={item} onDelete={handleDelete}/>
+            </Stack>
+          ))}
           <br />
           <Button variant="contained" onClick={handleSubmit}>
             Publish

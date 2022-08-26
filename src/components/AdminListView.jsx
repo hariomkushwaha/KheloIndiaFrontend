@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -39,6 +40,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import RecomCard from "./RecommendedCard";
 
 const AdminListView = () => {
   const { tenderID } = useParams();
@@ -70,6 +72,47 @@ const AdminListView = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const createNewFieldValues = () => {
+    if (proponentValues.length > 0) {
+      let tempArr = [];
+      proponentValues.map((item) => {
+        let tempItem = item;
+        // console.log("item", item);
+        tempItem.durability *= durability;
+        tempItem.quality *= quality;
+        tempItem.usability *= usability;
+        tempArr.push(tempItem);
+      });
+      console.log("propValues: ", proponentValues);
+      console.log("tempArr: ", tempArr);
+      setNewProponentValues(tempArr);
+    }
+  };
+
+  const handleFilterChange = async () => {
+    createNewFieldValues();
+    try {
+      const res = await fetch("/API/listview", {
+        method: "POST",
+        headers: {
+          // Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProponentValues),
+      });
+      const data = await res.json();
+      setFilteredData(data);
+      setLoading(true);
+      if (!res.status === 200) {
+        const error = new Error(res.error);
+        throw error;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -218,21 +261,24 @@ const AdminListView = () => {
               <AccordionDetails>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
+                  defaultValue="Moderate"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setDurability(e.target.value);
+                  }}
                 >
                   <FormControlLabel
-                    value="lowDurable"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateDurable"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highDurable"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />
@@ -250,19 +296,23 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setQuality(e.target.value);
+
+                  }}
                 >
                   <FormControlLabel
-                    value="lowQuality"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateQuality"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highQuality"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />
@@ -280,19 +330,23 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setUsability(e.target.value);
+
+                  }}
                 >
                   <FormControlLabel
-                    value="lowUsable"
+                    value={0.5}
                     control={<Radio />}
                     label="Low"
                   />
                   <FormControlLabel
-                    value="moderateUsable"
+                    value={1}
                     control={<Radio />}
                     label="Moderate"
                   />
                   <FormControlLabel
-                    value="highUsable"
+                    value={1.5}
                     control={<Radio />}
                     label="High"
                   />
@@ -310,6 +364,10 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setDuration(e.target.value);
+
+                  }}
                 >
                   <FormControlLabel
                     value="lowDuration"
@@ -329,6 +387,9 @@ const AdminListView = () => {
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
+            <Button variant="contained" style={{ marginTop: '5px' }}
+            // onClick={}
+            >Submit</Button>
           </Box>
         </Box>
       </Admin>

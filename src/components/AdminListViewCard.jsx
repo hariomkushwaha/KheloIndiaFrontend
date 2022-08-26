@@ -19,6 +19,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
 import ClearIcon from "@mui/icons-material/Clear";
+import Modal from '@mui/material/Modal';
 
 import emailjs from "@emailjs/browser";
 
@@ -36,6 +37,7 @@ const ExpandMore = styled((props) => {
 const AdminListViewCard = ({
   values,
   proposal,
+  index,
   selectedProposalValue,
   setSelectedProposalValue,
 }) => {
@@ -96,13 +98,43 @@ const AdminListViewCard = ({
       );
   };
 
+  console.log(index)
   return (
     <Card sx={{ width: "90%", m: 2, flexGrow: 1 }}>
+
       {loading ? (
         <>
           <CardHeader
             action={
-              <IconButton aria-label="compare">
+              index === 1
+                ?
+                <>
+                  <Typography
+                    variant="button"
+                    sx={{
+                      background: "rgba(255,190,0,1)",
+                      color: "white",
+                      p: "2px 5px",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    Recommended
+                  </Typography>
+                  <IconButton aria-label="compare">
+                    <CompareIcon
+                      color="warning"
+                      onClick={() => {
+                        setSelectedProposals((prevTender) => [
+                          ...prevTender,
+                          values,
+                        ]);
+                      }}
+                    >
+                      Add to Compare
+                    </CompareIcon>
+                  </IconButton>
+                </>
+                :
                 <CompareIcon
                   color="warning"
                   onClick={() => {
@@ -112,9 +144,8 @@ const AdminListViewCard = ({
                     ]);
                   }}
                 >
-                  Add to Compare
+                  {/* Add to Compare */}
                 </CompareIcon>
-              </IconButton>
             }
             title={
               <>
@@ -133,9 +164,6 @@ const AdminListViewCard = ({
                 </IconButton>
                 <span style={{ textTransform: "uppercase" }}>
                   {userDetails.fullname} &nbsp;
-                  <Typography variant="button" color="text.secondary">
-                    ({values.proponentId})
-                  </Typography>
                 </span>
               </>
             }
@@ -168,14 +196,6 @@ const AdminListViewCard = ({
                   }}
                 >
                   <DoneIcon color={"success"} />
-                </IconButton>
-                <IconButton>
-                  <ClearIcon
-                    color="error"
-                    onClick={() => {
-                      setSelectedProposalValue("");
-                    }}
-                  />
                 </IconButton>
               </>
             ) : selectedProposalValue === values.proponentId ? (
