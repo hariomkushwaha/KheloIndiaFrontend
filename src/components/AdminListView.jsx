@@ -75,22 +75,22 @@ const AdminListView = () => {
     }
   };
 
-  // const createNewFieldValues = () => {
-  //   if (proponentValues.length > 0) {
-  //     let tempArr = [];
-  //     proponentValues.map((item) => {
-  //       let tempItem = item;
-  //       // console.log("item", item);
-  //       tempItem.durability *= durability;
-  //       tempItem.quality *= quality;
-  //       tempItem.usability *= usability;
-  //       tempArr.push(tempItem);
-  //     });
-  //     console.log("propValues: ", proponentValues);
-  //     console.log("tempArr: ", tempArr);
-  //     setNewProponentValues(tempArr);
-  //   }
-  // };
+  // // const createNewFieldValues = () => {
+  // //   if (proponentValues.length > 0) {
+  // //     let tempArr = [];
+  // //     proponentValues.map((item) => {
+  // //       let tempItem = item;
+  // //       // console.log("item", item);
+  // //       tempItem.durability *= durability;
+  // //       tempItem.quality *= quality;
+  // //       tempItem.usability *= usability;
+  // //       tempArr.push(tempItem);
+  // //     });
+  // //     console.log("propValues: ", proponentValues);
+  // //     console.log("tempArr: ", tempArr);
+  // //     setNewProponentValues(tempArr);
+  // //   }
+  // // };
 
   // const handleFilterChange = async () => {
   //   createNewFieldValues();
@@ -126,6 +126,7 @@ const AdminListView = () => {
 
   
 
+  // fgdfg
   return (
     <>
       <Admin>
@@ -235,10 +236,10 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setQuality(e.target.value);
+                  // onChange={(e) => {
+                  // setQuality(e.target.value);
 
-                  }}
+                  // }}
                 >
                   <FormControlLabel
                     value={0.5}
@@ -269,10 +270,10 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setUsability(e.target.value);
+                  // onChange={(e) => {
+                  // setUsability(e.target.value);
 
-                  }}
+                  // }}
                 >
                   <FormControlLabel
                     value={0.5}
@@ -303,10 +304,10 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
-                  onChange={(e) => {
-                    // setDuration(e.target.value);
+                  // onChange={(e) => {
+                  // setDuration(e.target.value);
 
-                  }}
+                  // }}
                 >
                   <FormControlLabel
                     value="lowDuration"
@@ -326,9 +327,13 @@ const AdminListView = () => {
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
-            <Button variant="contained" style={{ marginTop: '5px' }}
-            // onClick={}
-            >Submit</Button>
+            <Button
+              variant="contained"
+              style={{ marginTop: "5px" }}
+              // onClick={}
+            >
+              Submit
+            </Button>
           </Box>
         </Box>
       </Admin>

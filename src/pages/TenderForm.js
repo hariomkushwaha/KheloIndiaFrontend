@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -136,6 +136,10 @@ const TenderForm = () => {
     setField((cur) => [...cur, fakeField]);
     console.log(field);
   };
+
+  useEffect(() => {
+    localStorage.setItem("extraFields", JSON.stringify(field));
+  }, [field]);
 
   const handleUpload = (e) => {
     e.preventDefault();
@@ -507,11 +511,11 @@ const TenderForm = () => {
               spacing={1}
               key={item}
               style={{
-                display: "inline"
+                display: "inline",
               }}
               p={2}
             >
-              <Chip label={item} onDelete={handleDelete}/>
+              <Chip label={item} onDelete={handleDelete} />
             </Stack>
           ))}
           <br />
