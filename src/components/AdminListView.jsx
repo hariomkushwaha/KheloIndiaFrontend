@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -49,14 +50,16 @@ const AdminListView = () => {
   const [quality, setQuality] = useState(1);
   const [durability, setDurability] = useState(1);
   const [usability, setUsability] = useState(1);
+  const [duration, setDuration] = useState(1);
 
   const [loading, setLoading] = useState(false);
 
   const { selectedProposals, setSelectedProposals } = useContext(AdminContext);
   const drawerWidth = 240;
+
   const handleProponents = async () => {
     try {
-      const res = await fetch("http://localhost:5000/API/proponentform", {
+      const res = await fetch("/API/proponentform", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -82,7 +85,7 @@ const AdminListView = () => {
       let tempArr = [];
       proponentValues.map((item) => {
         let tempItem = item;
-        console.log("item", item);
+        // console.log("item", item);
         tempItem.durability *= durability;
         tempItem.quality *= quality;
         tempItem.usability *= usability;
@@ -97,8 +100,7 @@ const AdminListView = () => {
   const handleFilterChange = async () => {
     createNewFieldValues();
     try {
-      setLoading(true);
-      const res = await fetch("http://localhost:5000/API/listview", {
+      const res = await fetch("/API/listview", {
         method: "POST",
         headers: {
           // Accept: "application/json",
@@ -107,10 +109,8 @@ const AdminListView = () => {
         body: JSON.stringify(newProponentValues),
       });
       const data = await res.json();
-      data.then((response) => {
-        console.log("filter resp: ", response);
-        setFilteredData(response);
-      });
+      setFilteredData(data);
+      setLoading(true);
       if (!res.status === 200) {
         const error = new Error(res.error);
         throw error;
@@ -125,6 +125,9 @@ const AdminListView = () => {
     handleProponents();
   }, []);
 
+  useEffect(() => {
+    handleFilterChange();
+  }, [usability, durability, duration, quality]);
   return (
     <>
       <Admin>
@@ -168,37 +171,41 @@ const AdminListView = () => {
               rowSpacing={5}
               style={{ padding: "1rem" }}
             > */}
-            <RecomCard values={proponentValues[0]} />
-            {loading ? <span>Loadingnnnnn</span> : "Kuch na"}
-            {filteredData.length > 0
-              ? filteredData.map(
-                  (item) =>
-                    item.data.tenderId === tenderID && (
-                      <Grid item xs={12} md={4} lg={3}>
-                        <>
-                          <AdminListViewCard
-                            values={item.data}
-                            selectedProposalValue={selectedProposalValue}
-                            setSelectedProposalValue={setSelectedProposalValue}
-                          />
-                        </>
-                      </Grid>
-                    )
-                )
-              : proponentValues.map(
-                  (proponentValue) =>
-                    proponentValue.tenderId === tenderID && (
-                      <Grid item xs={12} md={4} lg={3}>
-                        <>
-                          <AdminListViewCard
-                            values={proponentValue}
-                            selectedProposalValue={selectedProposalValue}
-                            setSelectedProposalValue={setSelectedProposalValue}
-                          />
-                        </>
-                      </Grid>
-                    )
-                )}
+            {/* <RecomCard values={proponentValues[0]} /> */}
+            {
+            // filteredData.length > 0
+            //   ? 
+              filteredData.map(
+                (item, index) =>
+                  item.data.tenderId === tenderID && (
+                    <Grid item xs={12} md={4} lg={3} key={index}>
+                      {console.log("hello", filteredData)}
+                      <>
+                        <AdminListViewCard
+                          values={item.data}
+                          selectedProposalValue={selectedProposalValue}
+                          setSelectedProposalValue={setSelectedProposalValue}
+                        />
+                      </>
+                    </Grid>
+                  )
+              )
+              // : 
+              // proponentValues.map(
+              //   (proponentValue, index) =>
+              //     proponentValue.tenderId === tenderID && (
+              //       <Grid item xs={12} md={4} lg={3} key={index}>
+              //         <>
+              //           <AdminListViewCard
+              //             values={proponentValue}
+              //             selectedProposalValue={selectedProposalValue}
+              //             setSelectedProposalValue={setSelectedProposalValue}
+              //           />
+              //         </>
+              //       </Grid>
+              //     )
+              // )
+              }
             {/* </Grid> */}
           </Box>
           <Box
@@ -233,7 +240,6 @@ const AdminListView = () => {
                   name="radio-buttons-group"
                   onChange={(e) => {
                     setDurability(e.target.value);
-                    handleFilterChange();
                   }}
                 >
                   <FormControlLabel
@@ -267,7 +273,7 @@ const AdminListView = () => {
                   name="radio-buttons-group"
                   onChange={(e) => {
                     setQuality(e.target.value);
-                    handleFilterChange();
+
                   }}
                 >
                   <FormControlLabel
@@ -301,7 +307,7 @@ const AdminListView = () => {
                   name="radio-buttons-group"
                   onChange={(e) => {
                     setUsability(e.target.value);
-                    handleFilterChange();
+
                   }}
                 >
                   <FormControlLabel
@@ -333,6 +339,10 @@ const AdminListView = () => {
                   aria-labelledby="demo-radio-buttons-group-label"
                   defaultValue="female"
                   name="radio-buttons-group"
+                  onChange={(e) => {
+                    setDuration(e.target.value);
+
+                  }}
                 >
                   <FormControlLabel
                     value="lowDuration"
@@ -352,6 +362,9 @@ const AdminListView = () => {
                 </RadioGroup>
               </AccordionDetails>
             </Accordion>
+            <Button variant="contained" style={{ marginTop: '5px' }}
+            // onClick={}
+            >Submit</Button>
           </Box>
         </Box>
       </Admin>
