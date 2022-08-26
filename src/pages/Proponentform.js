@@ -21,18 +21,17 @@ const ProponentForm = () => {
   const navigate = useNavigate();
   const initialValues = {
     tenderId: tenderID,
-    generalexperience: "",
-    proponentId: "",
-    sportsspecificexperience: "",
-    projectmanagerexperience: "",
-    databaseadminexperience: "",
-    coordinatorexperience: "",
-    totalcost: "",
-    duration: "",
-    deliveryPeriod: "",
-    quality: "",
-    turnOver: "",
-    durability: "",
+    proponentId: "201922",
+    generalexperience: "5",
+    sportsspecificexperience: "3",
+    projectmanagerexperience: "4",
+    databaseadminexperience: "2",
+    coordinatorexperience: "5",
+    totalcost: "4000000",
+    durationP: "12",
+    warranty: "12",
+    totalTurnOver: "2",
+    durability: "10",
     status: "pending",
   };
 
@@ -55,16 +54,15 @@ const ProponentForm = () => {
       projectmanagerexperience,
       databaseadminexperience,
       coordinatorexperience,
-      deliveryPeriod,
       totalcost,
-      duration,
-      quality,
-      turnOver,
+      durationP,
+      warranty,
+      totalTurnOver,
       durability,
       status,
     } = values;
 
-    const res = await fetch("/API/proponentform", {
+    const res = await fetch("/API/proponentform2", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,14 +72,13 @@ const ProponentForm = () => {
         proponentId,
         generalexperience,
         sportsspecificexperience,
-        deliveryPeriod,
         projectmanagerexperience,
         databaseadminexperience,
         coordinatorexperience,
         totalcost,
-        duration,
-        quality,
-        turnOver,
+        durationP,
+        warranty,
+        totalTurnOver,
         durability,
         status,
       }),
@@ -244,7 +241,7 @@ const ProponentForm = () => {
             label="Turn Over (of last 5 months)"
             variant="standard"
             name="turnOver"
-            value={values.turnOver}
+            value={values.totalTurnOver}
             onChange={handleChange}
           />
           {values.tenderCategory === "equipment" ? (
@@ -254,7 +251,7 @@ const ProponentForm = () => {
                 label="Delivery Period"
                 variant="standard"
                 name="deliveryPeriod"
-                value={values.deliveryPeriod}
+                value={values.durationP}
                 onChange={handleChange}
               />
               <TextField
@@ -281,7 +278,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
 
               <br></br>
@@ -298,7 +295,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
 
               <br></br>
@@ -315,7 +312,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
               <br></br>
               <Typography variant="body1">
@@ -333,7 +330,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
               <br></br>
               <Typography variant="body1">Contract Form for Supply</Typography>
@@ -349,7 +346,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
             </>
           ) : (
@@ -376,7 +373,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
               <br></br>
               <Typography variant="body1">Bid Security Form</Typography>
@@ -392,7 +389,7 @@ const ProponentForm = () => {
                   />
                   <PhotoCamera />
                 </IconButton>
-                <Button onClick={handleUpload}>Upload Document</Button>
+                <Button >Upload Document</Button>
               </Stack>
               <TextField
                 id="standard-basic"
@@ -435,7 +432,7 @@ const ProponentForm = () => {
               />
               <PhotoCamera />
             </IconButton>
-            <Button onClick={handleUpload}>Upload Document</Button>
+            <Button >Upload Document</Button>
           </Stack>
 
           <br />

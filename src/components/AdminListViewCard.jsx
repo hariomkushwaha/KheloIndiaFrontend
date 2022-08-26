@@ -121,6 +121,7 @@ const AdminListViewCard = ({
                     Recommended
                   </Typography>
                   <IconButton aria-label="compare">
+                    Add to Compare
                     <CompareIcon
                       color="warning"
                       onClick={() => {
@@ -130,7 +131,6 @@ const AdminListViewCard = ({
                         ]);
                       }}
                     >
-                      Add to Compare
                     </CompareIcon>
                   </IconButton>
                 </>
