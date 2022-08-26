@@ -22,31 +22,35 @@ ChartJS.register(
   Legend
 );
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-    title: {
-      display: true,
-      text: "Chart.js Line Chart",
-    },
-  },
-  scales: {
-    x: {
-      grid: {
-        display: false,
-      },
-    },
-    y: {
-      grid: {
-        display: false,
-      },
-    },
-  },
-};
-
 export default function LineChart(props) {
-  return <Line options={options} data={props.data} />;
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+        position: "top",
+      },
+      title: {
+        display: true,
+        text: `${props.title}`,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+  return (
+    <div style={{ height: props.height || 200, width: props.width || 200 }}>
+      <Line options={options} data={props.data} />
+    </div>
+  );
 }

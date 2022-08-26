@@ -21,6 +21,8 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { amber, red } from "@mui/material/colors";
 import ProponentPersonalDetailsCard from "./ProponentPersonalDetailsCard";
 
+//
+
 const AdminCompareView = () => {
   const { selectedProposals } = useContext(AdminContext);
 
@@ -78,10 +80,6 @@ const AdminCompareView = () => {
     handleFirstUserDetails(firstProposal.proponentId);
   }, [firstProposal]);
 
-  // useEffect(() => {
-  //   console.log("fist user ", firstUserDetails);
-  // }, [firstUserDetails]);
-
   useEffect(() => {
     handleSecondUserDetails(secondProposal.proponentId);
   }, [secondProposal]);
@@ -102,16 +100,84 @@ const AdminCompareView = () => {
         <br></br>
         <Grid container>
           <Grid item md={4} lg={3}>
-            <ul style={{}}>
+            <ul>
               <li>{firstProposal.proponentId}</li>
-              <li>{firstProposal.generalexperience}</li>
-              <li>{firstProposal.sportsspecificexperience}</li>
-              <li>{firstProposal.coordinatorexperience}</li>
-              <li>{firstProposal.databaseadminexperience}</li>
-              <li>{firstProposal.durability}</li>
-              <li>{firstProposal.duration}</li>
-              <li>{firstProposal.quality}</li>
-              <li>{firstProposal.totalcost}</li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.generalexperience >
+                    secondProposal.generalexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.generalexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.sportsspecificexperience >
+                    secondProposal.sportsspecificexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.sportsspecificexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.coordinatorexperience >
+                    secondProposal.coordinatorexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.coordinatorexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.databaseadminexperience >
+                    secondProposal.databaseadminexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.databaseadminexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.durability > secondProposal.durability
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.durability}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.duration < secondProposal.duration
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.duration}
+              </li>
+              {/* <li>{firstProposal.quality}</li> */}
+              <li
+                style={{
+                  backgroundColor:
+                    firstProposal.totalcost < secondProposal.totalcost
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {firstProposal.totalcost}
+              </li>
+              {firstProposal.turnover && <li>{firstProposal.turnover}</li>}
             </ul>
           </Grid>
           <Grid item md={4} lg={6}>
@@ -124,196 +190,98 @@ const AdminCompareView = () => {
               }}
             >
               <li>Proponent Id</li>
-              <li>General Experience</li>
-              <li>Sport Specific Experience</li>
-              <li>Coordinator Experience</li>
-              <li>Database Admin Experience</li>
-              <li>Durability</li>
-              <li>Duration</li>
-              <li>Quality</li>
-              <li>Total Cost</li>
+              <li>General Experience (yrs)</li>
+              <li>Sport Specific Experience (yrs)</li>
+              <li>Coordinator Experience (yrs)</li>
+              <li>Database Admin Experience (yrs)</li>
+              <li>Warranty (yrs)</li>
+              {/* durability */}
+              <li>Delivery Time (weeks)</li>
+              {/* <li>Quality</li> */}
+              <li>Total Cost (₹)</li>
+              {firstProposal.turnover && <li>Turnover</li>}
             </ul>
           </Grid>
           <Grid item md={4} lg={3}>
             <ul>
               <li>{secondProposal.proponentId}</li>
-              <li>{secondProposal.generalexperience}</li>
-              <li>{secondProposal.sportsspecificexperience}</li>
-              <li>{secondProposal.coordinatorexperience}</li>
-              <li>{secondProposal.databaseadminexperience}</li>
-              <li>{secondProposal.durability}</li>
-              <li>{secondProposal.duration}</li>
-              <li>{secondProposal.quality}</li>
-              <li>{secondProposal.totalcost}</li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.generalexperience >
+                    firstProposal.generalexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {secondProposal.generalexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.sportsspecificexperience >
+                    firstProposal.sportsspecificexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {secondProposal.sportsspecificexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.coordinatorexperience >
+                    firstProposal.coordinatorexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {secondProposal.coordinatorexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.databaseadminexperience >
+                    firstProposal.databaseadminexperience
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {secondProposal.databaseadminexperience}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.durability > firstProposal.durability
+                      ? "#4caf50"
+                      : "",
+                }}
+              >
+                {secondProposal.durability}
+              </li>
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.duration < firstProposal.duration
+                      ? "#2e7d32"
+                      : "",
+                }}
+              >
+                {secondProposal.duration}
+              </li>
+              {/* <li>{secondProposal.quality}</li> */}
+              <li
+                style={{
+                  backgroundColor:
+                    secondProposal.total < firstProposal.total ? "#2e7d32" : "",
+                }}
+              >
+                {secondProposal.totalcost}
+              </li>
+              {secondProposal.turnover && <li>{secondProposal.turnover}</li>}
             </ul>
           </Grid>
         </Grid>
-        {/* <TableContainer sx={{ borderRadius: "20px" }}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>
-                  <b>Proponent ID</b>
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  <b>{firstProposal.proponentId}</b>
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <b>{secondProposal.proponentId}</b>
-                </StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  General Experience
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.generalexperience}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.generalexperience}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Sport Specific Experience
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.sportsspecificexperience}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.sportsspecificexperience}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Coordinator Experience
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.coordinatorexperience}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.coordinatorexperience}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Database Admin Experience
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.databaseadminexperience}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.databaseadminexperience}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Durability
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.durability}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.durability}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Duration
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.duration}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.duration}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Quality
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.quality}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.quality}
-                </StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <StyledTableCell component="th" scope="row">
-                  Total Cost
-                </StyledTableCell>
-                <StyledTableCell
-                  align="right"
-                  style={{ borderRight: "4px solid black", height: "40%" }}
-                >
-                  {" "}
-                  {firstProposal.totalcost}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {" "}
-                  {secondProposal.totalcost}
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          </Table>
-        </TableContainer> */}
       </Container>
     </Admin>
   );
