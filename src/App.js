@@ -32,11 +32,12 @@ function App() {
         <Route path="/" element={<MainLandingPage />} />
         {/* <Route path="/Tender/:TenderId" element={<ProposalForm />} /> */}
         <Route path="/post/tender/" element={<Tender />} />
-        {/* <Route path="/post/proponent/:tenderID" element={<ProponentForm />} /> */}
-        <Route path="/post/proponent/:tenderID" element={<ProposalForm />} />
+        <Route path="/post/proponent/:tenderID" element={<ProponentForm />} />
+        {/* <Route path="/post/proponent/:tenderID" element={<ProposalForm />} /> */}
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
         <Route path="/proponent/signup" element={<SignUp />} />
         <Route path="/proponent/signin" element={<SignIn />} />
+        <Route path="/proponent/" element={<ProposalForm />} />
         <Route path="/proponent/:proponentID" element={<Proponent />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/list/:tenderID" element={<AdminListView />} />
